@@ -1,0 +1,13 @@
+--- extern/ProteoWizard/Makefile.orig	2016-12-07 14:39:55.343536370 +0000
++++ extern/ProteoWizard/Makefile	2016-12-07 14:41:05.200552976 +0000
+@@ -463,8 +463,8 @@
+ .PHONY: pwiz-msi-version pwiz-msi
+ 
+ pwiz-msi-version :
+-	rm -f $(PWIZ_MSIDIR)/VERSION
+-	wget -nv -O- $(PWIZ_TCMSI)/VERSION\?guest=1 | sed -e 's/ /./g' > $(PWIZ_MSIDIR)/VERSION
++#	rm -f $(PWIZ_MSIDIR)/VERSION
++#	wget -nv -O- $(PWIZ_TCMSI)/VERSION\?guest=1 | sed -e 's/ /./g' > $(PWIZ_MSIDIR)/VERSION
+ 
+ pwiz-msi : V=$(shell cat $(PWIZ_MSIDIR)/VERSION)
+ pwiz-msi : pwiz-msi-version 
