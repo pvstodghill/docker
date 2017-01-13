@@ -13,8 +13,10 @@ ENV VERSION 5.0.0
 RUN yum -y update && yum clean all
 ENV BUILD_PACKAGES gcc gcc-c++ subversion bzip2-devel zlib-devel zlib-static \
     patch unzip gd-devel wget glibc-static libpng-devel libpng-static
-ENV RUN_PACKAGES perl perl-XML-Parser perl-CGI perl-ExtUtils-MakeMaker
+ENV RUN_PACKAGES perl perl-CPAN perl-devel perl-XML-Parser perl-CGI \
+    perl-ExtUtils-MakeMaker
 RUN yum -y install ${BUILD_PACKAGES} ${RUN_PACKAGES} && yum clean all
+RUN curl -q -L http://cpanmin.us | perl - App::cpanminus ; cpanm FindBin::libs
 
 # Unpack and build
 ADD ${PACKAGE}_${VERSION}-src.tgz /tmp/
