@@ -1,0 +1,1443 @@
+Script started on Wed 01 Feb 2017 01:03:16 PM EST
++ docker build --pull -t pvstodghill/searchgui:3.2.6__2017-02-01 .
+Sending build context to Docker daemon 557.1 kBSending build context to Docker daemon 18.38 MBSending build context to Docker daemon 50.14 MBSending build context to Docker daemon    83 MBSending build context to Docker daemon   117 MBSending build context to Docker daemon 143.7 MB
+Step 1/21 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:71cd81252a3563a03ad8daee81047b62ab5d892ebbfbf71cf53415f29c130950
+Status: Image is up to date for ubuntu:latest
+ ---> f49eec89601e
+Step 2/21 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> eb52cb234a0d
+Step 3/21 : ENV PACKAGE SearchGUI
+ ---> Running in daea4d0a439f
+ ---> 89e15269454f
+Removing intermediate container daea4d0a439f
+Step 4/21 : ENV VERSION 3.2.6
+ ---> Running in 0d959feff7dd
+ ---> d6efb38e54e3
+Removing intermediate container 0d959feff7dd
+Step 5/21 : ENV BUILD_PACKAGES ""
+ ---> Running in 811b573d445a
+ ---> dff541ed461b
+Removing intermediate container 811b573d445a
+Step 6/21 : ENV RUN_PACKAGES default-jre
+ ---> Running in e1cbc4dc867a
+ ---> ef54e02957fc
+Removing intermediate container e1cbc4dc867a
+Step 7/21 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Running in 3cc3c2cb5cd3
+Get:1 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial/main Sources [1103 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial/restricted Sources [5179 B]
+Get:6 http://archive.ubuntu.com/ubuntu xenial/universe Sources [9802 kB]
+Get:7 http://archive.ubuntu.com/ubuntu xenial/main amd64 Packages [1558 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial/restricted amd64 Packages [14.1 kB]
+Get:9 http://archive.ubuntu.com/ubuntu xenial/universe amd64 Packages [9827 kB]
+Get:10 http://archive.ubuntu.com/ubuntu xenial-updates/main Sources [278 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial-updates/restricted Sources [1866 B]
+Get:12 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [151 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [587 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [11.7 kB]
+Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [489 kB]
+Get:16 http://archive.ubuntu.com/ubuntu xenial-security/main Sources [68.0 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial-security/restricted Sources [1866 B]
+Get:18 http://archive.ubuntu.com/ubuntu xenial-security/universe Sources [20.5 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial-security/main amd64 Packages [254 kB]
+Get:20 http://archive.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [11.7 kB]
+Get:21 http://archive.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [87.6 kB]
+Fetched 24.7 MB in 39s (630 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ca-certificates ca-certificates-java dbus dbus-x11 default-jre-headless
+  dh-python file fontconfig fontconfig-config fonts-dejavu-core
+  fonts-dejavu-extra gconf-service gconf-service-backend gconf2 gconf2-common
+  hicolor-icon-theme java-common krb5-locales libasn1-8-heimdal libasound2
+  libasound2-data libasyncns0 libatk1.0-0 libatk1.0-data libavahi-client3
+  libavahi-common-data libavahi-common3 libavahi-glib1 libbonobo2-0
+  libbonobo2-common libbsd0 libcairo2 libcanberra0 libcap-ng0 libcups2
+  libdatrie1 libdbus-1-3 libdbus-glib-1-2 libdrm-amdgpu1 libdrm-intel1
+  libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2 libelf1 libexpat1 libffi6
+  libflac8 libfontconfig1 libfreetype6 libgconf-2-4 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-common libgif7 libgl1-mesa-dri libgl1-mesa-glx
+  libglapi-mesa libglib2.0-0 libglib2.0-data libgmp10 libgnome-2-0
+  libgnome2-common libgnomevfs2-0 libgnomevfs2-common libgnutls30
+  libgraphite2-3 libgssapi-krb5-2 libgssapi3-heimdal libgtk2.0-0 libgtk2.0-bin
+  libgtk2.0-common libharfbuzz0b libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libicu55 libidn11
+  libjbig0 libjpeg-turbo8 libjpeg8 libjson-c2 libk5crypto3 libkeyutils1
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 liblcms2-2 libldap-2.4-2
+  libllvm3.8 libltdl7 libmagic1 libmpdec2 libnettle6 libnspr4 libnss3
+  libnss3-nssdb libogg0 liborbit-2-0 libp11-kit0 libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0 libpcsclite1
+  libpixman-1-0 libpng12-0 libpopt0 libpulse0 libpython3-stdlib
+  libpython3.5-minimal libpython3.5-stdlib libroken18-heimdal libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsndfile1 libsqlite3-0 libssl1.0.0
+  libtasn1-6 libtdb1 libthai-data libthai0 libtiff5 libtxc-dxtn-s2tc0
+  libvorbis0a libvorbisenc2 libvorbisfile3 libwind0-heimdal libwrap0 libx11-6
+  libx11-data libx11-xcb1 libxau6 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0
+  libxcb-present0 libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb1
+  libxcomposite1 libxcursor1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxi6
+  libxinerama1 libxml2 libxrandr2 libxrender1 libxshmfence1 libxtst6
+  libxxf86vm1 mime-support openjdk-8-jre openjdk-8-jre-headless openssl psmisc
+  python3 python3-minimal python3.5 python3.5-minimal sgml-base
+  shared-mime-info sound-theme-freedesktop tcpd ucf x11-common xdg-user-dirs
+  xml-core
+Suggested packages:
+  default-java-plugin libdpkg-perl gconf-defaults-service libasound2-plugins
+  alsa-utils libbonobo2-bin libcanberra-gtk0 libcanberra-pulse cups-common
+  desktop-base libgnomevfs2-bin libgnomevfs2-extra gamin | fam gnome-mime-data
+  gnutls-bin krb5-doc krb5-user librsvg2-common gvfs liblcms2-utils pciutils
+  pcscd pulseaudio libsasl2-modules-otp libsasl2-modules-ldap
+  libsasl2-modules-sql libsasl2-modules-gssapi-mit
+  | libsasl2-modules-gssapi-heimdal icedtea-8-plugin openjdk-8-jre-jamvm
+  libnss-mdns fonts-ipafont-gothic fonts-ipafont-mincho ttf-wqy-microhei
+  | ttf-wqy-zenhei fonts-indic python3-doc python3-tk python3-venv
+  python3.5-venv python3.5-doc binutils binfmt-support sgml-base-doc debhelper
+The following NEW packages will be installed:
+  ca-certificates ca-certificates-java dbus dbus-x11 default-jre
+  default-jre-headless dh-python file fontconfig fontconfig-config
+  fonts-dejavu-core fonts-dejavu-extra gconf-service gconf-service-backend
+  gconf2 gconf2-common hicolor-icon-theme java-common krb5-locales
+  libasn1-8-heimdal libasound2 libasound2-data libasyncns0 libatk1.0-0
+  libatk1.0-data libavahi-client3 libavahi-common-data libavahi-common3
+  libavahi-glib1 libbonobo2-0 libbonobo2-common libbsd0 libcairo2 libcanberra0
+  libcap-ng0 libcups2 libdatrie1 libdbus-1-3 libdbus-glib-1-2 libdrm-amdgpu1
+  libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libdrm2 libedit2 libelf1
+  libexpat1 libffi6 libflac8 libfontconfig1 libfreetype6 libgconf-2-4
+  libgdk-pixbuf2.0-0 libgdk-pixbuf2.0-common libgif7 libgl1-mesa-dri
+  libgl1-mesa-glx libglapi-mesa libglib2.0-0 libglib2.0-data libgmp10
+  libgnome-2-0 libgnome2-common libgnomevfs2-0 libgnomevfs2-common libgnutls30
+  libgraphite2-3 libgssapi-krb5-2 libgssapi3-heimdal libgtk2.0-0 libgtk2.0-bin
+  libgtk2.0-common libharfbuzz0b libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libicu55 libidn11
+  libjbig0 libjpeg-turbo8 libjpeg8 libjson-c2 libk5crypto3 libkeyutils1
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 liblcms2-2 libldap-2.4-2
+  libllvm3.8 libltdl7 libmagic1 libmpdec2 libnettle6 libnspr4 libnss3
+  libnss3-nssdb libogg0 liborbit-2-0 libp11-kit0 libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0 libpcsclite1
+  libpixman-1-0 libpng12-0 libpopt0 libpulse0 libpython3-stdlib
+  libpython3.5-minimal libpython3.5-stdlib libroken18-heimdal libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsndfile1 libsqlite3-0 libssl1.0.0
+  libtasn1-6 libtdb1 libthai-data libthai0 libtiff5 libtxc-dxtn-s2tc0
+  libvorbis0a libvorbisenc2 libvorbisfile3 libwind0-heimdal libwrap0 libx11-6
+  libx11-data libx11-xcb1 libxau6 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0
+  libxcb-present0 libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb1
+  libxcomposite1 libxcursor1 libxdamage1 libxdmcp6 libxext6 libxfixes3 libxi6
+  libxinerama1 libxml2 libxrandr2 libxrender1 libxshmfence1 libxtst6
+  libxxf86vm1 mime-support openjdk-8-jre openjdk-8-jre-headless openssl psmisc
+  python3 python3-minimal python3.5 python3.5-minimal sgml-base
+  shared-mime-info sound-theme-freedesktop tcpd ucf x11-common xdg-user-dirs
+  xml-core
+0 upgraded, 175 newly installed, 0 to remove and 6 not upgraded.
+Need to get 75.9 MB of archives.
+After this operation, 394 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjson-c2 amd64 0.11-4ubuntu2 [22.3 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpopt0 amd64 1.16-10 [26.0 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libssl1.0.0 amd64 1.0.2g-1ubuntu4.6 [1082 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-minimal amd64 3.5.2-2ubuntu0~16.04.1 [526 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libexpat1 amd64 2.1.0-7ubuntu0.16.04.2 [71.3 kB]
+Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3.5-minimal amd64 3.5.2-2ubuntu0~16.04.1 [1597 kB]
+Get:7 http://archive.ubuntu.com/ubuntu xenial/main amd64 python3-minimal amd64 3.5.1-3 [23.3 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial/main amd64 mime-support all 3.59ubuntu1 [31.0 kB]
+Get:9 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmpdec2 amd64 2.4.2-1 [82.6 kB]
+Get:10 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsqlite3-0 amd64 3.11.0-1ubuntu1 [396 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython3.5-stdlib amd64 3.5.2-2ubuntu0~16.04.1 [2130 kB]
+Get:12 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python3.5 amd64 3.5.2-2ubuntu0~16.04.1 [165 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpython3-stdlib amd64 3.5.1-3 [6818 B]
+Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 dh-python all 2.20151103ubuntu1.1 [74.1 kB]
+Get:15 http://archive.ubuntu.com/ubuntu xenial/main amd64 python3 amd64 3.5.1-3 [8710 B]
+Get:16 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxau6 amd64 1:1.0.8-1 [8376 B]
+Get:17 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxdmcp6 amd64 1:1.1.2-1.1 [11.0 kB]
+Get:18 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb1 amd64 1.11.1-1ubuntu1 [40.0 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial/main amd64 libx11-data all 2:1.6.3-1ubuntu2 [113 kB]
+Get:20 http://archive.ubuntu.com/ubuntu xenial/main amd64 libx11-6 amd64 2:1.6.3-1ubuntu2 [571 kB]
+Get:21 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxext6 amd64 2:1.3.3-1 [29.4 kB]
+Get:22 http://archive.ubuntu.com/ubuntu xenial/main amd64 sgml-base all 1.26+nmu4ubuntu1 [12.5 kB]
+Get:23 http://archive.ubuntu.com/ubuntu xenial/main amd64 fonts-dejavu-core all 2.35-1 [1039 kB]
+Get:24 http://archive.ubuntu.com/ubuntu xenial/main amd64 ucf all 3.0036 [52.9 kB]
+Get:25 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 fontconfig-config all 2.11.94-0ubuntu1.1 [49.9 kB]
+Get:26 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpng12-0 amd64 1.2.54-1ubuntu1 [116 kB]
+Get:27 http://archive.ubuntu.com/ubuntu xenial/main amd64 libfreetype6 amd64 2.6.1-0.1ubuntu2 [316 kB]
+Get:28 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libfontconfig1 amd64 2.11.94-0ubuntu1.1 [131 kB]
+Get:29 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 fontconfig amd64 2.11.94-0ubuntu1.1 [178 kB]
+Get:30 http://archive.ubuntu.com/ubuntu xenial/main amd64 libasyncns0 amd64 0.8-5build1 [12.3 kB]
+Get:31 http://archive.ubuntu.com/ubuntu xenial/main amd64 libbonobo2-common all 2.32.1-3 [34.7 kB]
+Get:32 http://archive.ubuntu.com/ubuntu xenial/main amd64 libffi6 amd64 3.2.1-4 [17.8 kB]
+Get:33 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libglib2.0-0 amd64 2.48.2-0ubuntu1 [1119 kB]
+Get:34 http://archive.ubuntu.com/ubuntu xenial/main amd64 liborbit-2-0 amd64 1:2.14.19-1build1 [140 kB]
+Get:35 http://archive.ubuntu.com/ubuntu xenial/main amd64 libicu55 amd64 55.1-7 [7643 kB]
+Get:36 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libxml2 amd64 2.9.3+dfsg1-1ubuntu0.1 [696 kB]
+Get:37 http://archive.ubuntu.com/ubuntu xenial/main amd64 libbonobo2-0 amd64 2.32.1-3 [211 kB]
+Get:38 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjpeg-turbo8 amd64 1.4.2-0ubuntu3 [111 kB]
+Get:39 http://archive.ubuntu.com/ubuntu xenial/main amd64 liblcms2-2 amd64 2.6-3ubuntu2 [137 kB]
+Get:40 http://archive.ubuntu.com/ubuntu xenial/main amd64 libogg0 amd64 1.3.2-1 [17.2 kB]
+Get:41 http://archive.ubuntu.com/ubuntu xenial/main amd64 libwrap0 amd64 7.6.q-25 [46.2 kB]
+Get:42 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcomposite1 amd64 1:0.4.4-1 [7714 B]
+Get:43 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxfixes3 amd64 1:5.0.1-2 [11.1 kB]
+Get:44 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxrender1 amd64 1:0.9.9-0ubuntu1 [18.5 kB]
+Get:45 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcursor1 amd64 1:1.1.14-1 [22.8 kB]
+Get:46 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxdamage1 amd64 1:1.1.4-2 [6946 B]
+Get:47 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxinerama1 amd64 2:1.1.3-1 [7908 B]
+Get:48 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxshmfence1 amd64 1.2-1 [5042 B]
+Get:49 http://archive.ubuntu.com/ubuntu xenial/main amd64 x11-common all 1:7.7+13ubuntu3 [22.4 kB]
+Get:50 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxtst6 amd64 2:1.2.2-1 [14.1 kB]
+Get:51 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxxf86vm1 amd64 1:1.1.4-1 [10.6 kB]
+Get:52 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 openssl amd64 1.0.2g-1ubuntu4.6 [492 kB]
+Get:53 http://archive.ubuntu.com/ubuntu xenial/main amd64 ca-certificates all 20160104ubuntu1 [191 kB]
+Get:54 http://archive.ubuntu.com/ubuntu xenial/main amd64 java-common all 0.56ubuntu2 [7742 B]
+Get:55 http://archive.ubuntu.com/ubuntu xenial/main amd64 default-jre-headless amd64 2:1.8-56ubuntu2 [4380 B]
+Get:56 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnspr4 amd64 2:4.12-0ubuntu0.16.04.1 [112 kB]
+Get:57 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnss3-nssdb all 2:3.26.2-0ubuntu0.16.04.2 [10.6 kB]
+Get:58 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libnss3 amd64 2:3.26.2-0ubuntu0.16.04.2 [1153 kB]
+Get:59 http://archive.ubuntu.com/ubuntu xenial/main amd64 ca-certificates-java all 20160321 [12.9 kB]
+Get:60 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-common-data amd64 0.6.32~rc+dfsg-1ubuntu2 [21.7 kB]
+Get:61 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-common3 amd64 0.6.32~rc+dfsg-1ubuntu2 [21.6 kB]
+Get:62 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdbus-1-3 amd64 1.10.6-1ubuntu3.3 [161 kB]
+Get:63 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-client3 amd64 0.6.32~rc+dfsg-1ubuntu2 [25.1 kB]
+Get:64 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgmp10 amd64 2:6.1.0+dfsg-2 [240 kB]
+Get:65 http://archive.ubuntu.com/ubuntu xenial/main amd64 libnettle6 amd64 3.2-1 [93.2 kB]
+Get:66 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhogweed4 amd64 3.2-1 [135 kB]
+Get:67 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libidn11 amd64 1.32-3ubuntu1.1 [45.6 kB]
+Get:68 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libp11-kit0 amd64 0.23.2-5~ubuntu16.04.1 [105 kB]
+Get:69 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libtasn1-6 amd64 4.7-3ubuntu0.16.04.1 [43.2 kB]
+Get:70 http://archive.ubuntu.com/ubuntu xenial-security/main amd64 libgnutls30 amd64 3.4.10-4ubuntu1.2 [547 kB]
+Get:71 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkrb5support0 amd64 1.13.2+dfsg-5ubuntu1 [30.7 kB]
+Get:72 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libk5crypto3 amd64 1.13.2+dfsg-5ubuntu1 [81.1 kB]
+Get:73 http://archive.ubuntu.com/ubuntu xenial/main amd64 libkeyutils1 amd64 1.5.9-8ubuntu1 [9904 B]
+Get:74 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libkrb5-3 amd64 1.13.2+dfsg-5ubuntu1 [273 kB]
+Get:75 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgssapi-krb5-2 amd64 1.13.2+dfsg-5ubuntu1 [120 kB]
+Get:76 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcups2 amd64 2.1.3-4 [197 kB]
+Get:77 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+Get:78 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpcsclite1 amd64 1.8.14-1ubuntu1.16.04.1 [21.4 kB]
+Get:79 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxi6 amd64 2:1.7.6-1 [28.6 kB]
+Get:80 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 openjdk-8-jre-headless amd64 8u121-b13-0ubuntu1.16.04.2 [26.9 MB]
+Get:81 http://archive.ubuntu.com/ubuntu xenial/main amd64 libjbig0 amd64 2.1-3.1 [26.6 kB]
+Get:82 http://archive.ubuntu.com/ubuntu xenial/main amd64 libtxc-dxtn-s2tc0 amd64 0~git20131104-1.1 [51.8 kB]
+Get:83 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmagic1 amd64 1:5.25-2ubuntu1 [216 kB]
+Get:84 http://archive.ubuntu.com/ubuntu xenial/main amd64 file amd64 1:5.25-2ubuntu1 [21.2 kB]
+Get:85 http://archive.ubuntu.com/ubuntu xenial/main amd64 libbsd0 amd64 0.8.2-1 [41.7 kB]
+Get:86 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcap-ng0 amd64 0.7.7-1 [10.9 kB]
+Get:87 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 dbus amd64 1.10.6-1ubuntu3.3 [142 kB]
+Get:88 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 krb5-locales all 1.13.2+dfsg-5ubuntu1 [13.2 kB]
+Get:89 http://archive.ubuntu.com/ubuntu xenial/main amd64 libroken18-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [41.2 kB]
+Get:90 http://archive.ubuntu.com/ubuntu xenial/main amd64 libasn1-8-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [174 kB]
+Get:91 http://archive.ubuntu.com/ubuntu xenial/main amd64 libdbus-glib-1-2 amd64 0.106-1 [67.1 kB]
+Get:92 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdrm2 amd64 2.4.67-1ubuntu0.16.04.2 [27.8 kB]
+Get:93 http://archive.ubuntu.com/ubuntu xenial/main amd64 libedit2 amd64 3.1-20150325-1ubuntu2 [76.5 kB]
+Get:94 http://archive.ubuntu.com/ubuntu xenial/main amd64 libelf1 amd64 0.165-3ubuntu1 [42.5 kB]
+Get:95 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libglib2.0-data all 2.48.2-0ubuntu1 [132 kB]
+Get:96 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhcrypto4-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [84.9 kB]
+Get:97 http://archive.ubuntu.com/ubuntu xenial/main amd64 libheimbase1-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [29.2 kB]
+Get:98 http://archive.ubuntu.com/ubuntu xenial/main amd64 libwind0-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [48.2 kB]
+Get:99 http://archive.ubuntu.com/ubuntu xenial/main amd64 libhx509-5-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [107 kB]
+Get:100 http://archive.ubuntu.com/ubuntu xenial/main amd64 libkrb5-26-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [202 kB]
+Get:101 http://archive.ubuntu.com/ubuntu xenial/main amd64 libheimntlm0-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [15.1 kB]
+Get:102 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgssapi3-heimdal amd64 1.7~git20150920+dfsg-4ubuntu1 [96.1 kB]
+Get:103 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsasl2-modules-db amd64 2.1.26.dfsg1-14build1 [14.5 kB]
+Get:104 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsasl2-2 amd64 2.1.26.dfsg1-14build1 [48.7 kB]
+Get:105 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libldap-2.4-2 amd64 2.4.42+dfsg-2ubuntu3.1 [161 kB]
+Get:106 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsasl2-modules amd64 2.1.26.dfsg1-14build1 [47.5 kB]
+Get:107 http://archive.ubuntu.com/ubuntu xenial/main amd64 psmisc amd64 22.21-2.1build1 [48.0 kB]
+Get:108 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 shared-mime-info amd64 1.5-2ubuntu0.1 [405 kB]
+Get:109 http://archive.ubuntu.com/ubuntu xenial/main amd64 xdg-user-dirs amd64 0.15-2ubuntu6 [61.7 kB]
+Get:110 http://archive.ubuntu.com/ubuntu xenial/main amd64 xml-core all 0.13+nmu2 [23.3 kB]
+Get:111 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 dbus-x11 amd64 1.10.6-1ubuntu3.3 [21.4 kB]
+Get:112 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgtk2.0-common all 2.24.30-1ubuntu1 [123 kB]
+Get:113 http://archive.ubuntu.com/ubuntu xenial/main amd64 libatk1.0-data all 2.18.0-1 [17.1 kB]
+Get:114 http://archive.ubuntu.com/ubuntu xenial/main amd64 libatk1.0-0 amd64 2.18.0-1 [56.9 kB]
+Get:115 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpixman-1-0 amd64 0.33.6-1 [231 kB]
+Get:116 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-render0 amd64 1.11.1-1ubuntu1 [11.4 kB]
+Get:117 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-shm0 amd64 1.11.1-1ubuntu1 [5588 B]
+Get:118 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcairo2 amd64 1.14.6-1 [555 kB]
+Get:119 http://archive.ubuntu.com/ubuntu xenial/main amd64 libtiff5 amd64 4.0.6-1 [144 kB]
+Get:120 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgdk-pixbuf2.0-common all 2.32.2-1ubuntu1.2 [10.2 kB]
+Get:121 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgdk-pixbuf2.0-0 amd64 2.32.2-1ubuntu1.2 [158 kB]
+Get:122 http://archive.ubuntu.com/ubuntu xenial/main amd64 libthai-data all 0.1.24-2 [131 kB]
+Get:123 http://archive.ubuntu.com/ubuntu xenial/main amd64 libdatrie1 amd64 0.2.10-2 [17.3 kB]
+Get:124 http://archive.ubuntu.com/ubuntu xenial/main amd64 libthai0 amd64 0.1.24-2 [17.3 kB]
+Get:125 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpango-1.0-0 amd64 1.38.1-1 [148 kB]
+Get:126 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgraphite2-3 amd64 1.3.6-1ubuntu1 [70.8 kB]
+Get:127 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libharfbuzz0b amd64 1.0.1-1ubuntu0.1 [140 kB]
+Get:128 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpangoft2-1.0-0 amd64 1.38.1-1 [33.3 kB]
+Get:129 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpangocairo-1.0-0 amd64 1.38.1-1 [20.5 kB]
+Get:130 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxrandr2 amd64 2:1.5.0-1 [17.6 kB]
+Get:131 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgtk2.0-0 amd64 2.24.30-1ubuntu1 [1777 kB]
+Get:132 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libglapi-mesa amd64 11.2.0-1ubuntu2.2 [22.9 kB]
+Get:133 http://archive.ubuntu.com/ubuntu xenial/main amd64 libx11-xcb1 amd64 2:1.6.3-1ubuntu2 [8956 B]
+Get:134 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-dri2-0 amd64 1.11.1-1ubuntu1 [6882 B]
+Get:135 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-dri3-0 amd64 1.11.1-1ubuntu1 [5218 B]
+Get:136 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-glx0 amd64 1.11.1-1ubuntu1 [20.9 kB]
+Get:137 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-present0 amd64 1.11.1-1ubuntu1 [5218 B]
+Get:138 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxcb-sync1 amd64 1.11.1-1ubuntu1 [8324 B]
+Get:139 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdrm-amdgpu1 amd64 2.4.67-1ubuntu0.16.04.2 [16.4 kB]
+Get:140 http://archive.ubuntu.com/ubuntu xenial/main amd64 libpciaccess0 amd64 0.13.4-1 [18.1 kB]
+Get:141 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdrm-intel1 amd64 2.4.67-1ubuntu0.16.04.2 [56.0 kB]
+Get:142 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdrm-nouveau2 amd64 2.4.67-1ubuntu0.16.04.2 [16.3 kB]
+Get:143 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdrm-radeon1 amd64 2.4.67-1ubuntu0.16.04.2 [21.6 kB]
+Get:144 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libllvm3.8 amd64 1:3.8-2ubuntu4 [10.3 MB]
+Get:145 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgl1-mesa-dri amd64 11.2.0-1ubuntu2.2 [4655 kB]
+Get:146 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgl1-mesa-glx amd64 11.2.0-1ubuntu2.2 [127 kB]
+Get:147 http://archive.ubuntu.com/ubuntu xenial/main amd64 libasound2-data all 1.1.0-0ubuntu1 [29.4 kB]
+Get:148 http://archive.ubuntu.com/ubuntu xenial/main amd64 libasound2 amd64 1.1.0-0ubuntu1 [350 kB]
+Get:149 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgif7 amd64 5.1.4-0.3~16.04 [30.5 kB]
+Get:150 http://archive.ubuntu.com/ubuntu xenial/main amd64 libflac8 amd64 1.3.1-4 [210 kB]
+Get:151 http://archive.ubuntu.com/ubuntu xenial/main amd64 libvorbis0a amd64 1.3.5-3 [86.8 kB]
+Get:152 http://archive.ubuntu.com/ubuntu xenial/main amd64 libvorbisenc2 amd64 1.3.5-3 [70.7 kB]
+Get:153 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsndfile1 amd64 1.0.25-10 [137 kB]
+Get:154 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpulse0 amd64 1:8.0-0ubuntu3.2 [248 kB]
+Get:155 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 openjdk-8-jre amd64 8u121-b13-0ubuntu1.16.04.2 [69.3 kB]
+Get:156 http://archive.ubuntu.com/ubuntu xenial/main amd64 default-jre amd64 2:1.8-56ubuntu2 [980 B]
+Get:157 http://archive.ubuntu.com/ubuntu xenial/main amd64 fonts-dejavu-extra all 2.35-1 [1749 kB]
+Get:158 http://archive.ubuntu.com/ubuntu xenial/main amd64 gconf2-common all 3.2.6-3ubuntu6 [21.0 kB]
+Get:159 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgconf-2-4 amd64 3.2.6-3ubuntu6 [84.6 kB]
+Get:160 http://archive.ubuntu.com/ubuntu xenial/main amd64 gconf-service-backend amd64 3.2.6-3ubuntu6 [57.5 kB]
+Get:161 http://archive.ubuntu.com/ubuntu xenial/main amd64 gconf-service amd64 3.2.6-3ubuntu6 [2046 B]
+Get:162 http://archive.ubuntu.com/ubuntu xenial/main amd64 gconf2 amd64 3.2.6-3ubuntu6 [65.8 kB]
+Get:163 http://archive.ubuntu.com/ubuntu xenial/main amd64 hicolor-icon-theme all 0.15-0ubuntu1 [7750 B]
+Get:164 http://archive.ubuntu.com/ubuntu xenial/main amd64 libavahi-glib1 amd64 0.6.32~rc+dfsg-1ubuntu2 [7726 B]
+Get:165 http://archive.ubuntu.com/ubuntu xenial/main amd64 libltdl7 amd64 2.4.6-0.1 [38.3 kB]
+Get:166 http://archive.ubuntu.com/ubuntu xenial/main amd64 libtdb1 amd64 1.3.8-2 [38.2 kB]
+Get:167 http://archive.ubuntu.com/ubuntu xenial/main amd64 libvorbisfile3 amd64 1.3.5-3 [15.9 kB]
+Get:168 http://archive.ubuntu.com/ubuntu xenial/main amd64 sound-theme-freedesktop all 0.8-1 [385 kB]
+Get:169 http://archive.ubuntu.com/ubuntu xenial/main amd64 libcanberra0 amd64 0.30-2.1ubuntu1 [37.4 kB]
+Get:170 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgnomevfs2-common amd64 1:2.24.4-6.1ubuntu1 [23.0 kB]
+Get:171 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgnomevfs2-0 amd64 1:2.24.4-6.1ubuntu1 [213 kB]
+Get:172 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgnome2-common all 2.32.1-5ubuntu1 [33.5 kB]
+Get:173 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgnome-2-0 amd64 2.32.1-5ubuntu1 [53.7 kB]
+Get:174 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgtk2.0-bin amd64 2.24.30-1ubuntu1 [9820 B]
+Get:175 http://archive.ubuntu.com/ubuntu xenial/main amd64 tcpd amd64 7.6.q-25 [23.0 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 75.9 MB in 2min 10s (582 kB/s)
+Selecting previously unselected package libjson-c2:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7256 files and directories currently installed.)
+Preparing to unpack .../libjson-c2_0.11-4ubuntu2_amd64.deb ...
+Unpacking libjson-c2:amd64 (0.11-4ubuntu2) ...
+Selecting previously unselected package libpopt0:amd64.
+Preparing to unpack .../libpopt0_1.16-10_amd64.deb ...
+Unpacking libpopt0:amd64 (1.16-10) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../libssl1.0.0_1.0.2g-1ubuntu4.6_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2g-1ubuntu4.6) ...
+Selecting previously unselected package libpython3.5-minimal:amd64.
+Preparing to unpack .../libpython3.5-minimal_3.5.2-2ubuntu0~16.04.1_amd64.deb ...
+Unpacking libpython3.5-minimal:amd64 (3.5.2-2ubuntu0~16.04.1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.1.0-7ubuntu0.16.04.2_amd64.deb ...
+Unpacking libexpat1:amd64 (2.1.0-7ubuntu0.16.04.2) ...
+Selecting previously unselected package python3.5-minimal.
+Preparing to unpack .../python3.5-minimal_3.5.2-2ubuntu0~16.04.1_amd64.deb ...
+Unpacking python3.5-minimal (3.5.2-2ubuntu0~16.04.1) ...
+Selecting previously unselected package python3-minimal.
+Preparing to unpack .../python3-minimal_3.5.1-3_amd64.deb ...
+Unpacking python3-minimal (3.5.1-3) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../mime-support_3.59ubuntu1_all.deb ...
+Unpacking mime-support (3.59ubuntu1) ...
+Selecting previously unselected package libmpdec2:amd64.
+Preparing to unpack .../libmpdec2_2.4.2-1_amd64.deb ...
+Unpacking libmpdec2:amd64 (2.4.2-1) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../libsqlite3-0_3.11.0-1ubuntu1_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.11.0-1ubuntu1) ...
+Selecting previously unselected package libpython3.5-stdlib:amd64.
+Preparing to unpack .../libpython3.5-stdlib_3.5.2-2ubuntu0~16.04.1_amd64.deb ...
+Unpacking libpython3.5-stdlib:amd64 (3.5.2-2ubuntu0~16.04.1) ...
+Selecting previously unselected package python3.5.
+Preparing to unpack .../python3.5_3.5.2-2ubuntu0~16.04.1_amd64.deb ...
+Unpacking python3.5 (3.5.2-2ubuntu0~16.04.1) ...
+Selecting previously unselected package libpython3-stdlib:amd64.
+Preparing to unpack .../libpython3-stdlib_3.5.1-3_amd64.deb ...
+Unpacking libpython3-stdlib:amd64 (3.5.1-3) ...
+Selecting previously unselected package dh-python.
+Preparing to unpack .../dh-python_2.20151103ubuntu1.1_all.deb ...
+Unpacking dh-python (2.20151103ubuntu1.1) ...
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Setting up libssl1.0.0:amd64 (1.0.2g-1ubuntu4.6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libpython3.5-minimal:amd64 (3.5.2-2ubuntu0~16.04.1) ...
+Setting up libexpat1:amd64 (2.1.0-7ubuntu0.16.04.2) ...
+Setting up python3.5-minimal (3.5.2-2ubuntu0~16.04.1) ...
+Setting up python3-minimal (3.5.1-3) ...
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Selecting previously unselected package python3.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8245 files and directories currently installed.)
+Preparing to unpack .../python3_3.5.1-3_amd64.deb ...
+Unpacking python3 (3.5.1-3) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../libxau6_1%3a1.0.8-1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../libxdmcp6_1%3a1.1.2-1.1_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-1.1) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../libxcb1_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb1:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../libx11-data_2%3a1.6.3-1ubuntu2_all.deb ...
+Unpacking libx11-data (2:1.6.3-1ubuntu2) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../libx11-6_2%3a1.6.3-1ubuntu2_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.3-1ubuntu2) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../libxext6_2%3a1.3.3-1_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.3-1) ...
+Selecting previously unselected package sgml-base.
+Preparing to unpack .../sgml-base_1.26+nmu4ubuntu1_all.deb ...
+Unpacking sgml-base (1.26+nmu4ubuntu1) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../fonts-dejavu-core_2.35-1_all.deb ...
+Unpacking fonts-dejavu-core (2.35-1) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../archives/ucf_3.0036_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0036) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../fontconfig-config_2.11.94-0ubuntu1.1_all.deb ...
+Unpacking fontconfig-config (2.11.94-0ubuntu1.1) ...
+Selecting previously unselected package libpng12-0:amd64.
+Preparing to unpack .../libpng12-0_1.2.54-1ubuntu1_amd64.deb ...
+Unpacking libpng12-0:amd64 (1.2.54-1ubuntu1) ...
+Selecting previously unselected package libfreetype6:amd64.
+Preparing to unpack .../libfreetype6_2.6.1-0.1ubuntu2_amd64.deb ...
+Unpacking libfreetype6:amd64 (2.6.1-0.1ubuntu2) ...
+Selecting previously unselected package libfontconfig1:amd64.
+Preparing to unpack .../libfontconfig1_2.11.94-0ubuntu1.1_amd64.deb ...
+Unpacking libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
+Selecting previously unselected package fontconfig.
+Preparing to unpack .../fontconfig_2.11.94-0ubuntu1.1_amd64.deb ...
+Unpacking fontconfig (2.11.94-0ubuntu1.1) ...
+Selecting previously unselected package libasyncns0:amd64.
+Preparing to unpack .../libasyncns0_0.8-5build1_amd64.deb ...
+Unpacking libasyncns0:amd64 (0.8-5build1) ...
+Selecting previously unselected package libbonobo2-common.
+Preparing to unpack .../libbonobo2-common_2.32.1-3_all.deb ...
+Unpacking libbonobo2-common (2.32.1-3) ...
+Selecting previously unselected package libffi6:amd64.
+Preparing to unpack .../libffi6_3.2.1-4_amd64.deb ...
+Unpacking libffi6:amd64 (3.2.1-4) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../libglib2.0-0_2.48.2-0ubuntu1_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.48.2-0ubuntu1) ...
+Selecting previously unselected package liborbit-2-0:amd64.
+Preparing to unpack .../liborbit-2-0_1%3a2.14.19-1build1_amd64.deb ...
+Unpacking liborbit-2-0:amd64 (1:2.14.19-1build1) ...
+Selecting previously unselected package libicu55:amd64.
+Preparing to unpack .../libicu55_55.1-7_amd64.deb ...
+Unpacking libicu55:amd64 (55.1-7) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../libxml2_2.9.3+dfsg1-1ubuntu0.1_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.3+dfsg1-1ubuntu0.1) ...
+Selecting previously unselected package libbonobo2-0:amd64.
+Preparing to unpack .../libbonobo2-0_2.32.1-3_amd64.deb ...
+Unpacking libbonobo2-0:amd64 (2.32.1-3) ...
+Selecting previously unselected package libjpeg-turbo8:amd64.
+Preparing to unpack .../libjpeg-turbo8_1.4.2-0ubuntu3_amd64.deb ...
+Unpacking libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
+Selecting previously unselected package liblcms2-2:amd64.
+Preparing to unpack .../liblcms2-2_2.6-3ubuntu2_amd64.deb ...
+Unpacking liblcms2-2:amd64 (2.6-3ubuntu2) ...
+Selecting previously unselected package libogg0:amd64.
+Preparing to unpack .../libogg0_1.3.2-1_amd64.deb ...
+Unpacking libogg0:amd64 (1.3.2-1) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../libwrap0_7.6.q-25_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-25) ...
+Selecting previously unselected package libxcomposite1:amd64.
+Preparing to unpack .../libxcomposite1_1%3a0.4.4-1_amd64.deb ...
+Unpacking libxcomposite1:amd64 (1:0.4.4-1) ...
+Selecting previously unselected package libxfixes3:amd64.
+Preparing to unpack .../libxfixes3_1%3a5.0.1-2_amd64.deb ...
+Unpacking libxfixes3:amd64 (1:5.0.1-2) ...
+Selecting previously unselected package libxrender1:amd64.
+Preparing to unpack .../libxrender1_1%3a0.9.9-0ubuntu1_amd64.deb ...
+Unpacking libxrender1:amd64 (1:0.9.9-0ubuntu1) ...
+Selecting previously unselected package libxcursor1:amd64.
+Preparing to unpack .../libxcursor1_1%3a1.1.14-1_amd64.deb ...
+Unpacking libxcursor1:amd64 (1:1.1.14-1) ...
+Selecting previously unselected package libxdamage1:amd64.
+Preparing to unpack .../libxdamage1_1%3a1.1.4-2_amd64.deb ...
+Unpacking libxdamage1:amd64 (1:1.1.4-2) ...
+Selecting previously unselected package libxinerama1:amd64.
+Preparing to unpack .../libxinerama1_2%3a1.1.3-1_amd64.deb ...
+Unpacking libxinerama1:amd64 (2:1.1.3-1) ...
+Selecting previously unselected package libxshmfence1:amd64.
+Preparing to unpack .../libxshmfence1_1.2-1_amd64.deb ...
+Unpacking libxshmfence1:amd64 (1.2-1) ...
+Selecting previously unselected package x11-common.
+Preparing to unpack .../x11-common_1%3a7.7+13ubuntu3_all.deb ...
+Unpacking x11-common (1:7.7+13ubuntu3) ...
+Selecting previously unselected package libxtst6:amd64.
+Preparing to unpack .../libxtst6_2%3a1.2.2-1_amd64.deb ...
+Unpacking libxtst6:amd64 (2:1.2.2-1) ...
+Selecting previously unselected package libxxf86vm1:amd64.
+Preparing to unpack .../libxxf86vm1_1%3a1.1.4-1_amd64.deb ...
+Unpacking libxxf86vm1:amd64 (1:1.1.4-1) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../openssl_1.0.2g-1ubuntu4.6_amd64.deb ...
+Unpacking openssl (1.0.2g-1ubuntu4.6) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../ca-certificates_20160104ubuntu1_all.deb ...
+Unpacking ca-certificates (20160104ubuntu1) ...
+Selecting previously unselected package java-common.
+Preparing to unpack .../java-common_0.56ubuntu2_all.deb ...
+Unpacking java-common (0.56ubuntu2) ...
+Selecting previously unselected package default-jre-headless.
+Preparing to unpack .../default-jre-headless_2%3a1.8-56ubuntu2_amd64.deb ...
+Unpacking default-jre-headless (2:1.8-56ubuntu2) ...
+Selecting previously unselected package libnspr4:amd64.
+Preparing to unpack .../libnspr4_2%3a4.12-0ubuntu0.16.04.1_amd64.deb ...
+Unpacking libnspr4:amd64 (2:4.12-0ubuntu0.16.04.1) ...
+Selecting previously unselected package libnss3-nssdb.
+Preparing to unpack .../libnss3-nssdb_2%3a3.26.2-0ubuntu0.16.04.2_all.deb ...
+Unpacking libnss3-nssdb (2:3.26.2-0ubuntu0.16.04.2) ...
+Selecting previously unselected package libnss3:amd64.
+Preparing to unpack .../libnss3_2%3a3.26.2-0ubuntu0.16.04.2_amd64.deb ...
+Unpacking libnss3:amd64 (2:3.26.2-0ubuntu0.16.04.2) ...
+Selecting previously unselected package ca-certificates-java.
+Preparing to unpack .../ca-certificates-java_20160321_all.deb ...
+Unpacking ca-certificates-java (20160321) ...
+Selecting previously unselected package libavahi-common-data:amd64.
+Preparing to unpack .../libavahi-common-data_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+Unpacking libavahi-common-data:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Selecting previously unselected package libavahi-common3:amd64.
+Preparing to unpack .../libavahi-common3_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+Unpacking libavahi-common3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Selecting previously unselected package libdbus-1-3:amd64.
+Preparing to unpack .../libdbus-1-3_1.10.6-1ubuntu3.3_amd64.deb ...
+Unpacking libdbus-1-3:amd64 (1.10.6-1ubuntu3.3) ...
+Selecting previously unselected package libavahi-client3:amd64.
+Preparing to unpack .../libavahi-client3_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+Unpacking libavahi-client3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Selecting previously unselected package libgmp10:amd64.
+Preparing to unpack .../libgmp10_2%3a6.1.0+dfsg-2_amd64.deb ...
+Unpacking libgmp10:amd64 (2:6.1.0+dfsg-2) ...
+Selecting previously unselected package libnettle6:amd64.
+Preparing to unpack .../libnettle6_3.2-1_amd64.deb ...
+Unpacking libnettle6:amd64 (3.2-1) ...
+Selecting previously unselected package libhogweed4:amd64.
+Preparing to unpack .../libhogweed4_3.2-1_amd64.deb ...
+Unpacking libhogweed4:amd64 (3.2-1) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../libidn11_1.32-3ubuntu1.1_amd64.deb ...
+Unpacking libidn11:amd64 (1.32-3ubuntu1.1) ...
+Selecting previously unselected package libp11-kit0:amd64.
+Preparing to unpack .../libp11-kit0_0.23.2-5~ubuntu16.04.1_amd64.deb ...
+Unpacking libp11-kit0:amd64 (0.23.2-5~ubuntu16.04.1) ...
+Selecting previously unselected package libtasn1-6:amd64.
+Preparing to unpack .../libtasn1-6_4.7-3ubuntu0.16.04.1_amd64.deb ...
+Unpacking libtasn1-6:amd64 (4.7-3ubuntu0.16.04.1) ...
+Selecting previously unselected package libgnutls30:amd64.
+Preparing to unpack .../libgnutls30_3.4.10-4ubuntu1.2_amd64.deb ...
+Unpacking libgnutls30:amd64 (3.4.10-4ubuntu1.2) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../libkrb5support0_1.13.2+dfsg-5ubuntu1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../libk5crypto3_1.13.2+dfsg-5ubuntu1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../libkeyutils1_1.5.9-8ubuntu1_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-8ubuntu1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../libkrb5-3_1.13.2+dfsg-5ubuntu1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../libgssapi-krb5-2_1.13.2+dfsg-5ubuntu1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Selecting previously unselected package libcups2:amd64.
+Preparing to unpack .../libcups2_2.1.3-4_amd64.deb ...
+Unpacking libcups2:amd64 (2.1.3-4) ...
+Selecting previously unselected package libjpeg8:amd64.
+Preparing to unpack .../libjpeg8_8c-2ubuntu8_amd64.deb ...
+Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+Selecting previously unselected package libpcsclite1:amd64.
+Preparing to unpack .../libpcsclite1_1.8.14-1ubuntu1.16.04.1_amd64.deb ...
+Unpacking libpcsclite1:amd64 (1.8.14-1ubuntu1.16.04.1) ...
+Selecting previously unselected package libxi6:amd64.
+Preparing to unpack .../libxi6_2%3a1.7.6-1_amd64.deb ...
+Unpacking libxi6:amd64 (2:1.7.6-1) ...
+Selecting previously unselected package openjdk-8-jre-headless:amd64.
+Preparing to unpack .../openjdk-8-jre-headless_8u121-b13-0ubuntu1.16.04.2_amd64.deb ...
+Unpacking openjdk-8-jre-headless:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+Selecting previously unselected package libjbig0:amd64.
+Preparing to unpack .../libjbig0_2.1-3.1_amd64.deb ...
+Unpacking libjbig0:amd64 (2.1-3.1) ...
+Selecting previously unselected package libtxc-dxtn-s2tc0:amd64.
+Preparing to unpack .../libtxc-dxtn-s2tc0_0~git20131104-1.1_amd64.deb ...
+Unpacking libtxc-dxtn-s2tc0:amd64 (0~git20131104-1.1) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../libmagic1_1%3a5.25-2ubuntu1_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.25-2ubuntu1) ...
+Selecting previously unselected package file.
+Preparing to unpack .../file_1%3a5.25-2ubuntu1_amd64.deb ...
+Unpacking file (1:5.25-2ubuntu1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../libbsd0_0.8.2-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.2-1) ...
+Selecting previously unselected package libcap-ng0:amd64.
+Preparing to unpack .../libcap-ng0_0.7.7-1_amd64.deb ...
+Unpacking libcap-ng0:amd64 (0.7.7-1) ...
+Selecting previously unselected package dbus.
+Preparing to unpack .../dbus_1.10.6-1ubuntu3.3_amd64.deb ...
+Unpacking dbus (1.10.6-1ubuntu3.3) ...
+Selecting previously unselected package krb5-locales.
+Preparing to unpack .../krb5-locales_1.13.2+dfsg-5ubuntu1_all.deb ...
+Unpacking krb5-locales (1.13.2+dfsg-5ubuntu1) ...
+Selecting previously unselected package libroken18-heimdal:amd64.
+Preparing to unpack .../libroken18-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libroken18-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libasn1-8-heimdal:amd64.
+Preparing to unpack .../libasn1-8-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libasn1-8-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libdbus-glib-1-2:amd64.
+Preparing to unpack .../libdbus-glib-1-2_0.106-1_amd64.deb ...
+Unpacking libdbus-glib-1-2:amd64 (0.106-1) ...
+Selecting previously unselected package libdrm2:amd64.
+Preparing to unpack .../libdrm2_2.4.67-1ubuntu0.16.04.2_amd64.deb ...
+Unpacking libdrm2:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../libedit2_3.1-20150325-1ubuntu2_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20150325-1ubuntu2) ...
+Selecting previously unselected package libelf1:amd64.
+Preparing to unpack .../libelf1_0.165-3ubuntu1_amd64.deb ...
+Unpacking libelf1:amd64 (0.165-3ubuntu1) ...
+Selecting previously unselected package libglib2.0-data.
+Preparing to unpack .../libglib2.0-data_2.48.2-0ubuntu1_all.deb ...
+Unpacking libglib2.0-data (2.48.2-0ubuntu1) ...
+Selecting previously unselected package libhcrypto4-heimdal:amd64.
+Preparing to unpack .../libhcrypto4-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libhcrypto4-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libheimbase1-heimdal:amd64.
+Preparing to unpack .../libheimbase1-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libheimbase1-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libwind0-heimdal:amd64.
+Preparing to unpack .../libwind0-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libwind0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libhx509-5-heimdal:amd64.
+Preparing to unpack .../libhx509-5-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libhx509-5-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libkrb5-26-heimdal:amd64.
+Preparing to unpack .../libkrb5-26-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libkrb5-26-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libheimntlm0-heimdal:amd64.
+Preparing to unpack .../libheimntlm0-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libheimntlm0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libgssapi3-heimdal:amd64.
+Preparing to unpack .../libgssapi3-heimdal_1.7~git20150920+dfsg-4ubuntu1_amd64.deb ...
+Unpacking libgssapi3-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../libsasl2-modules-db_2.1.26.dfsg1-14build1_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.26.dfsg1-14build1) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../libsasl2-2_2.1.26.dfsg1-14build1_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.26.dfsg1-14build1) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../libldap-2.4-2_2.4.42+dfsg-2ubuntu3.1_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.42+dfsg-2ubuntu3.1) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../libsasl2-modules_2.1.26.dfsg1-14build1_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.26.dfsg1-14build1) ...
+Selecting previously unselected package psmisc.
+Preparing to unpack .../psmisc_22.21-2.1build1_amd64.deb ...
+Unpacking psmisc (22.21-2.1build1) ...
+Selecting previously unselected package shared-mime-info.
+Preparing to unpack .../shared-mime-info_1.5-2ubuntu0.1_amd64.deb ...
+Unpacking shared-mime-info (1.5-2ubuntu0.1) ...
+Selecting previously unselected package xdg-user-dirs.
+Preparing to unpack .../xdg-user-dirs_0.15-2ubuntu6_amd64.deb ...
+Unpacking xdg-user-dirs (0.15-2ubuntu6) ...
+Selecting previously unselected package xml-core.
+Preparing to unpack .../xml-core_0.13+nmu2_all.deb ...
+Unpacking xml-core (0.13+nmu2) ...
+Selecting previously unselected package dbus-x11.
+Preparing to unpack .../dbus-x11_1.10.6-1ubuntu3.3_amd64.deb ...
+Unpacking dbus-x11 (1.10.6-1ubuntu3.3) ...
+Selecting previously unselected package libgtk2.0-common.
+Preparing to unpack .../libgtk2.0-common_2.24.30-1ubuntu1_all.deb ...
+Unpacking libgtk2.0-common (2.24.30-1ubuntu1) ...
+Selecting previously unselected package libatk1.0-data.
+Preparing to unpack .../libatk1.0-data_2.18.0-1_all.deb ...
+Unpacking libatk1.0-data (2.18.0-1) ...
+Selecting previously unselected package libatk1.0-0:amd64.
+Preparing to unpack .../libatk1.0-0_2.18.0-1_amd64.deb ...
+Unpacking libatk1.0-0:amd64 (2.18.0-1) ...
+Selecting previously unselected package libpixman-1-0:amd64.
+Preparing to unpack .../libpixman-1-0_0.33.6-1_amd64.deb ...
+Unpacking libpixman-1-0:amd64 (0.33.6-1) ...
+Selecting previously unselected package libxcb-render0:amd64.
+Preparing to unpack .../libxcb-render0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-render0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-shm0:amd64.
+Preparing to unpack .../libxcb-shm0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-shm0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libcairo2:amd64.
+Preparing to unpack .../libcairo2_1.14.6-1_amd64.deb ...
+Unpacking libcairo2:amd64 (1.14.6-1) ...
+Selecting previously unselected package libtiff5:amd64.
+Preparing to unpack .../libtiff5_4.0.6-1_amd64.deb ...
+Unpacking libtiff5:amd64 (4.0.6-1) ...
+Selecting previously unselected package libgdk-pixbuf2.0-common.
+Preparing to unpack .../libgdk-pixbuf2.0-common_2.32.2-1ubuntu1.2_all.deb ...
+Unpacking libgdk-pixbuf2.0-common (2.32.2-1ubuntu1.2) ...
+Selecting previously unselected package libgdk-pixbuf2.0-0:amd64.
+Preparing to unpack .../libgdk-pixbuf2.0-0_2.32.2-1ubuntu1.2_amd64.deb ...
+Unpacking libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.2) ...
+Selecting previously unselected package libthai-data.
+Preparing to unpack .../libthai-data_0.1.24-2_all.deb ...
+Unpacking libthai-data (0.1.24-2) ...
+Selecting previously unselected package libdatrie1:amd64.
+Preparing to unpack .../libdatrie1_0.2.10-2_amd64.deb ...
+Unpacking libdatrie1:amd64 (0.2.10-2) ...
+Selecting previously unselected package libthai0:amd64.
+Preparing to unpack .../libthai0_0.1.24-2_amd64.deb ...
+Unpacking libthai0:amd64 (0.1.24-2) ...
+Selecting previously unselected package libpango-1.0-0:amd64.
+Preparing to unpack .../libpango-1.0-0_1.38.1-1_amd64.deb ...
+Unpacking libpango-1.0-0:amd64 (1.38.1-1) ...
+Selecting previously unselected package libgraphite2-3:amd64.
+Preparing to unpack .../libgraphite2-3_1.3.6-1ubuntu1_amd64.deb ...
+Unpacking libgraphite2-3:amd64 (1.3.6-1ubuntu1) ...
+Selecting previously unselected package libharfbuzz0b:amd64.
+Preparing to unpack .../libharfbuzz0b_1.0.1-1ubuntu0.1_amd64.deb ...
+Unpacking libharfbuzz0b:amd64 (1.0.1-1ubuntu0.1) ...
+Selecting previously unselected package libpangoft2-1.0-0:amd64.
+Preparing to unpack .../libpangoft2-1.0-0_1.38.1-1_amd64.deb ...
+Unpacking libpangoft2-1.0-0:amd64 (1.38.1-1) ...
+Selecting previously unselected package libpangocairo-1.0-0:amd64.
+Preparing to unpack .../libpangocairo-1.0-0_1.38.1-1_amd64.deb ...
+Unpacking libpangocairo-1.0-0:amd64 (1.38.1-1) ...
+Selecting previously unselected package libxrandr2:amd64.
+Preparing to unpack .../libxrandr2_2%3a1.5.0-1_amd64.deb ...
+Unpacking libxrandr2:amd64 (2:1.5.0-1) ...
+Selecting previously unselected package libgtk2.0-0:amd64.
+Preparing to unpack .../libgtk2.0-0_2.24.30-1ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-0:amd64 (2.24.30-1ubuntu1) ...
+Selecting previously unselected package libglapi-mesa:amd64.
+Preparing to unpack .../libglapi-mesa_11.2.0-1ubuntu2.2_amd64.deb ...
+Unpacking libglapi-mesa:amd64 (11.2.0-1ubuntu2.2) ...
+Selecting previously unselected package libx11-xcb1:amd64.
+Preparing to unpack .../libx11-xcb1_2%3a1.6.3-1ubuntu2_amd64.deb ...
+Unpacking libx11-xcb1:amd64 (2:1.6.3-1ubuntu2) ...
+Selecting previously unselected package libxcb-dri2-0:amd64.
+Preparing to unpack .../libxcb-dri2-0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-dri2-0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-dri3-0:amd64.
+Preparing to unpack .../libxcb-dri3-0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-dri3-0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-glx0:amd64.
+Preparing to unpack .../libxcb-glx0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-glx0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-present0:amd64.
+Preparing to unpack .../libxcb-present0_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-present0:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libxcb-sync1:amd64.
+Preparing to unpack .../libxcb-sync1_1.11.1-1ubuntu1_amd64.deb ...
+Unpacking libxcb-sync1:amd64 (1.11.1-1ubuntu1) ...
+Selecting previously unselected package libdrm-amdgpu1:amd64.
+Preparing to unpack .../libdrm-amdgpu1_2.4.67-1ubuntu0.16.04.2_amd64.deb ...
+Unpacking libdrm-amdgpu1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Selecting previously unselected package libpciaccess0:amd64.
+Preparing to unpack .../libpciaccess0_0.13.4-1_amd64.deb ...
+Unpacking libpciaccess0:amd64 (0.13.4-1) ...
+Selecting previously unselected package libdrm-intel1:amd64.
+Preparing to unpack .../libdrm-intel1_2.4.67-1ubuntu0.16.04.2_amd64.deb ...
+Unpacking libdrm-intel1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Selecting previously unselected package libdrm-nouveau2:amd64.
+Preparing to unpack .../libdrm-nouveau2_2.4.67-1ubuntu0.16.04.2_amd64.deb ...
+Unpacking libdrm-nouveau2:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Selecting previously unselected package libdrm-radeon1:amd64.
+Preparing to unpack .../libdrm-radeon1_2.4.67-1ubuntu0.16.04.2_amd64.deb ...
+Unpacking libdrm-radeon1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Selecting previously unselected package libllvm3.8:amd64.
+Preparing to unpack .../libllvm3.8_1%3a3.8-2ubuntu4_amd64.deb ...
+Unpacking libllvm3.8:amd64 (1:3.8-2ubuntu4) ...
+Selecting previously unselected package libgl1-mesa-dri:amd64.
+Preparing to unpack .../libgl1-mesa-dri_11.2.0-1ubuntu2.2_amd64.deb ...
+Unpacking libgl1-mesa-dri:amd64 (11.2.0-1ubuntu2.2) ...
+Selecting previously unselected package libgl1-mesa-glx:amd64.
+Preparing to unpack .../libgl1-mesa-glx_11.2.0-1ubuntu2.2_amd64.deb ...
+Unpacking libgl1-mesa-glx:amd64 (11.2.0-1ubuntu2.2) ...
+Selecting previously unselected package libasound2-data.
+Preparing to unpack .../libasound2-data_1.1.0-0ubuntu1_all.deb ...
+Unpacking libasound2-data (1.1.0-0ubuntu1) ...
+Selecting previously unselected package libasound2:amd64.
+Preparing to unpack .../libasound2_1.1.0-0ubuntu1_amd64.deb ...
+Unpacking libasound2:amd64 (1.1.0-0ubuntu1) ...
+Selecting previously unselected package libgif7:amd64.
+Preparing to unpack .../libgif7_5.1.4-0.3~16.04_amd64.deb ...
+Unpacking libgif7:amd64 (5.1.4-0.3~16.04) ...
+Selecting previously unselected package libflac8:amd64.
+Preparing to unpack .../libflac8_1.3.1-4_amd64.deb ...
+Unpacking libflac8:amd64 (1.3.1-4) ...
+Selecting previously unselected package libvorbis0a:amd64.
+Preparing to unpack .../libvorbis0a_1.3.5-3_amd64.deb ...
+Unpacking libvorbis0a:amd64 (1.3.5-3) ...
+Selecting previously unselected package libvorbisenc2:amd64.
+Preparing to unpack .../libvorbisenc2_1.3.5-3_amd64.deb ...
+Unpacking libvorbisenc2:amd64 (1.3.5-3) ...
+Selecting previously unselected package libsndfile1:amd64.
+Preparing to unpack .../libsndfile1_1.0.25-10_amd64.deb ...
+Unpacking libsndfile1:amd64 (1.0.25-10) ...
+Selecting previously unselected package libpulse0:amd64.
+Preparing to unpack .../libpulse0_1%3a8.0-0ubuntu3.2_amd64.deb ...
+Unpacking libpulse0:amd64 (1:8.0-0ubuntu3.2) ...
+Selecting previously unselected package openjdk-8-jre:amd64.
+Preparing to unpack .../openjdk-8-jre_8u121-b13-0ubuntu1.16.04.2_amd64.deb ...
+Unpacking openjdk-8-jre:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+Selecting previously unselected package default-jre.
+Preparing to unpack .../default-jre_2%3a1.8-56ubuntu2_amd64.deb ...
+Unpacking default-jre (2:1.8-56ubuntu2) ...
+Selecting previously unselected package fonts-dejavu-extra.
+Preparing to unpack .../fonts-dejavu-extra_2.35-1_all.deb ...
+Unpacking fonts-dejavu-extra (2.35-1) ...
+Selecting previously unselected package gconf2-common.
+Preparing to unpack .../gconf2-common_3.2.6-3ubuntu6_all.deb ...
+Unpacking gconf2-common (3.2.6-3ubuntu6) ...
+Selecting previously unselected package libgconf-2-4:amd64.
+Preparing to unpack .../libgconf-2-4_3.2.6-3ubuntu6_amd64.deb ...
+Unpacking libgconf-2-4:amd64 (3.2.6-3ubuntu6) ...
+Selecting previously unselected package gconf-service-backend.
+Preparing to unpack .../gconf-service-backend_3.2.6-3ubuntu6_amd64.deb ...
+Unpacking gconf-service-backend (3.2.6-3ubuntu6) ...
+Selecting previously unselected package gconf-service.
+Preparing to unpack .../gconf-service_3.2.6-3ubuntu6_amd64.deb ...
+Unpacking gconf-service (3.2.6-3ubuntu6) ...
+Selecting previously unselected package gconf2.
+Preparing to unpack .../gconf2_3.2.6-3ubuntu6_amd64.deb ...
+Unpacking gconf2 (3.2.6-3ubuntu6) ...
+Selecting previously unselected package hicolor-icon-theme.
+Preparing to unpack .../hicolor-icon-theme_0.15-0ubuntu1_all.deb ...
+Unpacking hicolor-icon-theme (0.15-0ubuntu1) ...
+Selecting previously unselected package libavahi-glib1:amd64.
+Preparing to unpack .../libavahi-glib1_0.6.32~rc+dfsg-1ubuntu2_amd64.deb ...
+Unpacking libavahi-glib1:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Selecting previously unselected package libltdl7:amd64.
+Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+Selecting previously unselected package libtdb1:amd64.
+Preparing to unpack .../libtdb1_1.3.8-2_amd64.deb ...
+Unpacking libtdb1:amd64 (1.3.8-2) ...
+Selecting previously unselected package libvorbisfile3:amd64.
+Preparing to unpack .../libvorbisfile3_1.3.5-3_amd64.deb ...
+Unpacking libvorbisfile3:amd64 (1.3.5-3) ...
+Selecting previously unselected package sound-theme-freedesktop.
+Preparing to unpack .../sound-theme-freedesktop_0.8-1_all.deb ...
+Unpacking sound-theme-freedesktop (0.8-1) ...
+Selecting previously unselected package libcanberra0:amd64.
+Preparing to unpack .../libcanberra0_0.30-2.1ubuntu1_amd64.deb ...
+Unpacking libcanberra0:amd64 (0.30-2.1ubuntu1) ...
+Selecting previously unselected package libgnomevfs2-common.
+Preparing to unpack .../libgnomevfs2-common_1%3a2.24.4-6.1ubuntu1_amd64.deb ...
+Unpacking libgnomevfs2-common (1:2.24.4-6.1ubuntu1) ...
+Selecting previously unselected package libgnomevfs2-0:amd64.
+Preparing to unpack .../libgnomevfs2-0_1%3a2.24.4-6.1ubuntu1_amd64.deb ...
+Unpacking libgnomevfs2-0:amd64 (1:2.24.4-6.1ubuntu1) ...
+Selecting previously unselected package libgnome2-common.
+Preparing to unpack .../libgnome2-common_2.32.1-5ubuntu1_all.deb ...
+Unpacking libgnome2-common (2.32.1-5ubuntu1) ...
+Selecting previously unselected package libgnome-2-0:amd64.
+Preparing to unpack .../libgnome-2-0_2.32.1-5ubuntu1_amd64.deb ...
+Unpacking libgnome-2-0:amd64 (2.32.1-5ubuntu1) ...
+Selecting previously unselected package libgtk2.0-bin.
+Preparing to unpack .../libgtk2.0-bin_2.24.30-1ubuntu1_amd64.deb ...
+Unpacking libgtk2.0-bin (2.24.30-1ubuntu1) ...
+Selecting previously unselected package tcpd.
+Preparing to unpack .../tcpd_7.6.q-25_amd64.deb ...
+Unpacking tcpd (7.6.q-25) ...
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Processing triggers for systemd (229-4ubuntu13) ...
+Setting up libjson-c2:amd64 (0.11-4ubuntu2) ...
+Setting up libpopt0:amd64 (1.16-10) ...
+Setting up mime-support (3.59ubuntu1) ...
+Setting up libmpdec2:amd64 (2.4.2-1) ...
+Setting up libsqlite3-0:amd64 (3.11.0-1ubuntu1) ...
+Setting up libpython3.5-stdlib:amd64 (3.5.2-2ubuntu0~16.04.1) ...
+Setting up python3.5 (3.5.2-2ubuntu0~16.04.1) ...
+Setting up libpython3-stdlib:amd64 (3.5.1-3) ...
+Setting up libxau6:amd64 (1:1.0.8-1) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-1.1) ...
+Setting up libxcb1:amd64 (1.11.1-1ubuntu1) ...
+Setting up libx11-data (2:1.6.3-1ubuntu2) ...
+Setting up libx11-6:amd64 (2:1.6.3-1ubuntu2) ...
+Setting up libxext6:amd64 (2:1.3.3-1) ...
+Setting up sgml-base (1.26+nmu4ubuntu1) ...
+Setting up fonts-dejavu-core (2.35-1) ...
+Setting up ucf (3.0036) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up fontconfig-config (2.11.94-0ubuntu1.1) ...
+Setting up libpng12-0:amd64 (1.2.54-1ubuntu1) ...
+Setting up libfreetype6:amd64 (2.6.1-0.1ubuntu2) ...
+Setting up libfontconfig1:amd64 (2.11.94-0ubuntu1.1) ...
+Setting up fontconfig (2.11.94-0ubuntu1.1) ...
+Regenerating fonts cache... done.
+Setting up libasyncns0:amd64 (0.8-5build1) ...
+Setting up libbonobo2-common (2.32.1-3) ...
+Setting up libffi6:amd64 (3.2.1-4) ...
+Setting up libglib2.0-0:amd64 (2.48.2-0ubuntu1) ...
+No schema files found: doing nothing.
+Setting up liborbit-2-0:amd64 (1:2.14.19-1build1) ...
+Setting up libicu55:amd64 (55.1-7) ...
+Setting up libxml2:amd64 (2.9.3+dfsg1-1ubuntu0.1) ...
+Setting up libbonobo2-0:amd64 (2.32.1-3) ...
+Setting up libjpeg-turbo8:amd64 (1.4.2-0ubuntu3) ...
+Setting up liblcms2-2:amd64 (2.6-3ubuntu2) ...
+Setting up libogg0:amd64 (1.3.2-1) ...
+Setting up libwrap0:amd64 (7.6.q-25) ...
+Setting up libxcomposite1:amd64 (1:0.4.4-1) ...
+Setting up libxfixes3:amd64 (1:5.0.1-2) ...
+Setting up libxrender1:amd64 (1:0.9.9-0ubuntu1) ...
+Setting up libxcursor1:amd64 (1:1.1.14-1) ...
+Setting up libxdamage1:amd64 (1:1.1.4-2) ...
+Setting up libxinerama1:amd64 (2:1.1.3-1) ...
+Setting up libxshmfence1:amd64 (1.2-1) ...
+Setting up x11-common (1:7.7+13ubuntu3) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up libxtst6:amd64 (2:1.2.2-1) ...
+Setting up libxxf86vm1:amd64 (1:1.1.4-1) ...
+Setting up openssl (1.0.2g-1ubuntu4.6) ...
+Setting up ca-certificates (20160104ubuntu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up java-common (0.56ubuntu2) ...
+Setting up libnspr4:amd64 (2:4.12-0ubuntu0.16.04.1) ...
+Setting up libavahi-common-data:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Setting up libavahi-common3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Setting up libdbus-1-3:amd64 (1.10.6-1ubuntu3.3) ...
+Setting up libavahi-client3:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Setting up libgmp10:amd64 (2:6.1.0+dfsg-2) ...
+Setting up libnettle6:amd64 (3.2-1) ...
+Setting up libhogweed4:amd64 (3.2-1) ...
+Setting up libidn11:amd64 (1.32-3ubuntu1.1) ...
+Setting up libp11-kit0:amd64 (0.23.2-5~ubuntu16.04.1) ...
+Setting up libtasn1-6:amd64 (4.7-3ubuntu0.16.04.1) ...
+Setting up libgnutls30:amd64 (3.4.10-4ubuntu1.2) ...
+Setting up libkrb5support0:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Setting up libk5crypto3:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Setting up libkeyutils1:amd64 (1.5.9-8ubuntu1) ...
+Setting up libkrb5-3:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Setting up libgssapi-krb5-2:amd64 (1.13.2+dfsg-5ubuntu1) ...
+Setting up libcups2:amd64 (2.1.3-4) ...
+Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+Setting up libpcsclite1:amd64 (1.8.14-1ubuntu1.16.04.1) ...
+Setting up libxi6:amd64 (2:1.7.6-1) ...
+Setting up libjbig0:amd64 (2.1-3.1) ...
+Setting up libtxc-dxtn-s2tc0:amd64 (0~git20131104-1.1) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/libtxc_dxtn_s2tc.so.0 to provide /usr/lib/x86_64-linux-gnu/libtxc_dxtn.so (libtxc-dxtn-x86_64-linux-gnu) in auto mode
+Setting up libmagic1:amd64 (1:5.25-2ubuntu1) ...
+Setting up file (1:5.25-2ubuntu1) ...
+Setting up libbsd0:amd64 (0.8.2-1) ...
+Setting up libcap-ng0:amd64 (0.7.7-1) ...
+Setting up dbus (1.10.6-1ubuntu3.3) ...
+Setting up krb5-locales (1.13.2+dfsg-5ubuntu1) ...
+Setting up libroken18-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libasn1-8-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libdbus-glib-1-2:amd64 (0.106-1) ...
+Setting up libdrm2:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Setting up libedit2:amd64 (3.1-20150325-1ubuntu2) ...
+Setting up libelf1:amd64 (0.165-3ubuntu1) ...
+Setting up libglib2.0-data (2.48.2-0ubuntu1) ...
+Setting up libhcrypto4-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libheimbase1-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libwind0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libhx509-5-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libkrb5-26-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libheimntlm0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libgssapi3-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1) ...
+Setting up libsasl2-modules-db:amd64 (2.1.26.dfsg1-14build1) ...
+Setting up libsasl2-2:amd64 (2.1.26.dfsg1-14build1) ...
+Setting up libldap-2.4-2:amd64 (2.4.42+dfsg-2ubuntu3.1) ...
+Setting up libsasl2-modules:amd64 (2.1.26.dfsg1-14build1) ...
+Setting up psmisc (22.21-2.1build1) ...
+Setting up shared-mime-info (1.5-2ubuntu0.1) ...
+Setting up xdg-user-dirs (0.15-2ubuntu6) ...
+Setting up xml-core (0.13+nmu2) ...
+Setting up dbus-x11 (1.10.6-1ubuntu3.3) ...
+Setting up libgtk2.0-common (2.24.30-1ubuntu1) ...
+Setting up libatk1.0-data (2.18.0-1) ...
+Setting up libatk1.0-0:amd64 (2.18.0-1) ...
+Setting up libpixman-1-0:amd64 (0.33.6-1) ...
+Setting up libxcb-render0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libxcb-shm0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libcairo2:amd64 (1.14.6-1) ...
+Setting up libtiff5:amd64 (4.0.6-1) ...
+Setting up libgdk-pixbuf2.0-common (2.32.2-1ubuntu1.2) ...
+Setting up libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.2) ...
+Setting up libthai-data (0.1.24-2) ...
+Setting up libdatrie1:amd64 (0.2.10-2) ...
+Setting up libthai0:amd64 (0.1.24-2) ...
+Setting up libpango-1.0-0:amd64 (1.38.1-1) ...
+Setting up libgraphite2-3:amd64 (1.3.6-1ubuntu1) ...
+Setting up libharfbuzz0b:amd64 (1.0.1-1ubuntu0.1) ...
+Setting up libpangoft2-1.0-0:amd64 (1.38.1-1) ...
+Setting up libpangocairo-1.0-0:amd64 (1.38.1-1) ...
+Setting up libxrandr2:amd64 (2:1.5.0-1) ...
+Setting up libgtk2.0-0:amd64 (2.24.30-1ubuntu1) ...
+Setting up libglapi-mesa:amd64 (11.2.0-1ubuntu2.2) ...
+Setting up libx11-xcb1:amd64 (2:1.6.3-1ubuntu2) ...
+Setting up libxcb-dri2-0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libxcb-dri3-0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libxcb-glx0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libxcb-present0:amd64 (1.11.1-1ubuntu1) ...
+Setting up libxcb-sync1:amd64 (1.11.1-1ubuntu1) ...
+Setting up libdrm-amdgpu1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Setting up libpciaccess0:amd64 (0.13.4-1) ...
+Setting up libdrm-intel1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Setting up libdrm-nouveau2:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Setting up libdrm-radeon1:amd64 (2.4.67-1ubuntu0.16.04.2) ...
+Setting up libllvm3.8:amd64 (1:3.8-2ubuntu4) ...
+Setting up libgl1-mesa-dri:amd64 (11.2.0-1ubuntu2.2) ...
+Setting up libgl1-mesa-glx:amd64 (11.2.0-1ubuntu2.2) ...
+update-alternatives: using /usr/lib/x86_64-linux-gnu/mesa/ld.so.conf to provide /etc/ld.so.conf.d/x86_64-linux-gnu_GL.conf (x86_64-linux-gnu_gl_conf) in auto mode
+Setting up libasound2-data (1.1.0-0ubuntu1) ...
+Setting up libasound2:amd64 (1.1.0-0ubuntu1) ...
+Setting up libgif7:amd64 (5.1.4-0.3~16.04) ...
+Setting up libflac8:amd64 (1.3.1-4) ...
+Setting up libvorbis0a:amd64 (1.3.5-3) ...
+Setting up libvorbisenc2:amd64 (1.3.5-3) ...
+Setting up libsndfile1:amd64 (1.0.25-10) ...
+Setting up libpulse0:amd64 (1:8.0-0ubuntu3.2) ...
+Setting up fonts-dejavu-extra (2.35-1) ...
+Setting up gconf2-common (3.2.6-3ubuntu6) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.22.1 /usr/local/share/perl/5.22.1 /usr/lib/x86_64-linux-gnu/perl5/5.22 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl/5.22 /usr/share/perl/5.22 /usr/local/lib/site_perl /usr/lib/x86_64-linux-gnu/perl-base .) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+
+Creating config file /etc/gconf/2/path with new version
+Setting up libgconf-2-4:amd64 (3.2.6-3ubuntu6) ...
+Setting up hicolor-icon-theme (0.15-0ubuntu1) ...
+Setting up libavahi-glib1:amd64 (0.6.32~rc+dfsg-1ubuntu2) ...
+Setting up libltdl7:amd64 (2.4.6-0.1) ...
+Setting up libtdb1:amd64 (1.3.8-2) ...
+Setting up libvorbisfile3:amd64 (1.3.5-3) ...
+Setting up sound-theme-freedesktop (0.8-1) ...
+Setting up libcanberra0:amd64 (0.30-2.1ubuntu1) ...
+Setting up libgtk2.0-bin (2.24.30-1ubuntu1) ...
+Setting up tcpd (7.6.q-25) ...
+Setting up python3 (3.5.1-3) ...
+running python rtupdate hooks for python3.5...
+running python post-rtupdate hooks for python3.5...
+Setting up libnss3-nssdb (2:3.26.2-0ubuntu0.16.04.2) ...
+Setting up gconf-service (3.2.6-3ubuntu6) ...
+Setting up dh-python (2.20151103ubuntu1.1) ...
+Setting up libnss3:amd64 (2:3.26.2-0ubuntu0.16.04.2) ...
+Setting up openjdk-8-jre-headless:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmid to provide /usr/bin/rmid (rmid) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java to provide /usr/bin/java (java) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/keytool to provide /usr/bin/keytool (keytool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/jjs to provide /usr/bin/jjs (jjs) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/pack200 to provide /usr/bin/pack200 (pack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/rmiregistry to provide /usr/bin/rmiregistry (rmiregistry) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/unpack200 to provide /usr/bin/unpack200 (unpack200) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/orbd to provide /usr/bin/orbd (orbd) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/servertool to provide /usr/bin/servertool (servertool) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/tnameserv to provide /usr/bin/tnameserv (tnameserv) in auto mode
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jexec to provide /usr/bin/jexec (jexec) in auto mode
+Setting up ca-certificates-java (20160321) ...
+done.
+Setting up default-jre-headless (2:1.8-56ubuntu2) ...
+Setting up openjdk-8-jre:amd64 (8u121-b13-0ubuntu1.16.04.2) ...
+update-alternatives: using /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/policytool to provide /usr/bin/policytool (policytool) in auto mode
+Setting up default-jre (2:1.8-56ubuntu2) ...
+Setting up gconf-service-backend (3.2.6-3ubuntu6) ...
+Setting up gconf2 (3.2.6-3ubuntu6) ...
+Setting up libgnomevfs2-common (1:2.24.4-6.1ubuntu1) ...
+Setting up libgnomevfs2-0:amd64 (1:2.24.4-6.1ubuntu1) ...
+Setting up libgnome2-common (2.32.1-5ubuntu1) ...
+Setting up libgnome-2-0:amd64 (2.32.1-5ubuntu1) ...
+Processing triggers for libc-bin (2.23-0ubuntu5) ...
+Processing triggers for systemd (229-4ubuntu13) ...
+Processing triggers for ca-certificates (20160104ubuntu1) ...
+Updating certificates in /etc/ssl/certs...
+173 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+
+Adding debian:ACCVRAIZ1.pem
+Adding debian:ACEDICOM_Root.pem
+Adding debian:AC_Raíz_Certicámara_S.A..pem
+Adding debian:Actalis_Authentication_Root_CA.pem
+Adding debian:AddTrust_External_Root.pem
+Adding debian:AddTrust_Low-Value_Services_Root.pem
+Adding debian:AddTrust_Public_Services_Root.pem
+Adding debian:AddTrust_Qualified_Certificates_Root.pem
+Adding debian:AffirmTrust_Commercial.pem
+Adding debian:AffirmTrust_Networking.pem
+Adding debian:AffirmTrust_Premium.pem
+Adding debian:AffirmTrust_Premium_ECC.pem
+Adding debian:ApplicationCA_-_Japanese_Government.pem
+Adding debian:Atos_TrustedRoot_2011.pem
+Adding debian:Autoridad_de_Certificacion_Firmaprofesional_CIF_A62634068.pem
+Adding debian:Baltimore_CyberTrust_Root.pem
+Adding debian:Buypass_Class_2_CA_1.pem
+Adding debian:Buypass_Class_2_Root_CA.pem
+Adding debian:Buypass_Class_3_Root_CA.pem
+Adding debian:CA_Disig.pem
+Adding debian:CA_Disig_Root_R1.pem
+Adding debian:CA_Disig_Root_R2.pem
+Adding debian:CA_WoSign_ECC_Root.pem
+Adding debian:CFCA_EV_ROOT.pem
+Adding debian:CNNIC_ROOT.pem
+Adding debian:COMODO_Certification_Authority.pem
+Adding debian:COMODO_ECC_Certification_Authority.pem
+Adding debian:COMODO_RSA_Certification_Authority.pem
+Adding debian:Camerfirma_Chambers_of_Commerce_Root.pem
+Adding debian:Camerfirma_Global_Chambersign_Root.pem
+Adding debian:Certification_Authority_of_WoSign_G2.pem
+Adding debian:Certigna.pem
+Adding debian:Certinomis_-_Autorité_Racine.pem
+Adding debian:Certinomis_-_Root_CA.pem
+Adding debian:Certplus_Class_2_Primary_CA.pem
+Adding debian:Certum_Root_CA.pem
+Adding debian:Certum_Trusted_Network_CA.pem
+Adding debian:Chambers_of_Commerce_Root_-_2008.pem
+Adding debian:China_Internet_Network_Information_Center_EV_Certificates_Root.pem
+Adding debian:ComSign_CA.pem
+Adding debian:Comodo_AAA_Services_root.pem
+Adding debian:Comodo_Secure_Services_root.pem
+Adding debian:Comodo_Trusted_Services_root.pem
+Adding debian:Cybertrust_Global_Root.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_2009.pem
+Adding debian:D-TRUST_Root_Class_3_CA_2_EV_2009.pem
+Adding debian:DST_ACES_CA_X6.pem
+Adding debian:DST_Root_CA_X3.pem
+Adding debian:Deutsche_Telekom_Root_CA_2.pem
+Adding debian:DigiCert_Assured_ID_Root_CA.pem
+Adding debian:DigiCert_Assured_ID_Root_G2.pem
+Adding debian:DigiCert_Assured_ID_Root_G3.pem
+Adding debian:DigiCert_Global_Root_CA.pem
+Adding debian:DigiCert_Global_Root_G2.pem
+Adding debian:DigiCert_Global_Root_G3.pem
+Adding debian:DigiCert_High_Assurance_EV_Root_CA.pem
+Adding debian:DigiCert_Trusted_Root_G4.pem
+Adding debian:E-Tugra_Certification_Authority.pem
+Adding debian:EBG_Elektronik_Sertifika_Hizmet_Sağlayıcısı.pem
+Adding debian:EC-ACC.pem
+Adding debian:EE_Certification_Centre_Root_CA.pem
+Adding debian:Entrust.net_Premium_2048_Secure_Server_CA.pem
+Adding debian:Entrust_Root_Certification_Authority.pem
+Adding debian:Entrust_Root_Certification_Authority_-_EC1.pem
+Adding debian:Entrust_Root_Certification_Authority_-_G2.pem
+Adding debian:Equifax_Secure_CA.pem
+Adding debian:Equifax_Secure_Global_eBusiness_CA.pem
+Adding debian:Equifax_Secure_eBusiness_CA_1.pem
+Adding debian:GeoTrust_Global_CA.pem
+Adding debian:GeoTrust_Global_CA_2.pem
+Adding debian:GeoTrust_Primary_Certification_Authority.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G2.pem
+Adding debian:GeoTrust_Primary_Certification_Authority_-_G3.pem
+Adding debian:GeoTrust_Universal_CA.pem
+Adding debian:GeoTrust_Universal_CA_2.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R4.pem
+Adding debian:GlobalSign_ECC_Root_CA_-_R5.pem
+Adding debian:GlobalSign_Root_CA.pem
+Adding debian:GlobalSign_Root_CA_-_R2.pem
+Adding debian:GlobalSign_Root_CA_-_R3.pem
+Adding debian:Global_Chambersign_Root_-_2008.pem
+Adding debian:Go_Daddy_Class_2_CA.pem
+Adding debian:Go_Daddy_Root_Certificate_Authority_-_G2.pem
+Adding debian:Hellenic_Academic_and_Research_Institutions_RootCA_2011.pem
+Adding debian:Hongkong_Post_Root_CA_1.pem
+Adding debian:IGC_A.pem
+Adding debian:IdenTrust_Commercial_Root_CA_1.pem
+Adding debian:IdenTrust_Public_Sector_Root_CA_1.pem
+Adding debian:Izenpe.com.pem
+Adding debian:Juur-SK.pem
+Adding debian:Microsec_e-Szigno_Root_CA.pem
+Adding debian:Microsec_e-Szigno_Root_CA_2009.pem
+Adding debian:NetLock_Arany_=Class_Gold=_Főtanúsítvány.pem
+Adding debian:NetLock_Business_=Class_B=_Root.pem
+Adding debian:NetLock_Express_=Class_C=_Root.pem
+Adding debian:NetLock_Notary_=Class_A=_Root.pem
+Adding debian:NetLock_Qualified_=Class_QA=_Root.pem
+Adding debian:Network_Solutions_Certificate_Authority.pem
+Adding debian:OISTE_WISeKey_Global_Root_GA_CA.pem
+Adding debian:OISTE_WISeKey_Global_Root_GB_CA.pem
+Adding debian:PSCProcert.pem
+Adding debian:QuoVadis_Root_CA.pem
+Adding debian:QuoVadis_Root_CA_1_G3.pem
+Adding debian:QuoVadis_Root_CA_2.pem
+Adding debian:QuoVadis_Root_CA_2_G3.pem
+Adding debian:QuoVadis_Root_CA_3.pem
+Adding debian:QuoVadis_Root_CA_3_G3.pem
+Adding debian:RSA_Security_2048_v3.pem
+Adding debian:Root_CA_Generalitat_Valenciana.pem
+Adding debian:S-TRUST_Authentication_and_Encryption_Root_CA_2005_PN.pem
+Adding debian:S-TRUST_Universal_Root_CA.pem
+Adding debian:SecureSign_RootCA11.pem
+Adding debian:SecureTrust_CA.pem
+Adding debian:Secure_Global_CA.pem
+Adding debian:Security_Communication_EV_RootCA1.pem
+Adding debian:Security_Communication_RootCA2.pem
+Adding debian:Security_Communication_Root_CA.pem
+Adding debian:Sonera_Class_1_Root_CA.pem
+Adding debian:Sonera_Class_2_Root_CA.pem
+Adding debian:Staat_der_Nederlanden_EV_Root_CA.pem
+Adding debian:Staat_der_Nederlanden_Root_CA.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G2.pem
+Adding debian:Staat_der_Nederlanden_Root_CA_-_G3.pem
+Adding debian:Starfield_Class_2_CA.pem
+Adding debian:Starfield_Root_Certificate_Authority_-_G2.pem
+Adding debian:Starfield_Services_Root_Certificate_Authority_-_G2.pem
+Adding debian:StartCom_Certification_Authority.pem
+Adding debian:StartCom_Certification_Authority_2.pem
+Adding debian:StartCom_Certification_Authority_G2.pem
+Adding debian:SwissSign_Gold_CA_-_G2.pem
+Adding debian:SwissSign_Platinum_CA_-_G2.pem
+Adding debian:SwissSign_Silver_CA_-_G2.pem
+Adding debian:Swisscom_Root_CA_1.pem
+Adding debian:Swisscom_Root_CA_2.pem
+Adding debian:Swisscom_Root_EV_CA_2.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_2.pem
+Adding debian:T-TeleSec_GlobalRoot_Class_3.pem
+Adding debian:TC_TrustCenter_Class_3_CA_II.pem
+Adding debian:TURKTRUST_Certificate_Services_Provider_Root_2007.pem
+Adding debian:TWCA_Global_Root_CA.pem
+Adding debian:TWCA_Root_Certification_Authority.pem
+Adding debian:Taiwan_GRCA.pem
+Adding debian:TeliaSonera_Root_CA_v1.pem
+Adding debian:Trustis_FPS_Root_CA.pem
+Adding debian:TÜBİTAK_UEKAE_Kök_Sertifika_Hizmet_Sağlayıcısı_-_Sürüm_3.pem
+Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H5.pem
+Adding debian:TÜRKTRUST_Elektronik_Sertifika_Hizmet_Sağlayıcısı_H6.pem
+Adding debian:USERTrust_ECC_Certification_Authority.pem
+Adding debian:USERTrust_RSA_Certification_Authority.pem
+Adding debian:UTN_USERFirst_Email_Root_CA.pem
+Adding debian:UTN_USERFirst_Hardware_Root_CA.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G4.pem
+Adding debian:VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+Adding debian:VeriSign_Universal_Root_Certification_Authority.pem
+Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority.pem
+Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G2.pem
+Adding debian:Verisign_Class_1_Public_Primary_Certification_Authority_-_G3.pem
+Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G2.pem
+Adding debian:Verisign_Class_2_Public_Primary_Certification_Authority_-_G3.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G2.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_-_G3.pem
+Adding debian:Verisign_Class_3_Public_Primary_Certification_Authority_2.pem
+Adding debian:Visa_eCommerce_Root.pem
+Adding debian:WellsSecure_Public_Root_Certificate_Authority.pem
+Adding debian:WoSign.pem
+Adding debian:WoSign_China.pem
+Adding debian:XRamp_Global_CA_Root.pem
+Adding debian:certSIGN_ROOT_CA.pem
+Adding debian:ePKI_Root_Certification_Authority.pem
+Adding debian:thawte_Primary_Root_CA.pem
+Adding debian:thawte_Primary_Root_CA_-_G2.pem
+Adding debian:thawte_Primary_Root_CA_-_G3.pem
+done.
+done.
+Processing triggers for sgml-base (1.26+nmu4ubuntu1) ...
+ ---> 883f7d10cc7e
+Removing intermediate container 3cc3c2cb5cd3
+Step 8/21 : ENV DEST_DIR /usr/local
+ ---> Running in 4c522d788005
+ ---> 5f8989203c7a
+Removing intermediate container 4c522d788005
+Step 9/21 : ENV BIN_DIR ${DEST_DIR}/bin
+ ---> Running in 9109ad832602
+ ---> 301b6f3c15ea
+Removing intermediate container 9109ad832602
+Step 10/21 : ENV LIB_DIR ${DEST_DIR}/lib/${PACKAGE}
+ ---> Running in f50ac7ca0725
+ ---> 1df295314ec3
+Removing intermediate container f50ac7ca0725
+Step 11/21 : ENV DOC_DIR ${DEST_DIR}/share/doc/${PACKAGE}
+ ---> Running in faff0845798f
+ ---> ff05389455f6
+Removing intermediate container faff0845798f
+Step 12/21 : ADD ${PACKAGE}-${VERSION}-mac_and_linux.tar.gz SearchGUI.bash XxxCLI.bash /tmp/
+ ---> 83ea1a20e7aa
+Removing intermediate container 13d529d89fab
+Step 13/21 : WORKDIR /tmp
+ ---> 9ba2319d3794
+Removing intermediate container 65c7b168e2ba
+Step 14/21 : RUN cp SearchGUI.bash ${BIN_DIR}/SearchGUI ; cp XxxCLI.bash ${BIN_DIR}/SearchCLI ; cp XxxCLI.bash ${BIN_DIR}/IdentificationParametersCLI ; cp XxxCLI.bash ${BIN_DIR}/FastaCLI ; cp XxxCLI.bash ${BIN_DIR}/PathSettingsCLI ;     chmod +x ${BIN_DIR}/* ;     mkdir -p ${LIB_DIR} ;     cp --archive ${PACKAGE}-${VERSION}/* ${LIB_DIR}/ ;     : done
+ ---> Running in 76c4045c2dc7
+ ---> 21fe60baff2c
+Removing intermediate container 76c4045c2dc7
+Step 15/21 : WORKDIR /root
+ ---> 805dff38f842
+Removing intermediate container ec91dbbb67bd
+Step 16/21 : RUN rm -rf /tmp/${PACKAGE}-${VERSION}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Running in ceaea661518d
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 6 not upgraded.
+ ---> 78fafde28894
+Removing intermediate container ceaea661518d
+Step 17/21 : RUN useradd -d /mnt -M guest && chown -R guest:guest /usr/local
+ ---> Running in 887aa904b9e4
+ ---> 285f3d909840
+Removing intermediate container 887aa904b9e4
+Step 18/21 : USER guest
+ ---> Running in 33932bc08081
+ ---> a28c2f1603c0
+Removing intermediate container 33932bc08081
+Step 19/21 : ENV HOME /mnt
+ ---> Running in 39a36af9be13
+ ---> 7268755d007c
+Removing intermediate container 39a36af9be13
+Step 20/21 : WORKDIR /mnt
+ ---> 4db55c5e7ed1
+Removing intermediate container 402df5a22871
+Step 21/21 : CMD find /usr/local -type f | sort
+ ---> Running in 0af5cc97b826
+ ---> c4d931277ee8
+Removing intermediate container 0af5cc97b826
+Successfully built c4d931277ee8
++ docker run --rm pvstodghill/searchgui:3.2.6__2017-02-01 SearchCLI --help
++ java -Djava.awt.headless=true -cp /usr/local/bin/../lib/SearchGUI/SearchGUI-3.2.6.jar eu.isas.searchgui.cmd.SearchCLI --help
+
+Spectrum files not specified.
+
+
+======================
+SearchCLI
+======================
+
+SearchCLI searches spectrum files according to search parameters using multiple search engines.
+
+Spectra must be provided in the Mascot Generic File (mgf) format.
+
+The identification parameters can be provided as a file as saved from the GUI or generated using the IdentificationParametersCLI.
+See http://compomics.github.io/compomics-utilities/wiki/identificationparameterscli.html for more details.
+
+For further help see http://compomics.github.io/projects/searchgui.html and http://compomics.github.io/searchgui/wiki/searchcli.html.
+
+Or contact the developers at https://groups.google.com/group/peptide-shaker.
+
+----------------------
+OPTIONS
+----------------------
+
+Mandatory Parameters:
+
+-spectrum_files            Spectrum files (mgf format), comma separated list or an entire folder.
+-output_folder             The output folder.
+
+
+Optional Input Parameters:
+
+-id_params                 An identification parameters file to modify. Generated using the GUI or via IdentificationParametersCLI.
+
+
+Search Engine Selection:
+
+-omssa                     Turn the OMSSA search on or off (0: off, 1: on,  default is '0').
+-xtandem                   Turn the X!Tandem search on or off (0: off, 1: on, default is '0').
+-msgf                      Turn the MS-GF+ search on or off (0: off, 1: on, default is '0').
+-ms_amanda                 Turn the MS Amanda search on or off (0: off, 1: on, default is '0').
+-myrimatch                 Turn the MyriMatch search on or off (0: off,1: on,  default is '0').
+-comet                     Turn the Comet search on or off (0: off, 1: on, default is '0').
+-tide                      Turn the Tide search on or off (0: off, 1: on, default is '0').
+-andromeda                 Turn the Andromeda search on or off (0: off, 1: on, default is '0').
+-novor                     Turn the Novor sequencing on or off (0: off, 1: on, default is '0').
+-directag                  Turn the DirecTag sequencing on or off (0: off, 1: on, default is '0').
+
+
+Tools Location:
+
+-omssa_folder              The folder where OMSSA is installed, defaults to the provided version for the given OS.
+-xtandem_folder            The folder where X!Tandem is installed, defaults to the provided version for the given OS.
+-msgf_folder               The folder where MS-GF+ is installed, defaults to the included version.
+-ms_amanda_folder          The folder where MS Amanda is installed, defaults to the included version.
+-myrimatch_folder          The folder where MyriMatch is installed, defaults to the included version.
+-comet_folder              The folder where Comet is installed, defaults to the included version.
+-tide_folder               The folder where Tide is installed, defaults to the included version.
+-andromeda_folder          The folder where Andromeda is installed, defaults to the included version.
+-novor_folder              The folder where Novor is installed, defaults to the included version.
+-directag_folder           The folder where DirecTag is installed, defaults to the included version.
+-makeblastdb_folder        The folder where makeblastdb is installed, defaults to the provided version for the given OS.
+
+
+Input Files Handling:
+
+-mgf_check_size            Turn the mgf size check on or off (0: off, 1: on, default is '0').
+-mgf_splitting             The maximum mgf file size in MB before splitting the mgf. Default is '1000'.
+-mgf_spectrum_count        The maximum number of spectra per mgf file when splitting. Default is '25000'.
+-correct_titles            Correct for duplicate spectrum titles. (0: no correction, 1: rename spectra, 2: delete spectra, default is '1').
+-missing_titles            Add missing spectrum titles. (0: no correction, 1: add missing spectrum titles, default is '0').
+
+
+Output Files Handling:
+
+-output_option             Optional result file compression (0: Group all files in a single compressed zip folder, 1: Group files per run (i.e. spectrum file), 2: Group files per identification algorithm, 3: No file grouping), default is '0'.
+-output_data               Include mgf and FASTA file in zipped output (0: no, 1: yes, default is '0').
+-output_date               Include date in output name (0: no, 1: yes, default is '0').
+-rename_xtandem            Turn the renaming of the X! Tandem files on/off. (0: off, 1: on, default is '1').
+
+
+Processing Options:
+
+-threads                   Number of threads to use for the processing, default: the number of cores.
+
+
+Advanced Options:
+
+-ref_mass                  Reference mass for the conversion of the fragment ion tolerance from ppm to Dalton. Default is '2000'.
+
+
+Optional Temporary Folder:
+
+-temp_folder               A folder for temporary file storage. Use only if you encounter problems with the default configuration.
+
+
+
+For identification parameters options:
+Replace eu.isas.searchgui.cmd.SearchCLI with eu.isas.searchgui.cmd.IdentificationParametersCLI
+
++ docker push pvstodghill/searchgui:3.2.6__2017-02-01
+The push refers to a repository [docker.io/pvstodghill/searchgui]
+
+[1A[2K1b77dabff304: Preparing [1B
+[1A[2K1680c309eb49: Preparing [1B
+[1A[2Kb3b9a459377d: Preparing [1B
+[1A[2Kccd4515b6302: Preparing [1B
+[1A[2Kd84d9511bc4d: Preparing [1B
+[1A[2K5eb5bd4c5014: Preparing [1B
+[1A[2Kd195a7a18c70: Preparing [1B
+[1A[2Kaf605e724c5a: Preparing [1B
+[1A[2K59f161c3069d: Preparing [1B
+[1A[2K4f03495a4d7d: Preparing [1B[7A[2Kccd4515b6302: Waiting [7B[3A[2Kaf605e724c5a: Waiting [3B[2A[2K59f161c3069d: Waiting [2B[6A[2Kd84d9511bc4d: Waiting [6B[5A[2K5eb5bd4c5014: Waiting [5B[4A[2Kd195a7a18c70: Waiting [4B[9A[2K1680c309eb49: Pushing 2.048 kB[9B[10A[2K1b77dabff304: Pushing 538.1 kB/320.7 MB[10B[10A[2K1b77dabff304: Pushing  2.19 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 554.5 kB/320.4 MB[8B[8A[2Kb3b9a459377d: Pushing 1.658 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 3.848 MB/320.7 MB[10B[10A[2K1b77dabff304: Pushing 5.492 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 3.315 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 547.8 kB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 7.107 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 4.954 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 1.095 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 6.569 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 8.778 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 2.202 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing  8.24 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 10.99 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 4.404 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 10.45 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 13.22 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 6.562 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 12.68 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 15.44 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 8.791 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 14.91 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 17.67 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing    11 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 17.13 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing  19.9 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 13.23 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 19.36 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 22.13 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 15.46 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 21.59 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 24.36 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 17.68 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 23.82 MB/320.4 MB[8B[9A[2K1680c309eb49: Pushed [9B[10A[2K1b77dabff304: Pushing 27.66 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 20.47 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 27.12 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 30.36 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 29.83 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 23.26 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 33.11 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing   533 kB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 32.05 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 26.03 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 35.86 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 2.717 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 34.77 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 28.73 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 38.64 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 37.55 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 4.902 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 31.49 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 41.39 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 40.26 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 34.22 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 7.042 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 44.15 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 43.04 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 8.691 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 36.98 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 46.38 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 45.25 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 10.36 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 39.72 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 48.58 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 47.48 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 12.53 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 42.48 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 50.79 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 49.68 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 14.67 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 45.25 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 53.02 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 16.81 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 51.89 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 47.47 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 55.25 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 19.02 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 54.12 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 49.68 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 58.03 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 56.35 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 21.24 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 51.89 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 60.23 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 58.58 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 22.92 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 54.11 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 61.88 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 60.77 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 25.14 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 56.34 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 63.55 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 27.93 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 62.98 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 58.57 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 65.22 MB/320.7 MB[10B[5A[2K5eb5bd4c5014: Mounted from pvstodghill/peptideshaker [5B[6A[2Kd84d9511bc4d: Pushing 30.71 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 64.65 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 60.77 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 67.45 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing  33.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 66.88 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 62.97 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 69.67 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 35.73 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 69.66 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 64.64 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 71.35 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 37.37 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 71.33 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 75.16 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 66.87 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 40.16 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 75.14 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 77.94 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 69.65 MB/320.4 MB[7B[4A[2Kd195a7a18c70: Mounted from pvstodghill/peptideshaker [4B[6A[2Kd84d9511bc4d: Pushing 41.83 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 77.93 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 80.73 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 71.33 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 44.06 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 80.71 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 83.51 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 75.13 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing  83.5 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 46.28 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing  86.3 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 77.92 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 86.28 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 48.51 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 89.08 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 80.71 MB/320.4 MB[7B[3A[2Kaf605e724c5a: Mounted from pvstodghill/peptideshaker [3B[8A[2Kb3b9a459377d: Pushing 89.07 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 51.23 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 91.87 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 83.49 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 91.85 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing    54 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 94.65 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 86.83 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 94.64 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 56.77 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing  97.4 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 89.62 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 97.39 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 59.55 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 99.63 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing  92.4 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 62.29 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 99.62 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 101.9 MB/320.7 MB[10B[2A[2K59f161c3069d: Mounted from pvstodghill/peptideshaker [2B[7A[2Kccd4515b6302: Pushing 94.63 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 101.8 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 65.61 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 104.1 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 97.38 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 68.92 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 104.1 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 99.05 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 106.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 72.26 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 101.3 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 109.1 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 106.9 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 103.5 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 109.1 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 75.61 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 111.3 MB/320.7 MB[10B[1A[2K4f03495a4d7d: Mounted from pvstodghill/peptideshaker [1B[7A[2Kccd4515b6302: Pushing 105.7 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 78.39 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 111.3 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   113 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 81.18 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing   108 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing   113 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 114.6 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 84.52 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 114.6 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 110.7 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 116.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 87.86 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 116.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 119.7 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   113 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 90.65 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 114.6 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 119.6 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 121.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 93.99 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 116.9 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 124.1 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 121.9 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 97.33 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 124.1 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 119.6 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 126.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 100.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 126.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 129.1 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 121.9 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   104 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 129.1 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 124.1 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 131.3 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 107.4 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 131.3 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 126.9 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 133.6 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 110.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 133.6 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 129.1 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 135.8 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 113.5 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 131.3 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 135.8 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 138.6 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 116.8 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 133.6 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 138.6 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 140.3 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 120.2 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 140.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   143 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 135.8 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   123 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing   143 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 145.2 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 138.6 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 125.7 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 147.5 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 145.2 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 140.2 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 128.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 147.5 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 149.7 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   143 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 131.8 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 149.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 152.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 145.2 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   134 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 152.5 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 147.5 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 154.2 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 136.1 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 149.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 154.1 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 158.1 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 138.8 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 157.5 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 152.5 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 160.3 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 141.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 159.7 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 154.1 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 162.5 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 143.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 161.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 165.3 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   158 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 146.3 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 164.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   167 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 160.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 148.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 166.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 170.3 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 162.5 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 150.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 169.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 172.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 165.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 152.8 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing   172 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 174.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   167 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 155.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 174.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   177 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 170.8 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 157.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 176.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 179.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 173.1 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 159.9 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 178.6 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   182 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 175.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 162.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 180.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 184.2 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   177 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 164.4 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 183.1 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   187 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 179.2 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 166.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 185.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 189.2 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 181.4 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 168.8 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 188.1 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 191.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 183.6 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 171.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 190.3 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 193.1 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 186.4 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 173.2 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 192.6 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 195.4 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing   176 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 189.2 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 194.8 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   197 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 178.2 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 191.4 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 196.5 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 199.3 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 179.9 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 193.1 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 198.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 201.5 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 182.1 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 195.3 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 200.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 203.7 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   197 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 184.4 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 203.1 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 206.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 199.2 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   186 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 205.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 209.3 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 187.7 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 201.5 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 208.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 210.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 189.4 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 210.4 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 203.7 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 212.6 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 191.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 212.6 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 206.5 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 214.8 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 193.8 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 209.3 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 214.8 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 217.1 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 196.1 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing   217 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 211.5 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 218.7 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 218.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   221 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 198.3 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 213.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 220.9 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 223.2 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 200.5 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 215.9 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 223.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 227.1 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 203.9 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 217.6 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing   227 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 206.7 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 229.2 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 219.8 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 231.4 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 229.2 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing   210 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing   222 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 231.4 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 212.8 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 235.3 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 224.8 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 235.3 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 215.5 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 239.2 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 227.6 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 239.2 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 242.6 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 217.7 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 229.8 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 242.5 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 245.9 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 219.9 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 232.5 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 246.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 248.7 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 235.9 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   222 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 248.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 251.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 239.8 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 223.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 251.4 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 225.3 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 243.1 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 253.7 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 253.7 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing   247 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 227.5 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 255.9 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 255.9 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 249.8 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 258.1 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 229.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 258.1 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing   252 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 260.4 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 231.4 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 253.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 260.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   262 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 233.6 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 264.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 255.9 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 262.6 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 235.8 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 266.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 258.1 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   238 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 265.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 268.7 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing   267 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 260.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 241.3 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing   262 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 269.3 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 244.1 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 271.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 264.8 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 271.5 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 246.9 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 273.7 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 266.5 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 249.1 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 273.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 275.4 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 251.3 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 268.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 275.4 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 278.2 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 253.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 277.6 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 271.5 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 279.8 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing 255.8 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 282.1 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 273.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 279.8 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing   258 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 274.8 MB/320.4 MB[7B[10A[2K1b77dabff304: Pushing 284.3 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 282.1 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 260.8 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing   277 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 284.3 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 286.5 MB/320.7 MB[10B[6A[2Kd84d9511bc4d: Pushing   263 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 279.3 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing 286.5 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 288.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 281.5 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 265.3 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 291.5 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 288.7 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 283.7 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 267.4 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 294.3 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 291.5 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 285.9 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 269.5 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 294.3 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 296.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 288.2 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 271.7 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 296.5 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 298.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   291 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 273.9 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 298.7 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing 301.5 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 293.7 MB/320.4 MB[7B[8A[2Kb3b9a459377d: Pushing   301 MB/320.4 MB[8B[6A[2Kd84d9511bc4d: Pushing 276.1 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 303.8 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing   296 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 278.3 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 303.8 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   306 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 297.6 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 280.4 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 308.8 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing   306 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 299.8 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 282.6 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 308.8 MB/320.4 MB[8B[10A[2K1b77dabff304: Pushing   311 MB/320.7 MB[10B[7A[2Kccd4515b6302: Pushing 302.1 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 285.2 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 313.2 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing   311 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 304.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 287.9 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 315.5 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 313.2 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 307.1 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 291.2 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 317.7 MB/320.7 MB[10B[8A[2Kb3b9a459377d: Pushing 315.5 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 309.3 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing   295 MB/350.6 MB[6B[10A[2K1b77dabff304: Pushing 320.9 MB[10B[8A[2Kb3b9a459377d: Pushing 317.1 MB/320.4 MB[8B[7A[2Kccd4515b6302: Pushing 311.5 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 297.2 MB/350.6 MB[6B[8A[2Kb3b9a459377d: Pushing 320.5 MB[8B[8A[2Kb3b9a459377d: Pushing 320.5 MB[8B[7A[2Kccd4515b6302: Pushing 313.8 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 299.4 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 315.4 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 301.5 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 317.7 MB/320.4 MB[7B[6A[2Kd84d9511bc4d: Pushing 303.7 MB/350.6 MB[6B[7A[2Kccd4515b6302: Pushing 320.5 MB[7B[6A[2Kd84d9511bc4d: Pushing 306.3 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 310.1 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 312.8 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing   315 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 317.2 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 319.4 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 321.6 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 323.8 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 325.5 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 327.2 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 328.8 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 330.5 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 332.2 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 333.8 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing   335 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 336.6 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 337.7 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 338.8 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing   340 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 341.1 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 342.2 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 343.3 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 344.4 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 345.5 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 347.2 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 349.4 MB/350.6 MB[6B[6A[2Kd84d9511bc4d: Pushing 351.1 MB[6B[6A[2Kd84d9511bc4d: Pushing 352.7 MB[6B[6A[2Kd84d9511bc4d: Pushing 354.9 MB[6B[6A[2Kd84d9511bc4d: Pushing 355.8 MB[6B[8A[2Kb3b9a459377d: Pushed [8B[10A[2K1b77dabff304: Pushed [10B[6A[2Kd84d9511bc4d: Pushed [6B[7A[2Kccd4515b6302: Pushed [7B3.2.6__2017-02-01: digest: sha256:c2747e1f92f6431daec96fd53d06f42852972e0fa96f1ad4451b819dd2d6c82d size: 2416
+
+real	8m10.751s
+user	0m0.248s
+sys	0m0.208s
+
+Script done on Wed 01 Feb 2017 01:11:27 PM EST
