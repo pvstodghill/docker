@@ -1,0 +1,133 @@
+Script started on Mon 13 Feb 2017 01:21:01 PM EST
++ docker build --pull -t pvstodghill/mauve:2015-02-13__2017-02-13 .
+Sending build context to Docker daemon 557.1 kBSending build context to Docker daemon 17.27 MBSending build context to Docker daemon  24.4 MB
+Step 1/21 : FROM ubuntu:14.04
+14.04: Pulling from library/ubuntu
+Digest: sha256:8f5f12335124c1b78e4cf2f8860d395f75ba279bae70a3c18dd470e910e38ec5
+Status: Image is up to date for ubuntu:14.04
+ ---> b969ab9f929b
+Step 2/21 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> bfcced14c610
+Step 3/21 : ENV PACKAGE mauve
+ ---> Using cache
+ ---> 13becb375593
+Step 4/21 : ENV VERSION 2015-02-13
+ ---> Using cache
+ ---> aecbfc7f7573
+Step 5/21 : ENV BUILD_PACKAGES ""
+ ---> Using cache
+ ---> d930f392e35e
+Step 6/21 : ENV RUN_PACKAGES default-jre
+ ---> Using cache
+ ---> 2caaa39932ae
+Step 7/21 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 8455999c76c6
+Step 8/21 : ENV DEST_DIR /usr/local
+ ---> Using cache
+ ---> 6f705d734068
+Step 9/21 : ENV BIN_DIR ${DEST_DIR}/bin
+ ---> Using cache
+ ---> 6f6b3197df12
+Step 10/21 : ENV LIB_DIR ${DEST_DIR}/lib/${PACKAGE}
+ ---> Using cache
+ ---> aecce588a035
+Step 11/21 : ENV DOC_DIR ${DEST_DIR}/share/doc/${PACKAGE}
+ ---> Using cache
+ ---> b3692f3b59b2
+Step 12/21 : ADD ${PACKAGE}_linux_snapshot_${VERSION}.tar.gz /tmp/
+ ---> Using cache
+ ---> f27ed34c1f7d
+Step 13/21 : WORKDIR /tmp/${PACKAGE}_snapshot_${VERSION}
+ ---> Using cache
+ ---> 0809536d82a3
+Step 14/21 : RUN mkdir -p ${LIB_DIR} ${DOC_DIR} ;     cp --archive COPYING  ChangeLog.html README ${DOC_DIR} ;     cp --archive linux-x64/mauveAligner  linux-x64/progressiveMauve ${BIN_DIR} ;     cp --archive Mauve Mauve.jar ext ${LIB_DIR} ;     ln -s ../lib/${PACKAGE}/Mauve ${BIN_DIR} ;     : done
+ ---> Using cache
+ ---> 30699dcc840f
+Step 15/21 : WORKDIR /root
+ ---> Using cache
+ ---> 89e11b4054fc
+Step 16/21 : RUN rm -rf /tmp/${PACKAGE}-${VERSION}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> 42628cd5eeb0
+Step 17/21 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 69f1bffd80d9
+Step 18/21 : USER guest
+ ---> Using cache
+ ---> d21bebec3a72
+Step 19/21 : ENV HOME /mnt
+ ---> Using cache
+ ---> a252485b9d38
+Step 20/21 : WORKDIR /mnt
+ ---> Using cache
+ ---> 6f3e1195dfa7
+Step 21/21 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> 132e9daebdff
+Successfully built 132e9daebdff
++ docker run --rm pvstodghill/mauve:2015-02-13__2017-02-13 progressiveMauve
+progressiveMauve usage:
+
+When each genome resides in a separate file:
+progressiveMauve [options] <seq1 filename> ... <seqN filename>
+
+When all genomes are in a single file:
+progressiveMauve [options] <seq filename>
+
+Options:
+	--island-gap-size=<number> Alignment gaps above this size in nucleotides are considered to be islands [20]
+	--profile=<file> (Not yet implemented) Read an existing sequence alignment in XMFA format and align it to other sequences or alignments
+	--apply-backbone=<file> Read an existing sequence alignment in XMFA format and apply backbone statistics to it
+	--disable-backbone Disable backbone detection
+	--mums Find MUMs only, do not attempt to determine locally collinear blocks (LCBs)
+	--seed-weight=<number> Use the specified seed weight for calculating initial anchors
+	--output=<file> Output file name.  Prints to screen by default
+	--backbone-output=<file> Backbone output file name (optional).
+	--match-input=<file> Use specified match file instead of searching for matches
+	--input-id-matrix=<file> An identity matrix describing similarity among all pairs of input sequences/alignments
+	--max-gapped-aligner-length=<number> Maximum number of base pairs to attempt aligning with the gapped aligner
+	--input-guide-tree=<file> A phylogenetic guide tree in NEWICK format that describes the order in which sequences will be aligned
+	--output-guide-tree=<file> Write out the guide tree used for alignment to a file
+	--version Display software version information
+	--debug Run in debug mode (perform internal consistency checks--very slow)
+	--scratch-path-1=<path> Designate a path that can be used for temporary data storage.  Two or more paths should be specified.
+	--scratch-path-2=<path> Designate a path that can be used for temporary data storage.  Two or more paths should be specified.
+	--collinear Assume that input sequences are collinear--they have no rearrangements
+	--scoring-scheme=<ancestral|sp_ancestral|sp> Selects the anchoring score function.  Default is extant sum-of-pairs (sp).
+	--no-weight-scaling Don't scale LCB weights by conservation distance and breakpoint distance
+	--max-breakpoint-distance-scale=<number [0,1]> Set the maximum weight scaling by breakpoint distance.  Defaults to 0.5
+	--conservation-distance-scale=<number [0,1]> Scale conservation distances by this amount.  Defaults to 0.5
+	--muscle-args=<arguments in quotes> Additional command-line options for MUSCLE.  Any quotes should be escaped with a backslash
+	--skip-refinement Do not perform iterative refinement
+	--skip-gapped-alignment Do not perform gapped alignment
+	--bp-dist-estimate-min-score=<number> Minimum LCB score for estimating pairwise breakpoint distance
+	--mem-clean Set this to true when debugging memory allocations
+	--gap-open=<number> Gap open penalty
+	--repeat-penalty=<negative|zero> Sets whether the repeat scores go negative or go to zero for highly repetitive sequences.  Default is negative.
+	--gap-extend=<number> Gap extend penalty
+	--substitution-matrix=<file> Nucleotide substitution matrix in NCBI format
+	--weight=<number> Minimum pairwise LCB score
+	--min-scaled-penalty=<number> Minimum breakpoint penalty after scaling the penalty by expected divergence
+	--hmm-p-go-homologous=<number> Probability of transitioning from the unrelated to the homologous state [0.00001]
+	--hmm-p-go-unrelated=<number> Probability of transitioning from the homologous to the unrelated state [0.000000001]
+	--hmm-identity=<number> Expected level of sequence identity among pairs of sequences, ranging between 0 and 1 [0.7]
+	--seed-family Use a family of spaced seeds to improve sensitivity
+	--solid-seeds Use solid seeds. Do not permit substitutions in anchor matches.
+	--coding-seeds Use coding pattern seeds. Useful to generate matches coding regions with 3rd codon position degeneracy.
+	--disable-cache Disable recursive anchor search cacheing to workaround a crash bug
+	--no-recursion Disable recursive anchor search
+
+
+Examples:
+progressiveMauve --output=my_seqs.xmfa my_genome1.gbk my_genome2.gbk my_genome3.fasta
+
+If genomes are in a single file and have no rearrangement:
+progressiveMauve --collinear --output=my_seqs.xmfa my_genomes.fasta
+
+real	0m1.520s
+user	0m0.044s
+sys	0m0.068s
+
+Script done on Mon 13 Feb 2017 01:21:03 PM EST
