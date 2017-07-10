@@ -5,21 +5,12 @@ VERSION=`egrep '^ENV +VERSION +' Dockerfile | sed -r -e 's/ENV +VERSION +//'`
 IMAGE=pvstodghill/$PACKAGE
 RELEASE=`date +%Y-%m-%d`
 
-fulltag=${IMAGE}:${VERSION}__${RELEASE}
-
-if [ "$1" = "-f" ] ; then
-    opt_f=1
-    shift
-fi
+fulltag=`echo ${IMAGE}:${VERSION}__${RELEASE} | tr '[A-Z]' '[a-z]'`
 
 set -e
 set -x
 
-rm -rf FastQC
-unzip ${PACKAGE}_v${VERSION}.zip 
-docker build $pull_arg -t ${fulltag} .
-rm -rf FastQC
-docker run ${fulltag}
-if [ "$opt_f" ] ; then
-    docker push ${fulltag}
-fi
+docker build --pull -t ${fulltag} .
+docker run --rm ${fulltag} fastqc -h
+docker push ${fulltag}
+
