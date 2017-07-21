@@ -1,0 +1,101 @@
+Script started on Tue 11 Jul 2017 01:08:35 PM EDT
++ docker build --pull -t pvstodghill/comet:2016013__2017-07-11 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  10.96MB
+Step 1/12 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:5888bdc472efc8176202a8f0dcd3e91ab4c8cd4171ae7e3efd9011e892358886
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 23543e58656d
+Step 2/12 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> baf4f88ebbb3
+Step 3/12 : ENV PACKAGE comet
+ ---> Running in e29016a85654
+ ---> d2bb777a15fe
+Removing intermediate container e29016a85654
+Step 4/12 : ENV VERSION 2016013
+ ---> Running in 209152fe0db9
+ ---> 5402349544bb
+Removing intermediate container 209152fe0db9
+Step 5/12 : RUN mkdir /opt/${PACKAGE}
+ ---> Running in 3d943f397c96
+ ---> 849b5fce8b49
+Removing intermediate container 3d943f397c96
+Step 6/12 : ADD comet.exe /opt/${PACKAGE}
+ ---> e22f876a3f79
+Removing intermediate container 0409cad65cd2
+Step 7/12 : RUN useradd -d /mnt -M guest
+ ---> Running in b6abc830ea3d
+ ---> fb32a85d961d
+Removing intermediate container b6abc830ea3d
+Step 8/12 : USER guest
+ ---> Running in 683c5eb0296f
+ ---> eeaa7bab04d9
+Removing intermediate container 683c5eb0296f
+Step 9/12 : ENV HOME /mnt
+ ---> Running in 96d73957c9cd
+ ---> f1027696be0a
+Removing intermediate container 96d73957c9cd
+Step 10/12 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Running in a650335680b3
+ ---> d025daf93d3f
+Removing intermediate container a650335680b3
+Step 11/12 : WORKDIR /mnt
+ ---> cb6405735e90
+Removing intermediate container 8586c0b74d61
+Step 12/12 : CMD find /opt/${PACKAGE} -type f | sort
+ ---> Running in c761946b6ff4
+ ---> 01cd3e8fa424
+Removing intermediate container c761946b6ff4
+Successfully built 01cd3e8fa424
+Successfully tagged pvstodghill/comet:2016013__2017-07-11
++ docker run --rm pvstodghill/comet:2016013__2017-07-11 comet.exe
+
+ Comet version "2016.01 rev. 3"
+ (c) University of Washington
+
+ Comet usage:  comet.exe [options] <input_files>
+
+ Supported input formats include mzXML, mzML, Thermo raw, mgf, and ms2 variants (cms2, bms2, ms2)
+
+       options:  -p         to print out a comet.params file (named comet.params.new)
+                 -P<params> to specify an alternate parameters file (default comet.params)
+                 -N<name>   to specify an alternate output base name; valid only with one input file
+                 -D<dbase>  to specify a sequence database, overriding entry in parameters file
+                 -F<num>    to specify the first/start scan to search, overriding entry in parameters file
+                 -L<num>    to specify the last/end scan to search, overriding entry in parameters file
+                            (-L option is required if -F option is used)
+
+       example:  comet.exe file1.mzXML file2.mzXML
+            or   comet.exe -F1000 -L1500 file1.mzXML    <- to search scans 1000 through 1500
+            or   comet.exe -pParams.txt *.mzXML         <- use parameters in the file 'Params.txt'
+
++ true
++ docker push pvstodghill/comet:2016013__2017-07-11
+The push refers to a repository [docker.io/pvstodghill/comet]
+
+[1A[1K[Kf7f0a6ae120d: Preparing [1B
+[1A[1K[K731567763fb9: Preparing [1B
+[1A[1K[K54af81ecd9b3: Preparing [1B
+[1A[1K[K701b49e9ca93: Preparing [1B
+[1A[1K[Kcadd50c01a43: Preparing [1B
+[1A[1K[Kc19d826e2633: Preparing [1B
+[1A[1K[K4b8ba4ae82cb: Preparing [1B
+[1A[1K[K3a42082aba13: Preparing [1B
+[1A[1K[Ke136b2922aac: Preparing [1B
+[1A[1K[K9400a8a6aeee: Preparing [1B
+[1A[1K[K40c50dfbff0e: Preparing [1B
+[1A[1K[K7f672d7db83a: Preparing [1B
+[1A[1K[Kbf846420b056: Preparing [1B
+[1A[1K[Ka7c55cd220b9: Preparing [1B
+[1A[1K[K0566c118947e: Preparing [1B
+[1A[1K[K6f9cf951edf5: Preparing [1B[11A[1K[Kc19d826e2633: Waiting [11B
+[1A[1K[K182d2a55830d: Preparing [1B
+[1A[1K[K5a4c2c9a24fc: Preparing [1B[8A[1K[K40c50dfbff0e: Waiting [8B[9A[1K[K9400a8a6aeee: Waiting [9B
+[1A[1K[Kcb11ba605400: Preparing [1B[8A[1K[K7f672d7db83a: Waiting [8B[12A[1K[K3a42082aba13: Waiting [12B[7A[1K[Kbf846420b056: Waiting [7B[11A[1K[Ke136b2922aac: Waiting [11B[3A[1K[K182d2a55830d: Waiting [3B[2A[1K[K5a4c2c9a24fc: Waiting [2B[6A[1K[Ka7c55cd220b9: Waiting [6B[1A[1K[Kcb11ba605400: Waiting [1B[5A[1K[K0566c118947e: Waiting [5B[4A[1K[K6f9cf951edf5: Waiting [4B[18A[1K[K731567763fb9: Pushing  67.07kB/4.525MB[18B[19A[1K[Kf7f0a6ae120d: Pushing  4.096kB/329.4kB[19B[19A[1K[Kf7f0a6ae120d: Pushing  342.5kB[19B[17A[1K[K54af81ecd9b3: Pushing  2.048kB[17B[18A[1K[K731567763fb9: Pushing  132.6kB/4.525MB[18B[18A[1K[K731567763fb9: Pushing  1.312MB/4.525MB[18B[18A[1K[K731567763fb9: Pushing  2.557MB/4.525MB[18B[15A[1K[Kcadd50c01a43: Mounted from pvstodghill/pbsim [15B[16A[1K[K701b49e9ca93: Mounted from pvstodghill/pbsim [16B[18A[1K[K731567763fb9: Pushing  4.261MB/4.525MB[18B[18A[1K[K731567763fb9: Pushing  4.528MB[18B[14A[1K[Kc19d826e2633: Mounted from pvstodghill/pbsim [14B[13A[1K[K4b8ba4ae82cb: Mounted from pvstodghill/pbsim [13B[17A[1K[K54af81ecd9b3: Pushed [17B[12A[1K[K3a42082aba13: Mounted from pvstodghill/pbsim [12B[10A[1K[K9400a8a6aeee: Mounted from pvstodghill/pbsim [10B[11A[1K[Ke136b2922aac: Mounted from pvstodghill/pbsim [11B[18A[1K[K731567763fb9: Pushed [18B[9A[1K[K40c50dfbff0e: Mounted from pvstodghill/pbsim [9B[19A[1K[Kf7f0a6ae120d: Pushed [19B[8A[1K[K7f672d7db83a: Mounted from pvstodghill/pbsim [8B[7A[1K[Kbf846420b056: Mounted from pvstodghill/pbsim [7B[6A[1K[Ka7c55cd220b9: Mounted from pvstodghill/pbsim [6B[5A[1K[K0566c118947e: Mounted from pvstodghill/pbsim [5B[4A[1K[K6f9cf951edf5: Mounted from pvstodghill/pbsim [4B[3A[1K[K182d2a55830d: Mounted from pvstodghill/pbsim [3B[2A[1K[K5a4c2c9a24fc: Mounted from pvstodghill/pbsim [2B[1A[1K[Kcb11ba605400: Mounted from pvstodghill/pbsim [1B2016013__2017-07-11: digest: sha256:079382a8255f41d54c0d004a95c29859284c47f10edc6c1ca1e20f2aa017d590 size: 4313
+
+real	0m40.764s
+user	0m0.072s
+sys	0m0.056s
+
+Script done on Tue 11 Jul 2017 01:09:16 PM EDT
