@@ -1,0 +1,122 @@
+Script started on Tue 11 Jul 2017 08:38:30 AM EDT
++ docker build --pull -t pvstodghill/pbsim:1.0.3__2017-07-11 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  6.423MB
+Step 1/13 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:5888bdc472efc8176202a8f0dcd3e91ab4c8cd4171ae7e3efd9011e892358886
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 23543e58656d
+Step 2/13 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> baf4f88ebbb3
+Step 3/13 : ENV PACKAGE pbsim
+ ---> Using cache
+ ---> e3e3573417a3
+Step 4/13 : ENV VERSION 1.0.3
+ ---> Using cache
+ ---> e14290e3ef85
+Step 5/13 : ADD ${PACKAGE}-${VERSION}-Linux-amd64.tar.gz /opt/
+ ---> Using cache
+ ---> 9732da67d9b3
+Step 6/13 : WORKDIR /opt
+ ---> Using cache
+ ---> d67e092a9158
+Step 7/13 : RUN mv ${PACKAGE}-${VERSION}-Linux-amd64 ${PACKAGE}
+ ---> Using cache
+ ---> c8acbb3f8d14
+Step 8/13 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> b09a45e60672
+Step 9/13 : USER guest
+ ---> Using cache
+ ---> 7fd65bbdfba3
+Step 10/13 : ENV HOME /mnt
+ ---> Using cache
+ ---> b375aba32fb7
+Step 11/13 : ENV PATH /opt/${PACKAGE}/Linux-amd64/bin:${PATH}
+ ---> Using cache
+ ---> 45387b70afee
+Step 12/13 : WORKDIR /mnt
+ ---> Using cache
+ ---> 9a9ebfd63cc2
+Step 13/13 : CMD find /opt/${PACKAGE} -type f | sort
+ ---> Using cache
+ ---> aa5f9a59a418
+Successfully built aa5f9a59a418
+Successfully tagged pvstodghill/pbsim:1.0.3__2017-07-11
++ docker run --rm pvstodghill/pbsim:1.0.3__2017-07-11 pbsim
+
+USAGE: pbsim [options] <reference>
+
+ <reference>           FASTA format file.
+
+ [general options]
+
+  --prefix             prefix of output files (sd).
+  --data-type          data type. CLR or CCS (CLR).
+  --depth              depth of coverage (CLR: 20.0, CCS: 50.0).
+  --length-min         minimum length (100).
+  --length-max         maximum length (CLR: 25000, CCS: 2500).
+  --accuracy-min       minimum accuracy.
+                       (CLR: 0.75, CCS: fixed as 0.75).
+                       this option can be used only in case of CLR.
+  --accuracy-max       maximum accuracy.
+                       (CLR: 1.00, CCS: fixed as 1.00).
+                       this option can be used only in case of CLR.
+  --difference-ratio   ratio of differences. substitution:insertion:deletion.
+                       each value up to 1000 (CLR: 10:60:30, CCS:6:21:73).
+  --seed               for a pseudorandom number generator (Unix time).
+
+ [options of sampling-based simulation]
+
+  --sample-fastq       FASTQ format file to sample.
+  --sample-profile-id  sample-fastq (filtered) profile ID.
+                       when using --sample-fastq, profile is stored.
+                       'sample_profile_<ID>.fastq', and
+                       'sample_profile_<ID>.stats' are created.
+                       when not using --sample-fastq, profile is re-used.
+                       Note that when profile is used, --length-min,max,
+                       --accuracy-min,max would be the same as the profile.
+
+ [options of model-based simulation].
+
+  --model_qc           model of quality code.
+  --length-mean        mean of length model (CLR: 3000.0, CCS:450.0).
+  --length-sd          standard deviation of length model.
+                       (CLR: 2300.0, CCS: 170.0).
+  --accuracy-mean      mean of accuracy model.
+                       (CLR: 0.78, CCS: fixed as 0.98).
+                       this option can be used only in case of CLR.
+  --accuracy-sd        standard deviation of accuracy model.
+                       (CLR: 0.02, CCS: fixed as 0.02).
+                       this option can be used only in case of CLR.
+
++ true
++ docker push pvstodghill/pbsim:1.0.3__2017-07-11
+The push refers to a repository [docker.io/pvstodghill/pbsim]
+
+[1A[1K[Kc77165d1183a: Preparing [1B
+[1A[1K[K304050c289cd: Preparing [1B
+[1A[1K[K7d79f06079d9: Preparing [1B
+[1A[1K[K701b49e9ca93: Preparing [1B
+[1A[1K[Kcadd50c01a43: Preparing [1B
+[1A[1K[Kc19d826e2633: Preparing [1B
+[1A[1K[K4b8ba4ae82cb: Preparing [1B
+[1A[1K[K3a42082aba13: Preparing [1B
+[1A[1K[Ke136b2922aac: Preparing [1B
+[1A[1K[K9400a8a6aeee: Preparing [1B
+[1A[1K[K40c50dfbff0e: Preparing [1B
+[1A[1K[K7f672d7db83a: Preparing [1B
+[1A[1K[Kbf846420b056: Preparing [1B
+[1A[1K[Ka7c55cd220b9: Preparing [1B
+[1A[1K[K0566c118947e: Preparing [1B
+[1A[1K[K6f9cf951edf5: Preparing [1B
+[1A[1K[K182d2a55830d: Preparing [1B[10A[1K[K3a42082aba13: Waiting [10B
+[1A[1K[K5a4c2c9a24fc: Preparing [1B
+[1A[1K[Kcb11ba605400: Preparing [1B[10A[1K[K9400a8a6aeee: Waiting [10B[6A[1K[Ka7c55cd220b9: Waiting [6B[4A[1K[K6f9cf951edf5: Waiting [4B[11A[1K[Ke136b2922aac: Waiting [11B[7A[1K[Kbf846420b056: Waiting [7B[5A[1K[K0566c118947e: Waiting [5B[2A[1K[K5a4c2c9a24fc: Waiting [2B[8A[1K[K7f672d7db83a: Waiting [8B[14A[1K[Kc19d826e2633: Waiting [14B[1A[1K[Kcb11ba605400: Waiting [1B[19A[1K[Kc77165d1183a: Pushing  4.096kB/329.4kB[19B[19A[1K[Kc77165d1183a: Pushing  342.5kB[19B[18A[1K[K304050c289cd: Pushing  187.4kB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  186.9kB/15.7MB[17B[16A[1K[K701b49e9ca93: Mounted from pvstodghill/curesim [16B[17A[1K[K7d79f06079d9: Pushing  514.6kB/15.7MB[17B[15A[1K[Kcadd50c01a43: Mounted from pvstodghill/curesim [15B[18A[1K[K304050c289cd: Pushing  515.1kB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  842.2kB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  842.8kB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing   1.17MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing   1.17MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  1.334MB/15.7MB[17B[14A[1K[Kc19d826e2633: Mounted from pvstodghill/curesim [14B[17A[1K[K7d79f06079d9: Pushing  1.498MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  1.498MB/15.7MB[18B[13A[1K[K4b8ba4ae82cb: Mounted from pvstodghill/curesim [13B[17A[1K[K7d79f06079d9: Pushing  1.661MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  1.826MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  1.989MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  2.153MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  2.153MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  2.481MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  2.481MB/15.7MB[17B[11A[1K[Ke136b2922aac: Mounted from pvstodghill/curesim [11B[12A[1K[K3a42082aba13: Mounted from pvstodghill/curesim [12B[19A[1K[Kc77165d1183a: Pushed [19B[18A[1K[K304050c289cd: Pushing  2.809MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  2.808MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  3.137MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  3.136MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  3.464MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  3.464MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  3.792MB/15.7MB[18B[9A[1K[K40c50dfbff0e: Mounted from pvstodghill/curesim [9B[17A[1K[K7d79f06079d9: Pushing  3.791MB/15.7MB[17B[10A[1K[K9400a8a6aeee: Mounted from pvstodghill/curesim [10B[8A[1K[K7f672d7db83a: Mounted from pvstodghill/curesim [8B[18A[1K[K304050c289cd: Pushing   4.12MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  4.119MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  4.447MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  4.447MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  4.775MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  4.774MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  4.939MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  5.102MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  5.266MB/15.7MB[18B[6A[1K[Ka7c55cd220b9: Mounted from pvstodghill/curesim [6B[7A[1K[Kbf846420b056: Mounted from pvstodghill/curesim [7B[18A[1K[K304050c289cd: Pushing  5.449MB/15.7MB[18B[5A[1K[K0566c118947e: Mounted from pvstodghill/curesim [5B[17A[1K[K7d79f06079d9: Pushing  5.449MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  6.105MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  6.104MB/15.7MB[17B[17A[1K[K7d79f06079d9: Pushing  6.759MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  6.924MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  7.415MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  7.579MB/15.7MB[18B[4A[1K[K6f9cf951edf5: Mounted from pvstodghill/curesim [4B[3A[1K[K182d2a55830d: Mounted from pvstodghill/curesim [3B[17A[1K[K7d79f06079d9: Pushing   8.07MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  8.234MB/15.7MB[18B[2A[1K[K5a4c2c9a24fc: Mounted from pvstodghill/curesim [2B[17A[1K[K7d79f06079d9: Pushing  8.726MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing   8.89MB/15.7MB[18B[18A[1K[K304050c289cd: Pushing  9.545MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  9.545MB/15.7MB[17B[17A[1K[K7d79f06079d9: Pushing   10.2MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  10.36MB/15.7MB[18B[18A[1K[K304050c289cd: Pushing  11.02MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  10.86MB/15.7MB[17B[17A[1K[K7d79f06079d9: Pushing  11.51MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  11.68MB/15.7MB[18B[18A[1K[K304050c289cd: Pushing  12.49MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  12.17MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  12.99MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  12.66MB/15.7MB[17B[1A[1K[Kcb11ba605400: Mounted from pvstodghill/curesim [1B[17A[1K[K7d79f06079d9: Pushing  13.31MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  13.81MB/15.7MB[18B[18A[1K[K304050c289cd: Pushing  14.46MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  14.13MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  15.12MB/15.7MB[18B[17A[1K[K7d79f06079d9: Pushing  14.62MB/15.7MB[17B[18A[1K[K304050c289cd: Pushing  15.72MB[18B[17A[1K[K7d79f06079d9: Pushing  15.28MB/15.7MB[17B[17A[1K[K7d79f06079d9: Pushing  15.72MB[17B[18A[1K[K304050c289cd: Pushed [18B[17A[1K[K7d79f06079d9: Pushed [17B1.0.3__2017-07-11: digest: sha256:32c3bc26f8d6e0cd02863640a12eb15c38566fb2427509959fa9a755adbf3744 size: 4317
+
+real	0m11.218s
+user	0m0.080s
+sys	0m0.052s
+
+Script done on Tue 11 Jul 2017 08:38:41 AM EDT
