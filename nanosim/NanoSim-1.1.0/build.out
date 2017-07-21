@@ -1,0 +1,93 @@
+Script started on Wed 12 Jul 2017 12:12:13 PM EDT
++ docker build --pull -t pvstodghill/nanosim:1.1.0__2017-07-12 .
+Sending build context to Docker daemon  43.52kB
+Step 1/14 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:95b7c3512c17ee2e5ec62bf31b4a0c809573e45d032aa27cf3813b43d1096b84
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> a77e0f038655
+Step 2/14 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 584cb7275fbd
+Step 3/14 : ENV PACKAGE NanoSim
+ ---> Using cache
+ ---> 6efa44f3549f
+Step 4/14 : ENV VERSION 1.1.0
+ ---> Using cache
+ ---> 3c238ba23ea7
+Step 5/14 : RUN apt-get update && apt-get install --yes last-align python-numpy
+ ---> Using cache
+ ---> 792d65a86996
+Step 6/14 : ADD ${PACKAGE}-${VERSION}.tar.gz /opt/
+ ---> Using cache
+ ---> 25f4e26cd490
+Step 7/14 : WORKDIR /opt
+ ---> Using cache
+ ---> f1bd90582d7b
+Step 8/14 : RUN mv ${PACKAGE}-${VERSION} ${PACKAGE}
+ ---> Using cache
+ ---> a857eeb59209
+Step 9/14 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> fec63bf07a3f
+Step 10/14 : USER guest
+ ---> Using cache
+ ---> 49f8983e0733
+Step 11/14 : ENV HOME /mnt
+ ---> Using cache
+ ---> 0fd16f0e5c24
+Step 12/14 : ENV PATH /opt/${PACKAGE}/src:${PATH}
+ ---> Using cache
+ ---> ebc8f6dd4c40
+Step 13/14 : WORKDIR /mnt
+ ---> Using cache
+ ---> ea7bf1c29a62
+Step 14/14 : CMD find /opt/${PACKAGE} -type f | sort
+ ---> Using cache
+ ---> 8b9ce5798a76
+Successfully built 8b9ce5798a76
+Successfully tagged pvstodghill/nanosim:1.1.0__2017-07-12
++ docker run --rm pvstodghill/nanosim:1.1.0__2017-07-12 simulator.py --help
+./simulator.py [command] <options>
+[command] circular | linear
+Do not choose 'circular' when there is more than one sequence in the reference
+<options>: 
+-h : print usage message
+-r : reference genome in fasta file, specify path and file name, REQUIRED
+-c : The prefix of training set profiles, same as the output prefix in read_analysis.py, default = training
+-o : The prefix of output file, default = 'simulated'
+-n : Number of generated reads, default = 20,000 reads
+--max_len : Maximum read length, default = Inf
+--min_len : Minimum read length, default = 50
+--perfect: Output perfect reads, no mutations, default = False
+--KmerBias: prohibits homopolymers with length >= n bases in output reads, default = 6
++ true
++ docker push pvstodghill/nanosim:1.1.0__2017-07-12
+The push refers to a repository [docker.io/pvstodghill/nanosim]
+
+[1A[1K[K6e502e5ef187: Preparing [1B
+[1A[1K[Kfcb92c599e0b: Preparing [1B
+[1A[1K[K95f8ffb5bce3: Preparing [1B
+[1A[1K[Kaf520fead05c: Preparing [1B
+[1A[1K[Kfa66073b569f: Preparing [1B
+[1A[1K[Kf2ee40c06b56: Preparing [1B
+[1A[1K[Kbac72a870a44: Preparing [1B
+[1A[1K[K2f741ed287e5: Preparing [1B
+[1A[1K[K4ebbbd56e781: Preparing [1B
+[1A[1K[K43b5f46aafaf: Preparing [1B
+[1A[1K[K562d54461e92: Preparing [1B
+[1A[1K[Kc8707dc83ddd: Preparing [1B
+[1A[1K[K316e07c4aa19: Preparing [1B
+[1A[1K[Ka17cc9c25911: Preparing [1B
+[1A[1K[Ka7c55cd220b9: Preparing [1B
+[1A[1K[K0566c118947e: Preparing [1B
+[1A[1K[K6f9cf951edf5: Preparing [1B
+[1A[1K[K182d2a55830d: Preparing [1B[7A[1K[Kc8707dc83ddd: Waiting [7B
+[1A[1K[K5a4c2c9a24fc: Preparing [1B
+[1A[1K[Kcb11ba605400: Preparing [1B[10A[1K[K562d54461e92: Waiting [10B[11A[1K[K43b5f46aafaf: Waiting [11B[8A[1K[K316e07c4aa19: Waiting [8B[14A[1K[Kbac72a870a44: Waiting [14B[5A[1K[K0566c118947e: Waiting [5B[12A[1K[K4ebbbd56e781: Waiting [12B[2A[1K[K5a4c2c9a24fc: Waiting [2B[13A[1K[K2f741ed287e5: Waiting [13B[7A[1K[Ka17cc9c25911: Waiting [7B[6A[1K[Ka7c55cd220b9: Waiting [6B[1A[1K[Kcb11ba605400: Waiting [1B[3A[1K[K182d2a55830d: Waiting [3B[15A[1K[Kf2ee40c06b56: Waiting [15B[4A[1K[K6f9cf951edf5: Waiting [4B[19A[1K[Kfcb92c599e0b: Pushing  1.536kB/136.9kB[19B[18A[1K[K95f8ffb5bce3: Pushing  1.536kB/136.9kB[18B[19A[1K[Kfcb92c599e0b: Pushing  158.7kB[19B[18A[1K[K95f8ffb5bce3: Pushing  158.2kB[18B[20A[1K[K6e502e5ef187: Pushing  4.096kB/328.7kB[20B[20A[1K[K6e502e5ef187: Pushing    341kB[20B[17A[1K[Kaf520fead05c: Pushing  311.3kB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  1.477MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  3.198MB/28.1MB[17B[16A[1K[Kfa66073b569f: Mounted from pvstodghill/percolator [16B[17A[1K[Kaf520fead05c: Pushing  4.653MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  6.383MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  7.572MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  9.062MB/28.1MB[17B[15A[1K[Kf2ee40c06b56: Mounted from pvstodghill/percolator [15B[17A[1K[Kaf520fead05c: Pushing  10.51MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  12.26MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  13.97MB/28.1MB[17B[20A[1K[K6e502e5ef187: Pushed [20B[17A[1K[Kaf520fead05c: Pushing  16.32MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  18.41MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  20.72MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  23.05MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing  24.84MB/28.1MB[17B[17A[1K[Kaf520fead05c: Pushing     26MB/28.1MB[17B[19A[1K[Kfcb92c599e0b: Pushed [19B[14A[1K[Kbac72a870a44: Mounted from pvstodghill/percolator [14B[17A[1K[Kaf520fead05c: Pushing  27.77MB/28.1MB[17B[13A[1K[K2f741ed287e5: Mounted from pvstodghill/percolator [13B[17A[1K[Kaf520fead05c: Pushing  29.07MB[17B[12A[1K[K4ebbbd56e781: Mounted from pvstodghill/percolator [12B[11A[1K[K43b5f46aafaf: Mounted from pvstodghill/percolator [11B[9A[1K[Kc8707dc83ddd: Mounted from pvstodghill/percolator [9B[8A[1K[K316e07c4aa19: Mounted from pvstodghill/percolator [8B[18A[1K[K95f8ffb5bce3: Pushed [18B[6A[1K[Ka7c55cd220b9: Mounted from pvstodghill/percolator [6B[5A[1K[K0566c118947e: Mounted from pvstodghill/percolator [5B[7A[1K[Ka17cc9c25911: Mounted from pvstodghill/percolator [7B[4A[1K[K6f9cf951edf5: Mounted from pvstodghill/percolator [4B[2A[1K[K5a4c2c9a24fc: Mounted from pvstodghill/percolator [2B[10A[1K[K562d54461e92: Mounted from pvstodghill/percolator [10B[1A[1K[Kcb11ba605400: Mounted from pvstodghill/percolator [1B[3A[1K[K182d2a55830d: Mounted from pvstodghill/percolator [3B[17A[1K[Kaf520fead05c: Pushed [17B1.1.0__2017-07-12: digest: sha256:20c4f6bc3b65085a1cc68ddab134d10bd3e51ff3dfb0e4915364d74882de06be size: 4523
+
+real	0m10.171s
+user	0m0.064s
+sys	0m0.060s
+
+Script done on Wed 12 Jul 2017 12:12:23 PM EDT
