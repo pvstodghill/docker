@@ -1,0 +1,175 @@
+Script started on Tue 11 Jul 2017 08:17:02 AM EDT
++ docker build --pull -t pvstodghill/art:mountrainier20160605__2017-07-11 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon   11.6MB
+Step 1/12 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:5888bdc472efc8176202a8f0dcd3e91ab4c8cd4171ae7e3efd9011e892358886
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 23543e58656d
+Step 2/12 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> baf4f88ebbb3
+Step 3/12 : ENV PACKAGE art
+ ---> Using cache
+ ---> 8a99cb53020c
+Step 4/12 : ENV VERSION mountrainier20160605
+ ---> Using cache
+ ---> ad7a528504b1
+Step 5/12 : ADD artbin${VERSION}linux64tgz.tgz /opt
+ ---> Using cache
+ ---> 51e4d0662e31
+Step 6/12 : RUN mv /opt/art_bin_* /opt/${PACKAGE}
+ ---> Using cache
+ ---> 00b89bec2976
+Step 7/12 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 213f794d1804
+Step 8/12 : USER guest
+ ---> Using cache
+ ---> 197129c1782e
+Step 9/12 : ENV HOME /mnt
+ ---> Using cache
+ ---> 62d73df547ad
+Step 10/12 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Using cache
+ ---> b35b03731eb1
+Step 11/12 : WORKDIR /mnt
+ ---> Using cache
+ ---> c6a12f4528fb
+Step 12/12 : CMD find /opt/${PACKAGE} -type f | sort
+ ---> Using cache
+ ---> 9692da06b3ae
+Successfully built 9692da06b3ae
+Successfully tagged pvstodghill/art:mountrainier20160605__2017-07-11
++ docker run --rm pvstodghill/art:mountrainier20160605__2017-07-11 art_illumina --help
+
+    ====================ART====================
+             ART_Illumina (2008-2016)          
+          Q Version 2.5.8 (June 7, 2016)       
+     Contact: Weichun Huang <whduke@gmail.com> 
+    -------------------------------------------
+
+===== USAGE =====
+
+art_illumina [options] -ss <sequencing_system> -sam -i <seq_ref_file> -l <read_length> -f <fold_coverage> -o <outfile_prefix>
+art_illumina [options] -ss <sequencing_system> -sam -i <seq_ref_file> -l <read_length> -c <num_reads_per_sequence> -o <outfile_prefix>
+art_illumina [options] -ss <sequencing_system> -sam -i <seq_ref_file> -l <read_length> -f <fold_coverage> -m <mean_fragsize> -s <std_fragsize> -o <outfile_prefix>
+art_illumina [options] -ss <sequencing_system> -sam -i <seq_ref_file> -l <read_length> -c <num_reads_per_sequence> -m <mean_fragsize> -s <std_fragsize> -o <outfile_prefix>
+
+===== PARAMETERS =====
+
+  -1   --qprof1   the first-read quality profile
+  -2   --qprof2   the second-read quality profile
+  -amp --amplicon amplicon sequencing simulation
+  -c   --rcount   number of reads/read pairs to be generated per sequence/amplicon (not be used together with -f/--fcov)
+  -d   --id       the prefix identification tag for read ID
+  -ef  --errfree  indicate to generate the zero sequencing errors SAM file as well the regular one
+                  NOTE: the reads in the zero-error SAM file have the same alignment positions
+                  as those in the regular SAM file, but have no sequencing errors
+  -f   --fcov     the fold of read coverage to be simulated or number of reads/read pairs generated for each amplicon
+  -h   --help     print out usage information
+  -i   --in       the filename of input DNA/RNA reference
+  -ir  --insRate  the first-read insertion rate (default: 0.00009)
+  -ir2 --insRate2 the second-read insertion rate (default: 0.00015)
+  -dr  --delRate  the first-read deletion rate (default:  0.00011)
+  -dr2 --delRate2 the second-read deletion rate (default: 0.00023)
+  -k   --maxIndel the maximum total number of insertion and deletion per read (default: up to read length)
+  -l   --len      the length of reads to be simulated
+  -m   --mflen    the mean size of DNA/RNA fragments for paired-end simulations
+  -mp  --matepair indicate a mate-pair read simulation
+  -M  --cigarM    indicate to use CIGAR 'M' instead of '=/X' for alignment match/mismatch
+  -nf  --maskN    the cutoff frequency of 'N' in a window size of the read length for masking genomic regions
+                  NOTE: default: '-nf 1' to mask all regions with 'N'. Use '-nf 0' to turn off masking
+  -na  --noALN    do not output ALN alignment file
+  -o   --out      the prefix of output filename
+  -p   --paired   indicate a paired-end read simulation or to generate reads from both ends of amplicons
+                  NOTE: art will automatically switch to a mate-pair simulation if the given mean fragment size >= 2000
+  -q   --quiet    turn off end of run summary
+  -qL  --minQ     the minimum base quality score
+  -qU  --maxQ     the maxiumum base quality score
+  -qs  --qShift   the amount to shift every first-read quality score by 
+  -qs2 --qShift2  the amount to shift every second-read quality score by
+                  NOTE: For -qs/-qs2 option, a positive number will shift up quality scores (the max is 93) 
+                  that reduce substitution sequencing errors and a negative number will shift down 
+                  quality scores that increase sequencing errors. If shifting scores by x, the error
+                  rate will be 1/(10^(x/10)) of the default profile.
+  -rs  --rndSeed  the seed for random number generator (default: system time in second)
+                  NOTE: using a fixed seed to generate two identical datasets from different runs
+  -s   --sdev     the standard deviation of DNA/RNA fragment size for paired-end simulations.
+  -sam --samout   indicate to generate SAM alignment file
+  -sp  --sepProf  indicate to use separate quality profiles for different bases (ATGC)
+  -ss  --seqSys   The name of Illumina sequencing system of the built-in profile used for simulation
+       NOTE: sequencing system ID names are:
+            GA1 - GenomeAnalyzer I (36bp,44bp), GA2 - GenomeAnalyzer II (50bp, 75bp)
+           HS10 - HiSeq 1000 (100bp),          HS20 - HiSeq 2000 (100bp),      HS25 - HiSeq 2500 (125bp, 150bp)
+           HSXn - HiSeqX PCR free (150bp),     HSXt - HiSeqX TruSeq (150bp),   MinS - MiniSeq TruSeq (50bp)
+           MSv1 - MiSeq v1 (250bp),            MSv3 - MiSeq v3 (250bp),        NS50 - NextSeq500 v2 (75bp)
+===== NOTES =====
+
+* ART by default selects a built-in quality score profile according to the read length specified for the run.
+
+* For single-end simulation, ART requires input sequence file, output file prefix, read length, and read count/fold coverage.
+
+* For paired-end simulation (except for amplicon sequencing), ART also requires the parameter values of
+  the mean and standard deviation of DNA/RNA fragment lengths
+
+===== EXAMPLES =====
+
+ 1) single-end read simulation
+ 	art_illumina -ss HS25 -sam -i reference.fa -l 150 -f 10 -o single_dat
+
+ 2) paired-end read simulation
+       art_illumina -ss HS25 -sam -i reference.fa -p -l 150 -f 20 -m 200 -s 10 -o paired_dat
+
+ 3) mate-pair read simulation
+       art_illumina -ss HS10 -sam -i reference.fa -mp -l 100 -f 20 -m 2500 -s 50 -o matepair_dat
+
+ 4) amplicon sequencing simulation with 5' end single-end reads 
+ 	art_illumina -ss GA2 -amp -sam -na -i amp_reference.fa -l 50 -f 10 -o amplicon_5end_dat
+
+ 5) amplicon sequencing simulation with paired-end reads
+       art_illumina -ss GA2 -amp -p -sam -na -i amp_reference.fa -l 50 -f 10 -o amplicon_pair_dat
+
+ 6) amplicon sequencing simulation with matepair reads
+       art_illumina -ss MSv1 -amp -mp -sam -na -i amp_reference.fa -l 150 -f 10 -o amplicon_mate_dat
+
+ 7) generate an extra SAM file with zero-sequencing errors for a paired-end read simulation
+       art_illumina -ss HSXn -ef -i reference.fa -p -l 150 -f 20 -m 200 -s 10 -o paired_twosam_dat
+
+ 8) reduce the substitution error rate to one 10th of the default profile
+       art_illumina -i reference.fa -qs 10 -qs2 10 -l 50 -f 10 -p -m 500 -s 10 -sam -o reduce_error
+
+ 9) turn off the masking of genomic regions with unknown nucleotides 'N'
+       art_illumina -ss HS20 -nf 0  -sam -i reference.fa -p -l 100 -f 20 -m 200 -s 10 -o paired_nomask
+
+ 10) masking genomic regions with >=5 'N's within the read length 50
+       art_illumina -ss HSXt -nf 5 -sam -i reference.fa -p -l 150 -f 20 -m 200 -s 10 -o paired_maskN5
+
++ docker push pvstodghill/art:mountrainier20160605__2017-07-11
+The push refers to a repository [docker.io/pvstodghill/art]
+
+[1A[1K[K10587475ccf2: Preparing [1B
+[1A[1K[K846d74cb041f: Preparing [1B
+[1A[1K[K8514a4061abb: Preparing [1B
+[1A[1K[K701b49e9ca93: Preparing [1B
+[1A[1K[Kcadd50c01a43: Preparing [1B
+[1A[1K[Kc19d826e2633: Preparing [1B
+[1A[1K[K4b8ba4ae82cb: Preparing [1B
+[1A[1K[K3a42082aba13: Preparing [1B
+[1A[1K[Ke136b2922aac: Preparing [1B
+[1A[1K[K9400a8a6aeee: Preparing [1B
+[1A[1K[K40c50dfbff0e: Preparing [1B
+[1A[1K[K7f672d7db83a: Preparing [1B
+[1A[1K[Kbf846420b056: Preparing [1B
+[1A[1K[Ka7c55cd220b9: Preparing [1B
+[1A[1K[K0566c118947e: Preparing [1B
+[1A[1K[K6f9cf951edf5: Preparing [1B
+[1A[1K[K182d2a55830d: Preparing [1B
+[1A[1K[K5a4c2c9a24fc: Preparing [1B
+[1A[1K[Kcb11ba605400: Preparing [1B[13A[1K[K4b8ba4ae82cb: Waiting [13B[12A[1K[K3a42082aba13: Waiting [12B[6A[1K[Ka7c55cd220b9: Waiting [6B[11A[1K[Ke136b2922aac: Waiting [11B[3A[1K[K182d2a55830d: Waiting [3B[10A[1K[K9400a8a6aeee: Waiting [10B[2A[1K[K5a4c2c9a24fc: Waiting [2B[7A[1K[Kbf846420b056: Waiting [7B[8A[1K[K7f672d7db83a: Waiting [8B[1A[1K[Kcb11ba605400: Waiting [1B[5A[1K[K0566c118947e: Waiting [5B[4A[1K[K6f9cf951edf5: Waiting [4B[9A[1K[K40c50dfbff0e: Waiting [9B[19A[1K[K10587475ccf2: Pushing  4.096kB/329.4kB[19B[19A[1K[K10587475ccf2: Pushing  342.5kB[19B[15A[1K[Kcadd50c01a43: Layer already exists [15B[16A[1K[K701b49e9ca93: Layer already exists [16B[18A[1K[K846d74cb041f: Pushing  413.2kB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  413.2kB/38.65MB[17B[13A[1K[K4b8ba4ae82cb: Layer already exists [13B[18A[1K[K846d74cb041f: Pushing  1.199MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  1.199MB/38.65MB[17B[14A[1K[Kc19d826e2633: Layer already exists [14B[18A[1K[K846d74cb041f: Pushing  2.401MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing   2.81MB/38.65MB[17B[12A[1K[K3a42082aba13: Layer already exists [12B[18A[1K[K846d74cb041f: Pushing   4.41MB/38.65MB[18B[11A[1K[Ke136b2922aac: Layer already exists [11B[17A[1K[K8514a4061abb: Pushing   4.41MB/38.65MB[17B[10A[1K[K9400a8a6aeee: Layer already exists [10B[18A[1K[K846d74cb041f: Pushing  6.387MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  6.387MB/38.65MB[17B[9A[1K[K40c50dfbff0e: Layer already exists [9B[18A[1K[K846d74cb041f: Pushing  7.965MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  7.965MB/38.65MB[17B[8A[1K[K7f672d7db83a: Layer already exists [8B[7A[1K[Kbf846420b056: Layer already exists [7B[18A[1K[K846d74cb041f: Pushing  9.144MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  8.751MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  11.11MB/38.65MB[18B[6A[1K[Ka7c55cd220b9: Layer already exists [6B[17A[1K[K8514a4061abb: Pushing  10.72MB/38.65MB[17B[5A[1K[K0566c118947e: Layer already exists [5B[18A[1K[K846d74cb041f: Pushing  13.86MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  13.47MB/38.65MB[17B[4A[1K[K6f9cf951edf5: Layer already exists [4B[3A[1K[K182d2a55830d: Layer already exists [3B[17A[1K[K8514a4061abb: Pushing  15.05MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  15.84MB/38.65MB[18B[2A[1K[K5a4c2c9a24fc: Layer already exists [2B[17A[1K[K8514a4061abb: Pushing  16.62MB/38.65MB[17B[1A[1K[Kcb11ba605400: Layer already exists [1B[18A[1K[K846d74cb041f: Pushing  17.41MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  18.19MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  19.37MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  20.16MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  21.36MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  21.75MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  22.93MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  23.72MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing   24.9MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  25.68MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  26.86MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  27.65MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  28.83MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  29.61MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  31.19MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  31.97MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  33.15MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  33.94MB/38.65MB[17B[18A[1K[K846d74cb041f: Pushing  35.12MB/38.65MB[18B[17A[1K[K8514a4061abb: Pushing  35.91MB/38.65MB[17B[19A[1K[K10587475ccf2: Pushed [19B[18A[1K[K846d74cb041f: Pushing  38.71MB[18B[17A[1K[K8514a4061abb: Pushing  38.71MB[17B[17A[1K[K8514a4061abb: Pushed [17B[18A[1K[K846d74cb041f: Pushed [18Bmountrainier20160605__2017-07-11: digest: sha256:a6b982b69c50d5e4194f868096bc825b2745cee67e0ab1cb352dbd7f0bd800bc size: 4319
+
+real	0m9.198s
+user	0m0.100s
+sys	0m0.056s
+
+Script done on Tue 11 Jul 2017 08:17:11 AM EDT
