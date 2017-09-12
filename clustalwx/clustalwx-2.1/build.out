@@ -1,0 +1,219 @@
+Script started on Fri 08 Sep 2017 12:58:27 PM EDT
++ docker build --pull -t pvstodghill/clustalwx:2.1__2017-09-08 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  753.7kB
+Step 1/22 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:0c281312ebaad233973620636b086b6b7db54679b52eee091360310ea588d488
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 71f4220f8efa
+Step 2/22 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 8c5dfc463c60
+Step 3/22 : ENV PACKAGE clustalwx
+ ---> Using cache
+ ---> 7396f8c869a7
+Step 4/22 : ENV VERSION 2.1
+ ---> Using cache
+ ---> dc5ad423d888
+Step 5/22 : ADD clustalw-${VERSION}.tar.gz /tmp/
+ ---> Using cache
+ ---> 6b29f68f21f2
+Step 6/22 : WORKDIR /tmp/clustalw-${VERSION}
+ ---> Using cache
+ ---> 17779efcc0c1
+Step 7/22 : RUN ./configure --prefix=/opt/clustalw &&     make &&     mkdir -p /opt/clustalw &&     cp --archive src/clustalw2 /opt/clustalw &&     cp --archive clustalw_help /opt/clustalw
+ ---> Using cache
+ ---> 7fb48ee69fbb
+Step 8/22 : WORKDIR /root
+ ---> Using cache
+ ---> 17e7493e54cf
+Step 9/22 : RUN rm -rf /tmp/clustalw-${VERSION}
+ ---> Using cache
+ ---> a13155c0953e
+Step 10/22 : RUN apt-get install --yes qt4-default
+ ---> Using cache
+ ---> d2e1c59ac80a
+Step 11/22 : ADD clustalx-${VERSION}.tar.gz clustalx.bash /tmp/
+ ---> Using cache
+ ---> 479f67446213
+Step 12/22 : WORKDIR /tmp/clustalx-${VERSION}
+ ---> Using cache
+ ---> e9ada6eaa2f4
+Step 13/22 : RUN qmake &&     make &&     mkdir -p /opt/clustalx &&     cp --archive colprot.xml coldna.xml colprint.xml clustalx.hlp clustalx /opt/clustalx &&     mv /opt/clustalx/clustalx /opt/clustalx/clustalx.bin &&     mv /tmp/clustalx.bash /opt/clustalx/clustalx
+ ---> Using cache
+ ---> a93fa57c77e1
+Step 14/22 : WORKDIR /root
+ ---> Using cache
+ ---> 32d170e8c52d
+Step 15/22 : RUN rm -rf /tmp/clustalx-${VERSION}
+ ---> Using cache
+ ---> db8dbb61f956
+Step 16/22 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> f67af6c19334
+Step 17/22 : USER guest
+ ---> Using cache
+ ---> 45ef56937ef9
+Step 18/22 : ENV HOME /mnt
+ ---> Using cache
+ ---> 5ebf66bedbb7
+Step 19/22 : ENV PATH /opt/clustalw:/opt/clustalx:${PATH}
+ ---> Using cache
+ ---> 64053b20b7bc
+Step 20/22 : ENV QT_X11_NO_MITSHM 1
+ ---> Using cache
+ ---> 150527ac1c84
+Step 21/22 : WORKDIR /mnt
+ ---> Using cache
+ ---> 180cc26a1a4c
+Step 22/22 : CMD find /opt/* -type f | sort
+ ---> Using cache
+ ---> 1372eec7de80
+Successfully built 1372eec7de80
+Successfully tagged pvstodghill/clustalwx:2.1__2017-09-08
++ docker run --rm pvstodghill/clustalwx:2.1__2017-09-08 clustalw2 -help
+
+
+
+ CLUSTAL 2.1 Multiple Sequence Alignments
+
+
+                DATA (sequences)
+
+-INFILE=file.ext                             :input sequences.
+-PROFILE1=file.ext  and  -PROFILE2=file.ext  :profiles (old alignment).
+
+
+                VERBS (do things)
+
+-OPTIONS            :list the command line parameters
+-HELP  or -CHECK    :outline the command line params.
+-FULLHELP           :output full help content.
+-ALIGN              :do full multiple alignment.
+-TREE               :calculate NJ tree.
+-PIM                :output percent identity matrix (while calculating the tree)
+-BOOTSTRAP(=n)      :bootstrap a NJ tree (n= number of bootstraps; def. = 1000).
+-CONVERT            :output the input sequences in a different file format.
+
+
+                PARAMETERS (set things)
+
+***General settings:****
+-INTERACTIVE :read command line, then enter normal interactive menus
+-QUICKTREE   :use FAST algorithm for the alignment guide tree
+-TYPE=       :PROTEIN or DNA sequences
+-NEGATIVE    :protein alignment with negative values in matrix
+-OUTFILE=    :sequence alignment file name
+-OUTPUT=     :CLUSTAL(default), GCG, GDE, PHYLIP, PIR, NEXUS and FASTA
+-OUTORDER=   :INPUT or ALIGNED
+-CASE        :LOWER or UPPER (for GDE output only)
+-SEQNOS=     :OFF or ON (for Clustal output only)
+-SEQNO_RANGE=:OFF or ON (NEW: for all output formats)
+-RANGE=m,n   :sequence range to write starting m to m+n
+-MAXSEQLEN=n :maximum allowed input sequence length
+-QUIET       :Reduce console output to minimum
+-STATS=      :Log some alignents statistics to file
+
+***Fast Pairwise Alignments:***
+-KTUPLE=n    :word size
+-TOPDIAGS=n  :number of best diags.
+-WINDOW=n    :window around best diags.
+-PAIRGAP=n   :gap penalty
+-SCORE       :PERCENT or ABSOLUTE
+
+
+***Slow Pairwise Alignments:***
+-PWMATRIX=    :Protein weight matrix=BLOSUM, PAM, GONNET, ID or filename
+-PWDNAMATRIX= :DNA weight matrix=IUB, CLUSTALW or filename
+-PWGAPOPEN=f  :gap opening penalty        
+-PWGAPEXT=f   :gap opening penalty
+
+
+***Multiple Alignments:***
+-NEWTREE=      :file for new guide tree
+-USETREE=      :file for old guide tree
+-MATRIX=       :Protein weight matrix=BLOSUM, PAM, GONNET, ID or filename
+-DNAMATRIX=    :DNA weight matrix=IUB, CLUSTALW or filename
+-GAPOPEN=f     :gap opening penalty        
+-GAPEXT=f      :gap extension penalty
+-ENDGAPS       :no end gap separation pen. 
+-GAPDIST=n     :gap separation pen. range
+-NOPGAP        :residue-specific gaps off  
+-NOHGAP        :hydrophilic gaps off
+-HGAPRESIDUES= :list hydrophilic res.    
+-MAXDIV=n      :% ident. for delay
+-TYPE=         :PROTEIN or DNA
+-TRANSWEIGHT=f :transitions weighting
+-ITERATION=    :NONE or TREE or ALIGNMENT
+-NUMITER=n     :maximum number of iterations to perform
+-NOWEIGHTS     :disable sequence weighting
+
+
+***Profile Alignments:***
+-PROFILE      :Merge two alignments by profile alignment
+-NEWTREE1=    :file for new guide tree for profile1
+-NEWTREE2=    :file for new guide tree for profile2
+-USETREE1=    :file for old guide tree for profile1
+-USETREE2=    :file for old guide tree for profile2
+
+
+***Sequence to Profile Alignments:***
+-SEQUENCES   :Sequentially add profile2 sequences to profile1 alignment
+-NEWTREE=    :file for new guide tree
+-USETREE=    :file for old guide tree
+
+
+***Structure Alignments:***
+-NOSECSTR1     :do not use secondary structure-gap penalty mask for profile 1 
+-NOSECSTR2     :do not use secondary structure-gap penalty mask for profile 2
+-SECSTROUT=STRUCTURE or MASK or BOTH or NONE   :output in alignment file
+-HELIXGAP=n    :gap penalty for helix core residues 
+-STRANDGAP=n   :gap penalty for strand core residues
+-LOOPGAP=n     :gap penalty for loop regions
+-TERMINALGAP=n :gap penalty for structure termini
+-HELIXENDIN=n  :number of residues inside helix to be treated as terminal
+-HELIXENDOUT=n :number of residues outside helix to be treated as terminal
+-STRANDENDIN=n :number of residues inside strand to be treated as terminal
+-STRANDENDOUT=n:number of residues outside strand to be treated as terminal 
+
+
+***Trees:***
+-OUTPUTTREE=nj OR phylip OR dist OR nexus
+-SEED=n        :seed number for bootstraps.
+-KIMURA        :use Kimura's correction.   
+-TOSSGAPS      :ignore positions with gaps.
+-BOOTLABELS=node OR branch :position of bootstrap values in tree display
+-CLUSTERING=   :NJ or UPGMA
++ docker push pvstodghill/clustalwx:2.1__2017-09-08
+The push refers to a repository [docker.io/pvstodghill/clustalwx]
+
+[1A[1K[K617bf50bb705: Preparing [1B
+[1A[1K[K972f854cfb2e: Preparing [1B
+[1A[1K[K4c297d817a01: Preparing [1B
+[1A[1K[K97a65dadc220: Preparing [1B
+[1A[1K[K03e687196760: Preparing [1B
+[1A[1K[K603c7a8f465a: Preparing [1B
+[1A[1K[Kd6eaf7f2da4e: Preparing [1B
+[1A[1K[K461d8998be0e: Preparing [1B
+[1A[1K[Kcb37624ec8ab: Preparing [1B
+[1A[1K[Kbfafdebe2622: Preparing [1B
+[1A[1K[K606ee04fa13b: Preparing [1B
+[1A[1K[K49e3dc95edb9: Preparing [1B
+[1A[1K[K4b39ac33769d: Preparing [1B
+[1A[1K[K73d44754967c: Preparing [1B
+[1A[1K[Ka4f997f59154: Preparing [1B[6A[1K[Kbfafdebe2622: Waiting [6B[3A[1K[K4b39ac33769d: Waiting [3B
+[1A[1K[Kfdfd2421ff5b: Preparing [1B
+[1A[1K[K1f47fd03556d: Preparing [1B
+[1A[1K[K15b6de687e2d: Preparing [1B
+[1A[1K[Kcfa5805e574d: Preparing [1B[9A[1K[K606ee04fa13b: Waiting [9B[8A[1K[K49e3dc95edb9: Waiting [8B
+[1A[1K[Ka09947e71dc0: Preparing [1B[13A[1K[K461d8998be0e: Waiting [13B
+[1A[1K[K9c42c2077cde: Preparing [1B
+[1A[1K[K625c7a2a783b: Preparing [1B
+[1A[1K[K25e0901a71b8: Preparing [1B[17A[1K[Kd6eaf7f2da4e: Waiting [17B[5A[1K[Kcfa5805e574d: Waiting [5B[9A[1K[Ka4f997f59154: Waiting [9B[2A[1K[K625c7a2a783b: Waiting [2B[3A[1K[K9c42c2077cde: Waiting [3B
+[1A[1K[K8aa4fcad5eeb: Preparing [1B[2A[1K[K25e0901a71b8: Waiting [2B[22A[1K[K4c297d817a01: Pushing [>                                                  ]   68.1kB/6.467MB[22B[24A[1K[K617bf50bb705: Pushing [>                                                  ]  4.096kB/328.7kB[24B[23A[1K[K972f854cfb2e: Pushing  2.048kB[23B[24A[1K[K617bf50bb705: Pushing [==================================================>]    341kB[24B[21A[1K[K97a65dadc220: Pushing [>                                                  ]  18.91kB/1.702MB[21B[20A[1K[K03e687196760: Pushing [>                                                  ]  551.4kB/114.1MB[20B[22A[1K[K4c297d817a01: Pushing [=====>                                             ]  657.9kB/6.467MB[22B[21A[1K[K97a65dadc220: Pushing [===================================>               ]  1.206MB/1.702MB[21B[20A[1K[K03e687196760: Pushing [=>                                                 ]  2.681MB/114.1MB[20B[21A[1K[K97a65dadc220: Pushing [==================================================>]  1.873MB[21B[22A[1K[K4c297d817a01: Pushing [=================>                                 ]  2.237MB/6.467MB[22B[20A[1K[K03e687196760: Pushing [==>                                                ]  5.905MB/114.1MB[20B[22A[1K[K4c297d817a01: Pushing [===================================>               ]  4.653MB/6.467MB[22B[20A[1K[K03e687196760: Pushing [====>                                              ]  9.604MB/114.1MB[20B[22A[1K[K4c297d817a01: Pushing [==================================================>]  6.573MB[22B[20A[1K[K03e687196760: Pushing [=====>                                             ]  12.77MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [======>                                            ]   15.4MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [=======>                                           ]  18.07MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [========>                                          ]  19.73MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [=========>                                         ]  20.85MB/114.1MB[20B[24A[1K[K617bf50bb705: Pushed [24B[20A[1K[K03e687196760: Pushing [=========>                                         ]   22.5MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [==========>                                        ]  24.16MB/114.1MB[20B[19A[1K[K603c7a8f465a: Pushing  2.048kB[19B[20A[1K[K03e687196760: Pushing [===========>                                       ]  25.28MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [===========>                                       ]   26.9MB/114.1MB[20B[21A[1K[K97a65dadc220: Pushed [21B[20A[1K[K03e687196760: Pushing [============>                                      ]  29.11MB/114.1MB[20B[22A[1K[K4c297d817a01: Pushed [22B[23A[1K[K972f854cfb2e: Pushed [23B[20A[1K[K03e687196760: Pushing [=============>                                     ]  30.78MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [==============>                                    ]  32.43MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [>                                                  ]  525.8kB/53.73MB[18B[17A[1K[K461d8998be0e: Pushing [=>                                                 ]   34.3kB/1.659MB[17B[20A[1K[K03e687196760: Pushing [==============>                                    ]   34.1MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [==>                                                ]  2.197MB/53.73MB[18B[17A[1K[K461d8998be0e: Pushing [======>                                            ]  220.2kB/1.659MB[17B[20A[1K[K03e687196760: Pushing [===============>                                   ]  36.33MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [===>                                               ]  3.868MB/53.73MB[18B[17A[1K[K461d8998be0e: Pushing [==================================================>]  1.775MB[17B[20A[1K[K03e687196760: Pushing [================>                                  ]     38MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [=====>                                             ]  6.096MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [=================>                                 ]  39.65MB/114.1MB[20B[19A[1K[K603c7a8f465a: Pushed [19B[16A[1K[Kcb37624ec8ab: Mounted from pvstodghill/pyani [16B[18A[1K[Kd6eaf7f2da4e: Pushing [========>                                          ]  8.882MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [==================>                                ]  41.88MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [===========>                                       ]  12.73MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [===================>                               ]   44.1MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [=============>                                     ]  14.35MB/53.73MB[18B[18A[1K[Kd6eaf7f2da4e: Pushing [===============>                                   ]  16.57MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [====================>                              ]  45.78MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [=================>                                 ]  19.31MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [====================>                              ]  47.45MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [====================>                              ]  22.04MB/53.73MB[18B[15A[1K[Kbfafdebe2622: Mounted from pvstodghill/pyani [15B[20A[1K[K03e687196760: Pushing [=====================>                             ]  49.68MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [======================>                            ]  24.23MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [======================>                            ]  51.85MB/114.1MB[20B[14A[1K[K606ee04fa13b: Mounted from pvstodghill/pyani [14B[18A[1K[Kd6eaf7f2da4e: Pushing [=========================>                         ]  26.91MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [=======================>                           ]  54.04MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [===========================>                       ]   29.6MB/53.73MB[18B[17A[1K[K461d8998be0e: Pushed [17B[20A[1K[K03e687196760: Pushing [========================>                          ]  56.27MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [==============================>                    ]  32.28MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [=========================>                         ]  58.42MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [================================>                  ]     35MB/53.73MB[18B[13A[1K[K49e3dc95edb9: Mounted from pvstodghill/pyani [13B[20A[1K[K03e687196760: Pushing [==========================>                        ]   61.2MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [===================================>               ]  37.68MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [===========================>                       ]  63.43MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [======================================>            ]  40.93MB/53.73MB[18B[12A[1K[K4b39ac33769d: Mounted from pvstodghill/pyani [12B[20A[1K[K03e687196760: Pushing [=============================>                     ]  66.21MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [========================================>          ]  43.69MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [=============================>                     ]  68.39MB/114.1MB[20B[11A[1K[K73d44754967c: Mounted from pvstodghill/pyani [11B[18A[1K[Kd6eaf7f2da4e: Pushing [==========================================>        ]  45.92MB/53.73MB[18B[10A[1K[Ka4f997f59154: Mounted from pvstodghill/pyani [10B[20A[1K[K03e687196760: Pushing [===============================>                   ]  71.17MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [============================================>      ]  48.15MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [================================>                  ]   73.9MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [==============================================>    ]  50.38MB/53.73MB[18B[18A[1K[Kd6eaf7f2da4e: Pushing [================================================>  ]   52.6MB/53.73MB[18B[20A[1K[K03e687196760: Pushing [=================================>                 ]  75.57MB/114.1MB[20B[18A[1K[Kd6eaf7f2da4e: Pushing [==================================================>]  53.82MB[18B[20A[1K[K03e687196760: Pushing [=================================>                 ]  77.19MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [==================================>                ]  78.28MB/114.1MB[20B[9A[1K[Kfdfd2421ff5b: Mounted from pvstodghill/pyani [9B[20A[1K[K03e687196760: Pushing [==================================>                ]  79.39MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [===================================>               ]  81.05MB/114.1MB[20B[8A[1K[K1f47fd03556d: Mounted from pvstodghill/pyani [8B[20A[1K[K03e687196760: Pushing [====================================>              ]  82.72MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [====================================>              ]  84.36MB/114.1MB[20B[7A[1K[K15b6de687e2d: Mounted from pvstodghill/pyani [7B[20A[1K[K03e687196760: Pushing [=====================================>             ]  86.03MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [======================================>            ]  87.68MB/114.1MB[20B[6A[1K[Kcfa5805e574d: Mounted from pvstodghill/pyani [6B[20A[1K[K03e687196760: Pushing [=======================================>           ]  90.92MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [==========================================>        ]  96.35MB/114.1MB[20B[5A[1K[Ka09947e71dc0: Mounted from pvstodghill/mauve [5B[20A[1K[K03e687196760: Pushing [===========================================>       ]  99.63MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [============================================>      ]  102.3MB/114.1MB[20B[4A[1K[K9c42c2077cde: Mounted from pvstodghill/mauve [4B[20A[1K[K03e687196760: Pushing [=============================================>     ]  104.5MB/114.1MB[20B[3A[1K[K625c7a2a783b: Mounted from pvstodghill/mauve [3B[20A[1K[K03e687196760: Pushing [==============================================>    ]  107.1MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [===============================================>   ]  109.3MB/114.1MB[20B[2A[1K[K25e0901a71b8: Mounted from pvstodghill/mauve [2B[20A[1K[K03e687196760: Pushing [================================================>  ]  111.5MB/114.1MB[20B[20A[1K[K03e687196760: Pushing [=================================================> ]  113.6MB/114.1MB[20B[1A[1K[K8aa4fcad5eeb: Mounted from pvstodghill/mauve [1B[20A[1K[K03e687196760: Pushing [==================================================>]  117.4MB[20B[20A[1K[K03e687196760: Pushing [==================================================>]    119MB[20B[18A[1K[Kd6eaf7f2da4e: Pushed [18B[20A[1K[K03e687196760: Pushed [20B2.1__2017-09-08: digest: sha256:e6a8c440a1adced131cb809679efaec971c94a3e8159289f1d26014842d3d65a size: 5363
+
+real	0m13.827s
+user	0m0.084s
+sys	0m0.036s
+
+Script done on Fri 08 Sep 2017 12:58:41 PM EDT
