@@ -1,0 +1,142 @@
+Script started on Fri 08 Sep 2017 01:06:19 PM EDT
++ docker build --pull -t pvstodghill/clustalo:1.2.4__2017-09-08 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  4.926MB
+Step 1/13 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:0c281312ebaad233973620636b086b6b7db54679b52eee091360310ea588d488
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 71f4220f8efa
+Step 2/13 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 8c5dfc463c60
+Step 3/13 : ENV PACKAGE clustalo
+ ---> Using cache
+ ---> 7e37bc01bd66
+Step 4/13 : ENV VERSION 1.2.4
+ ---> Using cache
+ ---> b9a9b20f8123
+Step 5/13 : ADD ${PACKAGE}-${VERSION}-Ubuntu-x86_64 /opt/
+ ---> Using cache
+ ---> 51e069584b83
+Step 6/13 : WORKDIR /opt
+ ---> Using cache
+ ---> d5222d961e57
+Step 7/13 : RUN mkdir ${PACKAGE} &&     mv ${PACKAGE}-${VERSION}-Ubuntu-x86_64 ${PACKAGE}/${PACKAGE} &&     chmod +x ${PACKAGE}/${PACKAGE}
+ ---> Using cache
+ ---> fbc2dfabd91e
+Step 8/13 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 98bf195115b0
+Step 9/13 : USER guest
+ ---> Using cache
+ ---> 490056b6415c
+Step 10/13 : ENV HOME /mnt
+ ---> Using cache
+ ---> c47ae8366087
+Step 11/13 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Using cache
+ ---> 9436d0d0783c
+Step 12/13 : WORKDIR /mnt
+ ---> Using cache
+ ---> 7670f597dccf
+Step 13/13 : CMD find /opt/* -type f | sort
+ ---> Using cache
+ ---> dc4b2cf76ad9
+Successfully built dc4b2cf76ad9
+Successfully tagged pvstodghill/clustalo:1.2.4__2017-09-08
++ docker run --rm pvstodghill/clustalo:1.2.4__2017-09-08 clustalo -h
+Clustal Omega - 1.2.4 (AndreaGiacomo)
+
+If you like Clustal-Omega please cite:
+ Sievers F, Wilm A, Dineen D, Gibson TJ, Karplus K, Li W, Lopez R, McWilliam H, Remmert M, Söding J, Thompson JD, Higgins DG.
+ Fast, scalable generation of high-quality protein multiple sequence alignments using Clustal Omega.
+ Mol Syst Biol. 2011 Oct 11;7:539. doi: 10.1038/msb.2011.75. PMID: 21988835.
+If you don't like Clustal-Omega, please let us know why (and cite us anyway).
+
+Check http://www.clustal.org for more information and updates.
+
+Usage: clustalo [-hv] [-i {<file>,-}] [--hmm-in=<file>]... [--hmm-batch=<file>] [--dealign] [--profile1=<file>] [--profile2=<file>] [--is-profile] [-t {Protein, RNA, DNA}] [--infmt={a2m=fa[sta],clu[stal],msf,phy[lip],selex,st[ockholm],vie[nna]}] [--distmat-in=<file>] [--distmat-out=<file>] [--guidetree-in=<file>] [--guidetree-out=<file>] [--pileup] [--full] [--full-iter] [--cluster-size=<n>] [--clustering-out=<file>] [--trans=<n>] [--posterior-out=<file>] [--use-kimura] [--percent-id] [-o {file,-}] [--outfmt={a2m=fa[sta],clu[stal],msf,phy[lip],selex,st[ockholm],vie[nna]}] [--residuenumber] [--wrap=<n>] [--output-order={input-order,tree-order}] [--iterations=<n>] [--max-guidetree-iterations=<n>] [--max-hmm-iterations=<n>] [--maxnumseq=<n>] [--maxseqlen=<l>] [--auto] [--threads=<n>] [--pseudo=<file>] [-l <file>] [--version] [--long-version] [--force] [--MAC-RAM=<n>]
+
+A typical invocation would be: clustalo -i my-in-seqs.fa -o my-out-seqs.fa -v
+See below for a list of all options.
+                            
+Sequence Input:
+  -i, --in, --infile={<file>,-} Multiple sequence input file (- for stdin)
+  --hmm-in=<file>           HMM input files
+  --hmm-batch=<file>        specify HMMs for individual sequences
+  --dealign                 Dealign input sequences
+  --profile1, --p1=<file>   Pre-aligned multiple sequence file (aligned columns will be kept fix)
+  --profile2, --p2=<file>   Pre-aligned multiple sequence file (aligned columns will be kept fix)
+  --is-profile              disable check if profile, force profile (default no)
+  -t, --seqtype={Protein, RNA, DNA} Force a sequence type (default: auto)
+  --infmt={a2m=fa[sta],clu[stal],msf,phy[lip],selex,st[ockholm],vie[nna]} Forced sequence input file format (default: auto)
+                            
+Clustering:
+  --distmat-in=<file>       Pairwise distance matrix input file (skips distance computation)
+  --distmat-out=<file>      Pairwise distance matrix output file
+  --guidetree-in=<file>     Guide tree input file (skips distance computation and guide-tree clustering step)
+  --guidetree-out=<file>    Guide tree output file
+  --pileup                  Sequentially align sequences
+  --full                    Use full distance matrix for guide-tree calculation (might be slow; mBed is default)
+  --full-iter               Use full distance matrix for guide-tree calculation during iteration (might be slowish; mBed is default)
+  --cluster-size=<n>        soft maximum of sequences in sub-clusters
+  --clustering-out=<file>   Clustering output file
+  --trans=<n>               use transitivity (default: 0)
+  --posterior-out=<file>    Posterior probability output file
+  --use-kimura              use Kimura distance correction for aligned sequences (default no)
+  --percent-id              convert distances into percent identities (default no)
+                            
+Alignment Output:
+  -o, --out, --outfile={file,-} Multiple sequence alignment output file (default: stdout)
+  --outfmt={a2m=fa[sta],clu[stal],msf,phy[lip],selex,st[ockholm],vie[nna]} MSA output file format (default: fasta)
+  --residuenumber, --resno  in Clustal format print residue numbers (default no)
+  --wrap=<n>                number of residues before line-wrap in output
+  --output-order={input-order,tree-order} MSA output order like in input/guide-tree
+                            
+Iteration:
+  --iterations, --iter=<n>  Number of (combined guide-tree/HMM) iterations
+  --max-guidetree-iterations=<n> Maximum number of guidetree iterations
+  --max-hmm-iterations=<n>  Maximum number of HMM iterations
+                            
+Limits (will exit early, if exceeded):
+  --maxnumseq=<n>           Maximum allowed number of sequences
+  --maxseqlen=<l>           Maximum allowed sequence length
+                            
+Miscellaneous:
+  --auto                    Set options automatically (might overwrite some of your options)
+  --threads=<n>             Number of processors to use
+  --pseudo=<file>           Input file for pseudo-count parameters
+  -l, --log=<file>          Log all non-essential output to this file
+  -h, --help                Print this help and exit
+  -v, --verbose             Verbose output (increases if given multiple times)
+  --version                 Print version information and exit
+  --long-version            Print long version information and exit
+  --force                   Force file overwriting
++ docker push pvstodghill/clustalo:1.2.4__2017-09-08
+The push refers to a repository [docker.io/pvstodghill/clustalo]
+
+[1A[1K[Kf7be9403cadd: Preparing [1B
+[1A[1K[Kcdd9fe119a69: Preparing [1B
+[1A[1K[Ke2a6b8997a65: Preparing [1B
+[1A[1K[Kcb37624ec8ab: Preparing [1B
+[1A[1K[Kbfafdebe2622: Preparing [1B
+[1A[1K[K606ee04fa13b: Preparing [1B
+[1A[1K[K49e3dc95edb9: Preparing [1B
+[1A[1K[K4b39ac33769d: Preparing [1B
+[1A[1K[K73d44754967c: Preparing [1B
+[1A[1K[Ka4f997f59154: Preparing [1B
+[1A[1K[Kfdfd2421ff5b: Preparing [1B
+[1A[1K[K1f47fd03556d: Preparing [1B
+[1A[1K[K15b6de687e2d: Preparing [1B
+[1A[1K[Kcfa5805e574d: Preparing [1B
+[1A[1K[Ka09947e71dc0: Preparing [1B
+[1A[1K[K9c42c2077cde: Preparing [1B[11A[1K[K606ee04fa13b: Waiting [11B
+[1A[1K[K625c7a2a783b: Preparing [1B[11A[1K[K49e3dc95edb9: Waiting [11B
+[1A[1K[K25e0901a71b8: Preparing [1B
+[1A[1K[K8aa4fcad5eeb: Preparing [1B[11A[1K[K73d44754967c: Waiting [11B[12A[1K[K4b39ac33769d: Waiting [12B[7A[1K[K15b6de687e2d: Waiting [7B[6A[1K[Kcfa5805e574d: Waiting [6B[10A[1K[Ka4f997f59154: Waiting [10B[5A[1K[Ka09947e71dc0: Waiting [5B[9A[1K[Kfdfd2421ff5b: Waiting [9B[4A[1K[K9c42c2077cde: Waiting [4B[3A[1K[K625c7a2a783b: Waiting [3B[8A[1K[K1f47fd03556d: Waiting [8B[2A[1K[K25e0901a71b8: Waiting [2B[1A[1K[K8aa4fcad5eeb: Waiting [1B[18A[1K[Kcdd9fe119a69: Pushing [>                                                  ]  67.58kB/4.922MB[18B[17A[1K[Ke2a6b8997a65: Pushing [>                                                  ]  66.56kB/4.922MB[17B[19A[1K[Kf7be9403cadd: Pushing [>                                                  ]  4.096kB/328.7kB[19B[19A[1K[Kf7be9403cadd: Pushing [==================================================>]    341kB[19B[18A[1K[Kcdd9fe119a69: Pushing [=>                                                 ]  133.1kB/4.922MB[18B[17A[1K[Ke2a6b8997a65: Pushing [=>                                                 ]  132.1kB/4.922MB[17B[18A[1K[Kcdd9fe119a69: Pushing [==============>                                    ]  1.444MB/4.922MB[18B[17A[1K[Ke2a6b8997a65: Pushing [===============>                                   ]  1.508MB/4.922MB[17B[16A[1K[Kcb37624ec8ab: Mounted from pvstodghill/clustalwx [16B[18A[1K[Kcdd9fe119a69: Pushing [==============================>                    ]  3.017MB/4.922MB[18B[17A[1K[Ke2a6b8997a65: Pushing [=============================>                     ]   2.95MB/4.922MB[17B[15A[1K[Kbfafdebe2622: Mounted from pvstodghill/clustalwx [15B[18A[1K[Kcdd9fe119a69: Pushing [================================================>  ]  4.786MB/4.922MB[18B[17A[1K[Ke2a6b8997a65: Pushing [=================================================> ]  4.916MB/4.922MB[17B[17A[1K[Ke2a6b8997a65: Pushing [==================================================>]  4.924MB[17B[18A[1K[Kcdd9fe119a69: Pushing [==================================================>]  4.925MB[18B[13A[1K[K49e3dc95edb9: Mounted from pvstodghill/clustalwx [13B[14A[1K[K606ee04fa13b: Mounted from pvstodghill/clustalwx [14B[18A[1K[Kcdd9fe119a69: Pushed [18B[19A[1K[Kf7be9403cadd: Pushed [19B[12A[1K[K4b39ac33769d: Mounted from pvstodghill/clustalwx [12B[10A[1K[Ka4f997f59154: Mounted from pvstodghill/clustalwx [10B[9A[1K[Kfdfd2421ff5b: Mounted from pvstodghill/clustalwx [9B[8A[1K[K1f47fd03556d: Mounted from pvstodghill/clustalwx [8B[7A[1K[K15b6de687e2d: Mounted from pvstodghill/clustalwx [7B[6A[1K[Kcfa5805e574d: Mounted from pvstodghill/clustalwx [6B[5A[1K[Ka09947e71dc0: Mounted from pvstodghill/clustalwx [5B[17A[1K[Ke2a6b8997a65: Pushed [17B[4A[1K[K9c42c2077cde: Mounted from pvstodghill/clustalwx [4B[11A[1K[K73d44754967c: Mounted from pvstodghill/clustalwx [11B[3A[1K[K625c7a2a783b: Mounted from pvstodghill/clustalwx [3B[2A[1K[K25e0901a71b8: Mounted from pvstodghill/clustalwx [2B[1A[1K[K8aa4fcad5eeb: Mounted from pvstodghill/clustalwx [1B1.2.4__2017-09-08: digest: sha256:c3a6ff08a183b67dcb54365a9c0ff95218d9a434a81a165e2f2fd2c708c54806 size: 4316
+
+real	0m8.842s
+user	0m0.068s
+sys	0m0.044s
+
+Script done on Fri 08 Sep 2017 01:06:28 PM EDT
