@@ -1,0 +1,89 @@
+Script started on Thu 19 Oct 2017 11:06:35 AM EDT
++ docker build --pull -t pvstodghill/miniasm:40ec280__2017-10-19 .
+Sending build context to Docker daemon  223.7kB
+Step 1/15 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:506e2d5852de1d7c90d538c5332bd3cc33b9cbd26f6ca653875899c505c82687
+Status: Image is up to date for ubuntu:latest
+ ---> 747cb2d60bbe
+Step 2/15 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 0e32b70e7e02
+Step 3/15 : ENV PACKAGE miniasm
+ ---> Using cache
+ ---> 959ba558a653
+Step 4/15 : ENV VERSION 40ec280
+ ---> Using cache
+ ---> 63c2a2a2f0bb
+Step 5/15 : ENV BUILD_PACKAGES git build-essential zlib1g-dev
+ ---> Using cache
+ ---> 47a28c6468bc
+Step 6/15 : ENV RUN_PACKAGES zlib1g
+ ---> Using cache
+ ---> 267ef07f11dd
+Step 7/15 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 5a7fa855122e
+Step 8/15 : RUN cd /tmp &&     git clone https://github.com/lh3/${PACKAGE}.git &&     cd ${PACKAGE} &&     git checkout ${VERSION} &&     make &&     cp --archive miniasm /usr/local/bin/  &&     mkdir -p /usr/local/share/man/man1 &&     cp miniasm.1 /usr/local/share/man/man1/ &&     mkdir -p /usr/local/share/doc/miniasm  &&     cp --archive LICENSE.txt README.md /usr/local/share/doc/miniasm/
+ ---> Using cache
+ ---> 7ba4d3a8f8a2
+Step 9/15 : WORKDIR /root
+ ---> Using cache
+ ---> c9cd5e411ab2
+Step 10/15 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> 5d96ce988c07
+Step 11/15 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 0eb24df639b9
+Step 12/15 : USER guest
+ ---> Using cache
+ ---> 68ca04f8275e
+Step 13/15 : ENV HOME /mnt
+ ---> Using cache
+ ---> 83bb69d9eba9
+Step 14/15 : WORKDIR /mnt
+ ---> Using cache
+ ---> a1b1744116a5
+Step 15/15 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> 3b6b2bec615d
+Successfully built 3b6b2bec615d
+Successfully tagged pvstodghill/miniasm:40ec280__2017-10-19
++ docker run --rm pvstodghill/miniasm:40ec280__2017-10-19 miniasm -h
+miniasm: option requires an argument -- 'h'
+Usage: miniasm [options] <in.paf>
+Options:
+  Pre-selection:
+    -R          prefilter clearly contained reads (2-pass required)
+    -m INT      min match length [100]
+    -i FLOAT    min identity [0.05]
+    -s INT      min span [2000]
+    -c INT      min coverage [3]
+  Overlap:
+    -o INT      min overlap [same as -s]
+    -h INT      max over hang length [1000]
+    -I FLOAT    min end-to-end match ratio [0.8]
+  Layout:
+    -g INT      max gap differences between reads for trans-reduction [1000]
+    -d INT      max distance for bubble popping [50000]
+    -e INT      small unitig threshold [4]
+    -f FILE     read sequences []
+    -n INT      rounds of short overlap removal [3]
+    -r FLOAT[,FLOAT]
+                max and min overlap drop ratio [0.7,0.5]
+    -F FLOAT    aggressive overlap drop ratio in the end [0.8]
+  Miscellaneous:
+    -p STR      output information: bed, paf, sg or ug [ug]
+    -b          both directions of an arc are present in input
+    -1          skip 1-pass read selection
+    -2          skip 2-pass read selection
+    -V          print version number
+
+See miniasm.1 for detailed description of the command-line options.
+
+real	0m1.635s
+user	0m0.032s
+sys	0m0.028s
+
+Script done on Thu 19 Oct 2017 11:06:37 AM EDT
