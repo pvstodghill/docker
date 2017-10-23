@@ -1,0 +1,108 @@
+Script started on Thu 19 Oct 2017 12:19:59 PM EDT
++ docker build --pull -t pvstodghill/racon:0834442__2017-10-19 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  1.576MB
+Step 1/16 : FROM ubuntu:xenial
+xenial: Pulling from library/ubuntu
+Digest: sha256:506e2d5852de1d7c90d538c5332bd3cc33b9cbd26f6ca653875899c505c82687
+Status: Image is up to date for ubuntu:xenial
+ ---> 747cb2d60bbe
+Step 2/16 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 0e32b70e7e02
+Step 3/16 : ENV GITUSER isovic
+ ---> Using cache
+ ---> fd644e4f788f
+Step 4/16 : ENV PACKAGE racon
+ ---> Using cache
+ ---> 2e8c65872619
+Step 5/16 : ENV VERSION 0834442
+ ---> Using cache
+ ---> 43bc442dc0c0
+Step 6/16 : ENV BUILD_PACKAGES git build-essential zlib1g-dev
+ ---> Using cache
+ ---> ba3b4c22acd3
+Step 7/16 : ENV RUN_PACKAGES zlib1g mummer python-numpy python-matplotlib libgomp1
+ ---> Using cache
+ ---> 1a28a6c50cca
+Step 8/16 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 031c9b78be79
+Step 9/16 : RUN set -x && cd /tmp &&     git clone https://github.com/${GITUSER}/${PACKAGE}.git &&     cd ${PACKAGE} &&     git checkout ${VERSION} &&     make modules && make tools && make &&     cp --archive bin/racon /usr/local/bin/  &&     mkdir -p /usr/local/lib/racon &&     cp --archive tools /usr/local/lib/racon/ &&     mkdir -p /usr/local/share/doc/racon  &&     cp --archive LICENSE README.md scripts /usr/local/share/doc/racon/
+ ---> Using cache
+ ---> dee1a0b9eb4b
+Step 10/16 : WORKDIR /root
+ ---> Using cache
+ ---> 4e38020aae04
+Step 11/16 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> ab7672e9a876
+Step 12/16 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 771c85848675
+Step 13/16 : USER guest
+ ---> Using cache
+ ---> 22ad3668dfc2
+Step 14/16 : ENV HOME /mnt
+ ---> Using cache
+ ---> 52c1c22cdb04
+Step 15/16 : WORKDIR /mnt
+ ---> Using cache
+ ---> 3d2a62475f03
+Step 16/16 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> d7dfcbcba0c0
+Successfully built d7dfcbcba0c0
+Successfully tagged pvstodghill/racon:0834442__2017-10-19
++ docker run --rm pvstodghill/racon:0834442__2017-10-19 racon
+  racon [options] <reads.fastq> <overlaps.paf> <raw_contigs.fasta> <out_consensus.fasta>
+
+Options
+  Input/Output options:
+    reads               STR   Reads in FASTQ format.
+    alnpath             STR   Path to a MHAP file with read-to-target overlaps.
+    raw                 STR   Path to the raw contig/read sequences (output from the layout step). GFA, FASTA/FASTQ or
+                              SAM formats allowed.
+    out                 STR   Output consensus sequence.
+        --sam            -    SAM is provided instead of MHAP. The reads file will be ignored, and seq and qual fields
+                              from the SAM file will be used. [false]
+        --mhap           -    Overlaps are in PAF format instead of MHAP. [false]
+
+  Algorithm:
+        --bq            FLT   Threshold for the average base quality of the input reads. If a read has average BQ <
+                              specified, the read will be skipped. If value is < 0.0, filtering is disabled. [10.0]
+        --use-contig-qv  -    If false, dummy QVs equal to '!' will be assigned to each contig base during window
+                              consensus. Otherwise, QVs will be loaded from the contigs file if the file is in FASTQ format. [false]
+    -w, --winlen        INT   Length of the window to perform POA on. [500]
+        --pileup         -    Simple pileup + majority vote consensus will be performed instead of using Spoa. Much
+                              faster, but less accurate. [false]
+    -e, --error-rate    FLT   Maximum allowed error rate. Used for filtering faulty overlaps. [0.30]
+        --ovl-margin    FLT   Fraction of the window size to overlap the windows by. [0.0]
+
+  Control:
+    -t, --threads       INT   Number of threads to use. [4]
+    -b, --winbatch      INT   Size of the batch in which to process windows. After a batch is finished, consensus of
+                              the windows is joined and output to file. [20000]
+        --num-batches   INT   The number of batches which to process [-1]
+        --start-window  INT   ID of the window to start processing from. [0]
+        --erc            -    Perform error-correction instead of contig consensus. The only difference is in the type
+                              of parallelization to achieve better performance. [false]
+
+  Alignment:
+    -M, --match         INT   Match score (positive value). [5]
+    -X, --mismatch      INT   Mismatch penalty (negative value expected). [-4]
+    -G, --gapopen       INT   Gap open penalty (negative value expected). [-8]
+    -E, --gapext        INT   Gap extend penalty (negative value expected). [-6]
+
+  Other:
+    -v, --verbose       INT   Verbose level. 0 off, 1 low, 2 medium, 3 high, 4 and 5 all levels, 6-9 debug. [5]
+
+  Other options:
+    -h, --help           -    View this help. [false]
+
+
+
+real	0m1.698s
+user	0m0.024s
+sys	0m0.040s
+
+Script done on Thu 19 Oct 2017 12:20:00 PM EDT
