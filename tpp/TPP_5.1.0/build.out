@@ -1,0 +1,84 @@
+Script started on Mon 13 Nov 2017 11:19:13 AM EST
++ docker build --pull -t pvstodghill/tpp:5.1.0__2017-11-13 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  14.48MBSending build context to Docker daemon  32.31MBSending build context to Docker daemon  50.14MBSending build context to Docker daemon  67.96MBSending build context to Docker daemon  85.79MBSending build context to Docker daemon  103.6MBSending build context to Docker daemon    122MBSending build context to Docker daemon  140.4MBSending build context to Docker daemon  158.8MBSending build context to Docker daemon  176.6MBSending build context to Docker daemon  194.4MBSending build context to Docker daemon  212.8MBSending build context to Docker daemon  231.2MBSending build context to Docker daemon    249MBSending build context to Docker daemon  266.8MBSending build context to Docker daemon  285.2MBSending build context to Docker daemon  303.6MBSending build context to Docker daemon    322MBSending build context to Docker daemon  339.8MBSending build context to Docker daemon  358.2MBSending build context to Docker daemon  376.6MBSending build context to Docker daemon    395MBSending build context to Docker daemon  413.3MBSending build context to Docker daemon  431.2MBSending build context to Docker daemon  449.5MBSending build context to Docker daemon  467.4MBSending build context to Docker daemon  485.2MBSending build context to Docker daemon    503MBSending build context to Docker daemon  520.8MBSending build context to Docker daemon  538.7MBSending build context to Docker daemon  553.2MB
+Step 1/18 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:6eb24585b1b2e7402600450d289ea0fd195cfb76893032bbbb3943e041ec8a65
+Status: Image is up to date for ubuntu:latest
+ ---> dd6f76d9cc90
+Step 2/18 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 7bfdd3e67378
+Step 3/18 : ENV BUILD_PACKAGES build-essential curl libbz2-dev libgd-dev     		   libpng12-dev libxalan-c-dev zlib1g-dev
+ ---> Using cache
+ ---> 31e1054ca7ea
+Step 4/18 : ENV RUN_PACKAGES gnuplot-nox libbz2-1.0 libgd3 libpng12-0 unzip xalan     		 xsltproc zlib1g
+ ---> Using cache
+ ---> 63bcd237b6c8
+Step 5/18 : RUN rm -rf /var/lib/apt/lists/* &&     apt-get clean &&     apt-get update &&     apt-get install --yes ${BUILD_PACKAGES} ${RUN_PACKAGES} &&     : done
+ ---> Using cache
+ ---> 70da3c02116f
+Step 6/18 : ENV PACKAGE TPP
+ ---> Using cache
+ ---> e6bb0e5fc4fe
+Step 7/18 : ENV VERSION 5.1.0
+ ---> Using cache
+ ---> 5e4d66875c82
+Step 8/18 : ADD ${PACKAGE}_${VERSION}-src.tgz /tmp/
+ ---> Using cache
+ ---> 0cc87a312b23
+Step 9/18 : ADD site.mk /tmp/${PACKAGE}_${VERSION}-src/
+ ---> Using cache
+ ---> 445d30343fcc
+Step 10/18 : WORKDIR /tmp/${PACKAGE}_${VERSION}-src
+ ---> Using cache
+ ---> aef66d51e257
+Step 11/18 : RUN curl -q -L http://cpanmin.us | perl - App::cpanminus &&     cpanm Bundle::CPAN &&     cpanm CGI &&     cpanm XML::Parser &&     cpanm FindBin::libs &&     make libgd &&     make all &&     make install &&     : done
+ ---> Using cache
+ ---> f871de7f4d24
+Step 12/18 : WORKDIR /root
+ ---> Using cache
+ ---> 48fdaba0b5e1
+Step 13/18 : RUN rm -rf /tmp/${PACKAGE}-${VERSION} &&    apt-get remove --yes --purge ${BUILD_PACKAGES} &&    apt-get autoremove -y &&    apt-get clean &&    : done
+ ---> Using cache
+ ---> d98320120604
+Step 14/18 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 5fe2e4669b1a
+Step 15/18 : USER guest
+ ---> Using cache
+ ---> da5a82ebe1e8
+Step 16/18 : ENV HOME /mnt
+ ---> Using cache
+ ---> 159940b44a93
+Step 17/18 : WORKDIR /mnt
+ ---> Using cache
+ ---> 6c403df3fe96
+Step 18/18 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> ca46e700c1a9
+Successfully built ca46e700c1a9
+Successfully tagged pvstodghill/tpp:5.1.0__2017-11-13
++ docker run pvstodghill/tpp:5.1.0__2017-11-13 tpp_hostname 'versionInfo!'
+TPP v5.1.0 Syzygy, Build 201711131610-exported (Linux-x86_64)+ echo
+
++ docker push pvstodghill/tpp:5.1.0__2017-11-13
+The push refers to a repository [docker.io/pvstodghill/tpp]
+
+[1A[1K[Kd3bcb535aea1: Preparing [1B
+[1A[1K[K67cdd5ae472e: Preparing [1B
+[1A[1K[K61ff8331eacf: Preparing [1B
+[1A[1K[Kd61cded1fd7a: Preparing [1B
+[1A[1K[K5998d0d7bca2: Preparing [1B
+[1A[1K[K08e85a088aa8: Preparing [1B
+[1A[1K[K174a611570d4: Preparing [1B
+[1A[1K[Kf51f76255b02: Preparing [1B
+[1A[1K[K51db18d04d72: Preparing [1B
+[1A[1K[Kf1c896f31e49: Preparing [1B
+[1A[1K[K0f5ff0cf6a1c: Preparing [1B[4A[1K[Kf51f76255b02: Waiting [4B[3A[1K[K51db18d04d72: Waiting [3B[2A[1K[Kf1c896f31e49: Waiting [2B[1A[1K[K0f5ff0cf6a1c: Waiting [1B[5A[1K[K174a611570d4: Waiting [5B[6A[1K[K08e85a088aa8: Waiting [6Bdenied: requested access to the resource is denied
+
+real	0m4.850s
+user	0m0.304s
+sys	0m0.428s
+
+Script done on Mon 13 Nov 2017 11:19:18 AM EST
