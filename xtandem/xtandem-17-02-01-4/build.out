@@ -1,0 +1,99 @@
+Script started on 2017-11-16 13:07:52-0500
++ docker build --pull -t pvstodghill/xtandem:17-02-01-4__2017-11-16 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  4.925MB
+Step 1/18 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:6eb24585b1b2e7402600450d289ea0fd195cfb76893032bbbb3943e041ec8a65
+Status: Image is up to date for ubuntu:latest
+ ---> dd6f76d9cc90
+Step 2/18 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 58b0ed3d9005
+Step 3/18 : ENV BUILD_PACKAGES unzip
+ ---> Using cache
+ ---> ca431e108c0a
+Step 4/18 : ENV RUN_PACKAGES ""
+ ---> Using cache
+ ---> 72b91471f430
+Step 5/18 : RUN rm -rf /var/lib/apt/lists/* &&     apt-get clean &&     apt-get update &&     apt-get install --yes ${BUILD_PACKAGES} ${RUN_PACKAGES} &&     : done
+ ---> Using cache
+ ---> 68a8db2da555
+Step 6/18 : ENV PACKAGE xtandem
+ ---> Using cache
+ ---> 298824840d4c
+Step 7/18 : ENV VERSION 17-02-01-4
+ ---> Using cache
+ ---> 3fc1b4dc8aeb
+Step 8/18 : ADD tandem-linux-${VERSION}.zip /opt/
+ ---> Using cache
+ ---> 4cc1b6db29bb
+Step 9/18 : WORKDIR /opt
+ ---> Using cache
+ ---> 0fe4dae19291
+Step 10/18 : RUN unzip tandem-linux-${VERSION}.zip &&     rm -f tandem-linux-${VERSION}.zip &&     mv tandem-linux-${VERSION} ${PACKAGE} &&     chmod +x ${PACKAGE}/bin/static_link_ubuntu/*.exe
+ ---> Using cache
+ ---> 99a94b298719
+Step 11/18 : WORKDIR /root
+ ---> Using cache
+ ---> 0a3e58665a2b
+Step 12/18 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> f2a4007d186b
+Step 13/18 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 7f79bd28371d
+Step 14/18 : USER guest
+ ---> Using cache
+ ---> 3ed456ac0d44
+Step 15/18 : ENV HOME /mnt
+ ---> Using cache
+ ---> de8109ff3ad8
+Step 16/18 : ENV PATH /opt/${PACKAGE}/bin/static_link_ubuntu:${PATH}
+ ---> Using cache
+ ---> ea1fb7096edf
+Step 17/18 : WORKDIR /mnt
+ ---> Using cache
+ ---> 6b133a7af4dc
+Step 18/18 : CMD find /opt/* -type f | sort
+ ---> Using cache
+ ---> 17263d504c9c
+Successfully built 17263d504c9c
+Successfully tagged pvstodghill/xtandem:17-02-01-4__2017-11-16
++ docker run --rm pvstodghill/xtandem:17-02-01-4__2017-11-16 tandem.exe
+
+
+USAGE: tandem filename
+
+where filename is any valid path to an XML input file.
+
++-+-+-+-+-+-+
+
+X! TANDEM Alanine (2017.2.1.4)
+
+Copyright (C) 2003-2014 Ronald C Beavis, all rights reserved
+This software is a component of the GPM  project.
+Use of this software governed by the Artistic license.
+If you do not have this license, you can get a copy at
+http://www.perl.com/pub/a/language/misc/Artistic.html
+
++-+-+-+-+-+-+
+
+press <Enter> to continue ...+ docker push pvstodghill/xtandem:17-02-01-4__2017-11-16
+The push refers to a repository [docker.io/pvstodghill/xtandem]
+
+[1A[1K[Ke208a39c2845: Preparing [1B
+[1A[1K[K0b2977d30aed: Preparing [1B
+[1A[1K[K46cf1ead1c48: Preparing [1B
+[1A[1K[Kba17115d30ce: Preparing [1B
+[1A[1K[K7ad669c0fd9d: Preparing [1B
+[1A[1K[K174a611570d4: Preparing [1B
+[1A[1K[Kf51f76255b02: Preparing [1B
+[1A[1K[K51db18d04d72: Preparing [1B
+[1A[1K[Kf1c896f31e49: Preparing [1B
+[1A[1K[K0f5ff0cf6a1c: Preparing [1B[3A[1K[K51db18d04d72: Waiting [3B[1A[1K[K0f5ff0cf6a1c: Waiting [1B[4A[1K[Kf51f76255b02: Waiting [4B[2A[1K[Kf1c896f31e49: Waiting [2B[5A[1K[K174a611570d4: Waiting [5B[9A[1K[K0b2977d30aed: Pushing   7.68kB/760.4kB[9B[10A[1K[Ke208a39c2845: Pushing  3.636kB/330.3kB[10B[8A[1K[K46cf1ead1c48: Pushing  119.3kB/10.48MB[8B[7A[1K[Kba17115d30ce: Pushing  66.56kB/4.894MB[7B[10A[1K[Ke208a39c2845: Pushing  344.1kB[10B[6A[1K[K7ad669c0fd9d: Pushing  435.7kB/40.33MB[6B[8A[1K[K46cf1ead1c48: Pushing  1.037MB/10.48MB[8B[7A[1K[Kba17115d30ce: Pushing  656.4kB/4.894MB[7B[9A[1K[K0b2977d30aed: Pushing    791kB[9B[6A[1K[K7ad669c0fd9d: Pushing  2.527MB/40.33MB[6B[8A[1K[K46cf1ead1c48: Pushing  3.003MB/10.48MB[8B[7A[1K[Kba17115d30ce: Pushing  3.212MB/4.894MB[7B[6A[1K[K7ad669c0fd9d: Pushing  4.625MB/40.33MB[6B[7A[1K[Kba17115d30ce: Pushing  4.896MB[7B[8A[1K[K46cf1ead1c48: Pushing  4.937MB/10.48MB[8B[8A[1K[K46cf1ead1c48: Pushing  6.382MB/10.48MB[8B[6A[1K[K7ad669c0fd9d: Pushing  6.329MB/40.33MB[6B[8A[1K[K46cf1ead1c48: Pushing  8.086MB/10.48MB[8B[6A[1K[K7ad669c0fd9d: Pushing  8.036MB/40.33MB[6B[8A[1K[K46cf1ead1c48: Pushing  9.718MB/10.48MB[8B[6A[1K[K7ad669c0fd9d: Pushing   9.74MB/40.33MB[6B[8A[1K[K46cf1ead1c48: Pushing  10.56MB[8B[6A[1K[K7ad669c0fd9d: Pushing  11.44MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  13.15MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  14.85MB/40.33MB[6B[10A[1K[Ke208a39c2845: Pushed [10B[6A[1K[K7ad669c0fd9d: Pushing  16.56MB/40.33MB[6B[9A[1K[K0b2977d30aed: Pushed [9B[6A[1K[K7ad669c0fd9d: Pushing  18.26MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  19.96MB/40.33MB[6B[5A[1K[K174a611570d4: Mounted from library/ubuntu [5B[7A[1K[Kba17115d30ce: Pushed [7B[6A[1K[K7ad669c0fd9d: Pushing  21.67MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  23.35MB/40.33MB[6B[4A[1K[Kf51f76255b02: Mounted from library/ubuntu [4B[6A[1K[K7ad669c0fd9d: Pushing  24.63MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  26.33MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  27.61MB/40.33MB[6B[3A[1K[K51db18d04d72: Mounted from library/ubuntu [3B[8A[1K[K46cf1ead1c48: Pushed [8B[2A[1K[Kf1c896f31e49: Mounted from library/ubuntu [2B[6A[1K[K7ad669c0fd9d: Pushing  29.32MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  31.02MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  32.72MB/40.33MB[6B[1A[1K[K0f5ff0cf6a1c: Mounted from pvstodghill/racon [1B[6A[1K[K7ad669c0fd9d: Pushing  34.43MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  36.13MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  37.83MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  39.52MB/40.33MB[6B[6A[1K[K7ad669c0fd9d: Pushing  40.39MB[6B[6A[1K[K7ad669c0fd9d: Pushed [6B17-02-01-4__2017-11-16: digest: sha256:7fcef6f1b3c5f9260f1a64e8ed1e70f4cbd8943d7c0574c7b34fb6c9ff141c07 size: 2409
+
+real	0m8.725s
+user	0m0.076s
+sys	0m0.042s
+
+Script done on 2017-11-16 13:08:00-0500
