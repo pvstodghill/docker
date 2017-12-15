@@ -1,0 +1,100 @@
+Script started on 2017-12-07 10:47:10-0500
++ docker build --pull -t pvstodghill/comet:2017012__2017-12-07 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  5.014MBSending build context to Docker daemon  14.48MBSending build context to Docker daemon  15.04MBSending build context to Docker daemon  17.83MBSending build context to Docker daemon  21.73MBSending build context to Docker daemon  33.98MBSending build context to Docker daemon  44.01MBSending build context to Docker daemon  49.08MB
+Step 1/12 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:0c281312ebaad233973620636b086b6b7db54679b52eee091360310ea588d488
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 71f4220f8efa
+Step 2/12 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> b48121f4c668
+Step 3/12 : ENV PACKAGE comet
+ ---> Using cache
+ ---> 0ae4b0a93fba
+Step 4/12 : ENV VERSION 2017012
+ ---> Running in 804ecef7894a
+ ---> a6060121e360
+Removing intermediate container 804ecef7894a
+Step 5/12 : RUN mkdir -p /opt/${PACKAGE}
+ ---> Running in d41eedafde94
+ ---> d48b60b6143c
+Removing intermediate container d41eedafde94
+Step 6/12 : ADD comet.exe /opt/${PACKAGE}
+ ---> 7ecdd83f43c0
+Removing intermediate container 5a378b0694bb
+Step 7/12 : RUN useradd -d /mnt -M guest
+ ---> Running in f6692cf990c2
+ ---> 739583599049
+Removing intermediate container f6692cf990c2
+Step 8/12 : USER guest
+ ---> Running in 5f9307e60c69
+ ---> 2ea8c80170cf
+Removing intermediate container 5f9307e60c69
+Step 9/12 : ENV HOME /mnt
+ ---> Running in b3b3f0b4f18d
+ ---> 4af782e9ab7f
+Removing intermediate container b3b3f0b4f18d
+Step 10/12 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Running in b87aef3c553d
+ ---> 05093a3f01ac
+Removing intermediate container b87aef3c553d
+Step 11/12 : WORKDIR /mnt
+ ---> 442b0de7f948
+Removing intermediate container 13bfc21a9173
+Step 12/12 : CMD find /opt/${PACKAGE} -type f | sort
+ ---> Running in 3ea7930aa47e
+ ---> 0684ba4f4f14
+Removing intermediate container 3ea7930aa47e
+Successfully built 0684ba4f4f14
+Successfully tagged pvstodghill/comet:2017012__2017-12-07
++ docker run --rm pvstodghill/comet:2017012__2017-12-07 comet.exe
+
+ Comet version "2017.01 rev. 2"
+ (c) University of Washington
+
+ Comet usage:  comet.exe [options] <input_files>
+
+ Supported input formats include mzXML, mzML, Thermo raw, mgf, and ms2 variants (cms2, bms2, ms2)
+
+       options:  -p         to print out a comet.params file (named comet.params.new)
+                 -P<params> to specify an alternate parameters file (default comet.params)
+                 -N<name>   to specify an alternate output base name; valid only with one input file
+                 -D<dbase>  to specify a sequence database, overriding entry in parameters file
+                 -F<num>    to specify the first/start scan to search, overriding entry in parameters file
+                 -L<num>    to specify the last/end scan to search, overriding entry in parameters file
+                            (-L option is required if -F option is used)
+
+       example:  comet.exe file1.mzXML file2.mzXML
+            or   comet.exe -F1000 -L1500 file1.mzXML    <- to search scans 1000 through 1500
+            or   comet.exe -pParams.txt *.mzXML         <- use parameters in the file 'Params.txt'
+
++ true
++ docker push pvstodghill/comet:2017012__2017-12-07
+The push refers to a repository [docker.io/pvstodghill/comet]
+
+[1A[1K[K15f80ce7d5f6: Preparing [1B
+[1A[1K[K40cb1a4715b9: Preparing [1B
+[1A[1K[K204b09a80320: Preparing [1B
+[1A[1K[Kcb37624ec8ab: Preparing [1B
+[1A[1K[Kbfafdebe2622: Preparing [1B
+[1A[1K[K606ee04fa13b: Preparing [1B
+[1A[1K[K49e3dc95edb9: Preparing [1B
+[1A[1K[K4b39ac33769d: Preparing [1B
+[1A[1K[K73d44754967c: Preparing [1B[4A[1K[K606ee04fa13b: Waiting [4B[3A[1K[K49e3dc95edb9: Waiting [3B[2A[1K[K4b39ac33769d: Waiting [2B[1A[1K[K73d44754967c: Waiting [1B
+[1A[1K[Ka4f997f59154: Preparing [1B[1A[1K[Ka4f997f59154: Waiting [1B
+[1A[1K[Kfdfd2421ff5b: Preparing [1B
+[1A[1K[K1f47fd03556d: Preparing [1B
+[1A[1K[K15b6de687e2d: Preparing [1B[2A[1K[K1f47fd03556d: Waiting [2B[3A[1K[Kfdfd2421ff5b: Waiting [3B
+[1A[1K[Kcfa5805e574d: Preparing [1B[2A[1K[K15b6de687e2d: Waiting [2B[1A[1K[Kcfa5805e574d: Waiting [1B
+[1A[1K[Ka09947e71dc0: Preparing [1B
+[1A[1K[K9c42c2077cde: Preparing [1B[2A[1K[Ka09947e71dc0: Waiting [2B
+[1A[1K[K625c7a2a783b: Preparing [1B
+[1A[1K[K25e0901a71b8: Preparing [1B[2A[1K[K625c7a2a783b: Waiting [2B
+[1A[1K[K8aa4fcad5eeb: Preparing [1B[1A[1K[K8aa4fcad5eeb: Waiting [1B[15A[1K[Kbfafdebe2622: Layer already exists [15B[16A[1K[Kcb37624ec8ab: Layer already exists [16B[19A[1K[K15f80ce7d5f6: Pushing [>                                                  ]  3.694kB/330.7kB[19B[13A[1K[K49e3dc95edb9: Layer already exists [13B[14A[1K[K606ee04fa13b: Layer already exists [14B[17A[1K[K204b09a80320: Pushing   2.56kB[17B[12A[1K[K4b39ac33769d: Layer already exists [12B[18A[1K[K40cb1a4715b9: Pushing [>                                                  ]  67.07kB/4.633MB[18B[11A[1K[K73d44754967c: Layer already exists [11B[10A[1K[Ka4f997f59154: Layer already exists [10B[19A[1K[K15f80ce7d5f6: Pushing [=======>                                           ]  50.98kB/330.7kB[19B[18A[1K[K40cb1a4715b9: Pushing [================>                                  ]  1.509MB/4.633MB[18B[19A[1K[K15f80ce7d5f6: Pushing [==================================================>]  345.1kB[19B[9A[1K[Kfdfd2421ff5b: Layer already exists [9B[18A[1K[K40cb1a4715b9: Pushing [================================>                  ]  3.016MB/4.633MB[18B[8A[1K[K1f47fd03556d: Layer already exists [8B[18A[1K[K40cb1a4715b9: Pushing [================================================>  ]  4.458MB/4.633MB[18B[18A[1K[K40cb1a4715b9: Pushing [==================================================>]  4.636MB[18B[6A[1K[Kcfa5805e574d: Layer already exists [6B[5A[1K[Ka09947e71dc0: Layer already exists [5B[4A[1K[K9c42c2077cde: Layer already exists [4B[3A[1K[K625c7a2a783b: Layer already exists [3B[2A[1K[K25e0901a71b8: Layer already exists [2B[1A[1K[K8aa4fcad5eeb: Layer already exists [1B[7A[1K[K15b6de687e2d: Layer already exists [7B[18A[1K[K40cb1a4715b9: Pushed [18B[19A[1K[K15f80ce7d5f6: Pushed [19B[17A[1K[K204b09a80320: Pushed [17B2017012__2017-12-07: digest: sha256:9f9373ea0ee3aa49b9ca82d54b2fc56212d6e6f3b1695a9f95a9597d66940d7c size: 4312
+
+real	1m21.031s
+user	0m0.093s
+sys	0m0.172s
+
+Script done on 2017-12-07 10:48:31-0500
