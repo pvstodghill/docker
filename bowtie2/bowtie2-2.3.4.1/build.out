@@ -1,0 +1,394 @@
+Script started on 2018-03-15 14:02:30-0400
++ docker build --pull -t pvstodghill/bowtie2:2.3.4.1__2018-03-15 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  24.51MBSending build context to Docker daemon  54.65MB
+Step 1/18 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
+Status: Image is up to date for ubuntu:latest
+ ---> f975c5035748
+Step 2/18 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 9bd3df5729fe
+Step 3/18 : ENV PACKAGE bowtie2
+ ---> Using cache
+ ---> e971ce82066d
+Step 4/18 : ENV VERSION 2.3.4.1
+ ---> Using cache
+ ---> 17d0283c6f01
+Step 5/18 : ENV BUILD_PACKAGES unzip
+ ---> Using cache
+ ---> 00dd48a9a9f0
+Step 6/18 : ENV RUN_PACKAGES python libsys-hostname-long-perl
+ ---> Running in ac867116843a
+ ---> b1dfae45a0c3
+Removing intermediate container ac867116843a
+Step 7/18 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Running in 701f3c809e1b
+Get:1 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial InRelease [247 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
+Get:4 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [73.2 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]
+Get:6 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [591 kB]
+Get:7 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [12.7 kB]
+Get:8 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [406 kB]
+Get:9 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [3492 B]
+Get:10 http://archive.ubuntu.com/ubuntu xenial/universe Sources [9802 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial/main amd64 Packages [1558 kB]
+Get:12 http://archive.ubuntu.com/ubuntu xenial/restricted amd64 Packages [14.1 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial/universe amd64 Packages [9827 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial/multiverse amd64 Packages [176 kB]
+Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/universe Sources [243 kB]
+Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [959 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [13.1 kB]
+Get:18 http://archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [767 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [18.5 kB]
+Get:20 http://archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [5153 B]
+Get:21 http://archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [7705 B]
+Fetched 25.0 MB in 40s (612 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  file ifupdown iproute2 isc-dhcp-client isc-dhcp-common libatm1
+  libdns-export162 libexpat1 libffi6 libgdbm3 libisc-export160 libmagic1
+  libmnl0 libperl5.22 libpython-stdlib libpython2.7-minimal
+  libpython2.7-stdlib libsqlite3-0 libssl1.0.0 libxtables11 mime-support
+  netbase perl perl-modules-5.22 python-minimal python2.7 python2.7-minimal
+  rename
+Suggested packages:
+  ppp rdnssd iproute2-doc resolvconf avahi-autoipd isc-dhcp-client-ddns
+  apparmor perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+  make python-doc python-tk python2.7-doc binutils binfmt-support zip
+The following NEW packages will be installed:
+  file ifupdown iproute2 isc-dhcp-client isc-dhcp-common libatm1
+  libdns-export162 libexpat1 libffi6 libgdbm3 libisc-export160 libmagic1
+  libmnl0 libperl5.22 libpython-stdlib libpython2.7-minimal
+  libpython2.7-stdlib libsqlite3-0 libssl1.0.0 libsys-hostname-long-perl
+  libxtables11 mime-support netbase perl perl-modules-5.22 python
+  python-minimal python2.7 python2.7-minimal rename unzip
+0 upgraded, 31 newly installed, 0 to remove and 3 not upgraded.
+Need to get 14.0 MB of archives.
+After this operation, 71.0 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu xenial/main amd64 libatm1 amd64 1:2.5.1-1.5 [24.2 kB]
+Get:2 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmnl0 amd64 1.0.3-5 [12.0 kB]
+Get:3 http://archive.ubuntu.com/ubuntu xenial/main amd64 libgdbm3 amd64 1.8.3-13.1 [16.9 kB]
+Get:4 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 perl-modules-5.22 all 5.22.1-9ubuntu0.2 [2661 kB]
+Get:5 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libperl5.22 amd64 5.22.1-9ubuntu0.2 [3391 kB]
+Get:6 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 perl amd64 5.22.1-9ubuntu0.2 [237 kB]
+Get:7 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1ubuntu0~16.04.3 [340 kB]
+Get:8 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7-minimal amd64 2.7.12-1ubuntu0~16.04.3 [1261 kB]
+Get:9 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python-minimal amd64 2.7.12-1~16.04 [28.1 kB]
+Get:10 http://archive.ubuntu.com/ubuntu xenial/main amd64 mime-support all 3.59ubuntu1 [31.0 kB]
+Get:11 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libexpat1 amd64 2.1.0-7ubuntu0.16.04.3 [71.2 kB]
+Get:12 http://archive.ubuntu.com/ubuntu xenial/main amd64 libffi6 amd64 3.2.1-4 [17.8 kB]
+Get:13 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsqlite3-0 amd64 3.11.0-1ubuntu1 [396 kB]
+Get:14 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libssl1.0.0 amd64 1.0.2g-1ubuntu4.10 [1083 kB]
+^[Get:15 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1ubuntu0~16.04.3 [1880 kB]
+Get:16 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1ubuntu0~16.04.3 [224 kB]
+Get:17 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython-stdlib amd64 2.7.12-1~16.04 [7768 B]
+Get:18 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 python amd64 2.7.12-1~16.04 [137 kB]
+Get:19 http://archive.ubuntu.com/ubuntu xenial/main amd64 libmagic1 amd64 1:5.25-2ubuntu1 [216 kB]
+Get:20 http://archive.ubuntu.com/ubuntu xenial/main amd64 file amd64 1:5.25-2ubuntu1 [21.2 kB]
+Get:21 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 iproute2 amd64 4.3.0-1ubuntu3.16.04.3 [522 kB]
+Get:22 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 ifupdown amd64 0.8.10ubuntu1.2 [54.9 kB]
+Get:23 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libisc-export160 amd64 1:9.10.3.dfsg.P4-8ubuntu1.10 [153 kB]
+Get:24 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 libdns-export162 amd64 1:9.10.3.dfsg.P4-8ubuntu1.10 [666 kB]
+Get:25 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 isc-dhcp-client amd64 4.3.3-5ubuntu12.10 [224 kB]
+Get:26 http://archive.ubuntu.com/ubuntu xenial-updates/main amd64 isc-dhcp-common amd64 4.3.3-5ubuntu12.10 [105 kB]
+Get:27 http://archive.ubuntu.com/ubuntu xenial/main amd64 libxtables11 amd64 1.6.0-2ubuntu3 [27.2 kB]
+Get:28 http://archive.ubuntu.com/ubuntu xenial/main amd64 netbase all 5.3 [12.9 kB]
+Get:29 http://archive.ubuntu.com/ubuntu xenial/main amd64 libsys-hostname-long-perl all 1.5-1 [11.7 kB]
+Get:30 http://archive.ubuntu.com/ubuntu xenial/main amd64 rename all 0.20-4 [12.0 kB]
+Get:31 http://archive.ubuntu.com/ubuntu xenial/main amd64 unzip amd64 6.0-20ubuntu1 [158 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 14.0 MB in 33s (414 kB/s)
+Selecting previously unselected package libatm1:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4768 files and directories currently installed.)
+Preparing to unpack .../libatm1_1%3a2.5.1-1.5_amd64.deb ...
+Unpacking libatm1:amd64 (1:2.5.1-1.5) ...
+Selecting previously unselected package libmnl0:amd64.
+Preparing to unpack .../libmnl0_1.0.3-5_amd64.deb ...
+Unpacking libmnl0:amd64 (1.0.3-5) ...
+Selecting previously unselected package libgdbm3:amd64.
+Preparing to unpack .../libgdbm3_1.8.3-13.1_amd64.deb ...
+Unpacking libgdbm3:amd64 (1.8.3-13.1) ...
+Selecting previously unselected package perl-modules-5.22.
+Preparing to unpack .../perl-modules-5.22_5.22.1-9ubuntu0.2_all.deb ...
+Unpacking perl-modules-5.22 (5.22.1-9ubuntu0.2) ...
+Selecting previously unselected package libperl5.22:amd64.
+Preparing to unpack .../libperl5.22_5.22.1-9ubuntu0.2_amd64.deb ...
+Unpacking libperl5.22:amd64 (5.22.1-9ubuntu0.2) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../perl_5.22.1-9ubuntu0.2_amd64.deb ...
+Unpacking perl (5.22.1-9ubuntu0.2) ...
+Selecting previously unselected package libpython2.7-minimal:amd64.
+Preparing to unpack .../libpython2.7-minimal_2.7.12-1ubuntu0~16.04.3_amd64.deb ...
+Unpacking libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.3) ...
+Selecting previously unselected package python2.7-minimal.
+Preparing to unpack .../python2.7-minimal_2.7.12-1ubuntu0~16.04.3_amd64.deb ...
+Unpacking python2.7-minimal (2.7.12-1ubuntu0~16.04.3) ...
+Selecting previously unselected package python-minimal.
+Preparing to unpack .../python-minimal_2.7.12-1~16.04_amd64.deb ...
+Unpacking python-minimal (2.7.12-1~16.04) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../mime-support_3.59ubuntu1_all.deb ...
+Unpacking mime-support (3.59ubuntu1) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../libexpat1_2.1.0-7ubuntu0.16.04.3_amd64.deb ...
+Unpacking libexpat1:amd64 (2.1.0-7ubuntu0.16.04.3) ...
+Selecting previously unselected package libffi6:amd64.
+Preparing to unpack .../libffi6_3.2.1-4_amd64.deb ...
+Unpacking libffi6:amd64 (3.2.1-4) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../libsqlite3-0_3.11.0-1ubuntu1_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.11.0-1ubuntu1) ...
+Selecting previously unselected package libssl1.0.0:amd64.
+Preparing to unpack .../libssl1.0.0_1.0.2g-1ubuntu4.10_amd64.deb ...
+Unpacking libssl1.0.0:amd64 (1.0.2g-1ubuntu4.10) ...
+Selecting previously unselected package libpython2.7-stdlib:amd64.
+Preparing to unpack .../libpython2.7-stdlib_2.7.12-1ubuntu0~16.04.3_amd64.deb ...
+Unpacking libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.3) ...
+Selecting previously unselected package python2.7.
+Preparing to unpack .../python2.7_2.7.12-1ubuntu0~16.04.3_amd64.deb ...
+Unpacking python2.7 (2.7.12-1ubuntu0~16.04.3) ...
+Selecting previously unselected package libpython-stdlib:amd64.
+Preparing to unpack .../libpython-stdlib_2.7.12-1~16.04_amd64.deb ...
+Unpacking libpython-stdlib:amd64 (2.7.12-1~16.04) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Setting up libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.3) ...
+Setting up python2.7-minimal (2.7.12-1ubuntu0~16.04.3) ...
+Linking and byte-compiling packages for runtime python2.7...
+Setting up python-minimal (2.7.12-1~16.04) ...
+Selecting previously unselected package python.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7364 files and directories currently installed.)
+Preparing to unpack .../python_2.7.12-1~16.04_amd64.deb ...
+Unpacking python (2.7.12-1~16.04) ...
+Selecting previously unselected package libmagic1:amd64.
+Preparing to unpack .../libmagic1_1%3a5.25-2ubuntu1_amd64.deb ...
+Unpacking libmagic1:amd64 (1:5.25-2ubuntu1) ...
+Selecting previously unselected package file.
+Preparing to unpack .../file_1%3a5.25-2ubuntu1_amd64.deb ...
+Unpacking file (1:5.25-2ubuntu1) ...
+Selecting previously unselected package iproute2.
+Preparing to unpack .../iproute2_4.3.0-1ubuntu3.16.04.3_amd64.deb ...
+Unpacking iproute2 (4.3.0-1ubuntu3.16.04.3) ...
+Selecting previously unselected package ifupdown.
+Preparing to unpack .../ifupdown_0.8.10ubuntu1.2_amd64.deb ...
+Unpacking ifupdown (0.8.10ubuntu1.2) ...
+Selecting previously unselected package libisc-export160.
+Preparing to unpack .../libisc-export160_1%3a9.10.3.dfsg.P4-8ubuntu1.10_amd64.deb ...
+Unpacking libisc-export160 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Selecting previously unselected package libdns-export162.
+Preparing to unpack .../libdns-export162_1%3a9.10.3.dfsg.P4-8ubuntu1.10_amd64.deb ...
+Unpacking libdns-export162 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Selecting previously unselected package isc-dhcp-client.
+Preparing to unpack .../isc-dhcp-client_4.3.3-5ubuntu12.10_amd64.deb ...
+Unpacking isc-dhcp-client (4.3.3-5ubuntu12.10) ...
+Selecting previously unselected package isc-dhcp-common.
+Preparing to unpack .../isc-dhcp-common_4.3.3-5ubuntu12.10_amd64.deb ...
+Unpacking isc-dhcp-common (4.3.3-5ubuntu12.10) ...
+Selecting previously unselected package libxtables11:amd64.
+Preparing to unpack .../libxtables11_1.6.0-2ubuntu3_amd64.deb ...
+Unpacking libxtables11:amd64 (1.6.0-2ubuntu3) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../archives/netbase_5.3_all.deb ...
+Unpacking netbase (5.3) ...
+Selecting previously unselected package libsys-hostname-long-perl.
+Preparing to unpack .../libsys-hostname-long-perl_1.5-1_all.deb ...
+Unpacking libsys-hostname-long-perl (1.5-1) ...
+Selecting previously unselected package rename.
+Preparing to unpack .../archives/rename_0.20-4_all.deb ...
+Unpacking rename (0.20-4) ...
+Selecting previously unselected package unzip.
+Preparing to unpack .../unzip_6.0-20ubuntu1_amd64.deb ...
+Unpacking unzip (6.0-20ubuntu1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Processing triggers for systemd (229-4ubuntu21.1) ...
+Setting up libatm1:amd64 (1:2.5.1-1.5) ...
+Setting up libmnl0:amd64 (1.0.3-5) ...
+Setting up libgdbm3:amd64 (1.8.3-13.1) ...
+Setting up perl-modules-5.22 (5.22.1-9ubuntu0.2) ...
+Setting up libperl5.22:amd64 (5.22.1-9ubuntu0.2) ...
+Setting up perl (5.22.1-9ubuntu0.2) ...
+update-alternatives: using /usr/bin/prename to provide /usr/bin/rename (rename) in auto mode
+Setting up mime-support (3.59ubuntu1) ...
+Setting up libexpat1:amd64 (2.1.0-7ubuntu0.16.04.3) ...
+Setting up libffi6:amd64 (3.2.1-4) ...
+Setting up libsqlite3-0:amd64 (3.11.0-1ubuntu1) ...
+Setting up libssl1.0.0:amd64 (1.0.2g-1ubuntu4.10) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.3) ...
+Setting up python2.7 (2.7.12-1ubuntu0~16.04.3) ...
+Setting up libpython-stdlib:amd64 (2.7.12-1~16.04) ...
+Setting up python (2.7.12-1~16.04) ...
+Setting up libmagic1:amd64 (1:5.25-2ubuntu1) ...
+Setting up file (1:5.25-2ubuntu1) ...
+Setting up iproute2 (4.3.0-1ubuntu3.16.04.3) ...
+Setting up ifupdown (0.8.10ubuntu1.2) ...
+Creating /etc/network/interfaces.
+Setting up libisc-export160 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Setting up libdns-export162 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Setting up isc-dhcp-client (4.3.3-5ubuntu12.10) ...
+Setting up isc-dhcp-common (4.3.3-5ubuntu12.10) ...
+Setting up libxtables11:amd64 (1.6.0-2ubuntu3) ...
+Setting up netbase (5.3) ...
+Setting up libsys-hostname-long-perl (1.5-1) ...
+Setting up rename (0.20-4) ...
+update-alternatives: using /usr/bin/file-rename to provide /usr/bin/rename (rename) in auto mode
+Setting up unzip (6.0-20ubuntu1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+Processing triggers for systemd (229-4ubuntu21.1) ...
+ ---> 2c33d2621dba
+Removing intermediate container 701f3c809e1b
+Step 8/18 : ADD ${PACKAGE}-${VERSION}-linux-x86_64.zip /opt/
+ ---> adbada075489
+Removing intermediate container df8ddbcb5429
+Step 9/18 : WORKDIR /opt
+ ---> f3627e96a369
+Removing intermediate container c8830327529e
+Step 10/18 : RUN unzip ${PACKAGE}-${VERSION}-linux-x86_64.zip &&     rm -f ${PACKAGE}-${VERSION}-linux-x86_64.zip &&     mv ${PACKAGE}-${VERSION}-linux-x86_64 ${PACKAGE}
+ ---> Running in ca888898b731
+Archive:  bowtie2-2.3.4.1-linux-x86_64.zip
+   creating: bowtie2-2.3.4.1-linux-x86_64/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reference/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reference/lambda_virus.fa  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reads/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/simulate.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/longreads.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_1.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_2.fq  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/index/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.3.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.4.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/doc/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/style.css  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/README  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/manual.html  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/LICENSE  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/NEWS  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL.markdown  
+ extracting: bowtie2-2.3.4.1-linux-x86_64/VERSION  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s  
+   creating: bowtie2-2.3.4.1-linux-x86_64/scripts/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_c_elegans.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_canFam2.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_e_coli.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_2b_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_m_musculus_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_s_cerevisiae.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi36.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_b_taurus_UMD3.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg18.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_rn4.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_d_melanogaster.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg19.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/infer_fraglen.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm9.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_solqual_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_a_thaliana_tair.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/convert_quals.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm10.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/TUTORIAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/AUTHORS  
+ ---> 07c32e5cf494
+Removing intermediate container ca888898b731
+Step 11/18 : WORKDIR /root
+ ---> a31b0edb6cca
+Removing intermediate container 22372ded5746
+Step 12/18 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Running in 10eef81436f0
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages will be REMOVED:
+  unzip*
+0 upgraded, 0 newly installed, 1 to remove and 3 not upgraded.
+After this operation, 530 kB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7705 files and directories currently installed.)
+Removing unzip (6.0-20ubuntu1) ...
+Purging configuration files for unzip (6.0-20ubuntu1) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+ ---> 90a11651f3d5
+Removing intermediate container 10eef81436f0
+Step 13/18 : RUN useradd -d /mnt -M guest
+ ---> Running in bae8ccdf1497
+ ---> eae947d9a9f7
+Removing intermediate container bae8ccdf1497
+Step 14/18 : USER guest
+ ---> Running in c085bc45e347
+ ---> 7f63ed1298ac
+Removing intermediate container c085bc45e347
+Step 15/18 : ENV HOME /mnt
+ ---> Running in 579afd4ea3b3
+ ---> 6e6b8f515f90
+Removing intermediate container 579afd4ea3b3
+Step 16/18 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Running in db8fbe316f2e
+ ---> ffc595cbdb51
+Removing intermediate container db8fbe316f2e
+Step 17/18 : WORKDIR /mnt
+ ---> a325022049ee
+Removing intermediate container 9e5d89fce534
+Step 18/18 : CMD find /opt/* -type f | sort
+ ---> Running in 5c9b1be014d8
+ ---> 16da5f90c48b
+Removing intermediate container 5c9b1be014d8
+Successfully built 16da5f90c48b
+Successfully tagged pvstodghill/bowtie2:2.3.4.1__2018-03-15
++ docker run --rm pvstodghill/bowtie2:2.3.4.1__2018-03-15 bowtie2 --version
+/opt/bowtie2/bowtie2-align-s version 2.3.4.1
+64-bit
+Built on 14231912a8bd
+Sat Feb  3 13:04:04 UTC 2018
+Compiler: gcc version 4.8.2 20140120 (Red Hat 4.8.2-15) (GCC) 
+Options: -O3 -m64 -msse2 -funroll-loops -g3 -g -O2 -fvisibility=hidden -I/hbb_exe/include  -std=c++98 -DPOPCNT_CAPABILITY -DWITH_TBB -DNO_SPINLOCK -DWITH_QUEUELOCK=1
+Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
++ docker push pvstodghill/bowtie2:2.3.4.1__2018-03-15
+The push refers to a repository [docker.io/pvstodghill/bowtie2]
+
+[1A[1K[Kac26115ca0ce: Preparing [1B
+[1A[1K[Kb6131ed7e0be: Preparing [1B
+[1A[1K[K9754890eb365: Preparing [1B
+[1A[1K[K448ab7f3251d: Preparing [1B
+[1A[1K[K3a934e76f03c: Preparing [1B
+[1A[1K[Kdb584c622b50: Preparing [1B
+[1A[1K[K52a7ea2bb533: Preparing [1B
+[1A[1K[K52f389ea437e: Preparing [1B
+[1A[1K[K88888b9b1b5b: Preparing [1B
+[1A[1K[Ka94e0d5a7c40: Preparing [1B[5A[1K[Kdb584c622b50: Waiting [5B[4A[1K[K52a7ea2bb533: Waiting [4B[3A[1K[K52f389ea437e: Waiting [3B[2A[1K[K88888b9b1b5b: Waiting [2B[10A[1K[Kac26115ca0ce: Pushing   3.65kB/330.4kB[10B[9A[1K[Kb6131ed7e0be: Pushing  9.216kB/904.6kB[9B[8A[1K[K9754890eb365: Pushing  550.4kB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  524.3kB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  525.3kB/54.64MB[7B[10A[1K[Kac26115ca0ce: Pushing  344.1kB[10B[9A[1K[Kb6131ed7e0be: Pushing  938.5kB[9B[8A[1K[K9754890eb365: Pushing  2.222MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  2.178MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  2.754MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  3.893MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing   3.82MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  5.539MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  5.564MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  5.467MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  7.767MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  7.235MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  7.069MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  9.995MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  8.906MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  8.701MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  12.78MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  11.13MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  10.37MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  15.57MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  13.92MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  12.51MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  18.35MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  16.15MB/176.6MB[8B[10A[1K[Kac26115ca0ce: Pushed [10B[6A[1K[K3a934e76f03c: Pushing  14.67MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  20.58MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  18.36MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  16.25MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  22.81MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  20.03MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  25.04MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing   18.9MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  27.26MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  22.26MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  21.02MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  29.49MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  23.93MB/176.6MB[8B[5A[1K[Kdb584c622b50: Mounted from library/ubuntu [5B[6A[1K[K3a934e76f03c: Pushing  23.17MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  31.72MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing   25.6MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  25.33MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  33.95MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  27.27MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  26.97MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  36.18MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  28.94MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  29.09MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  38.41MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  30.61MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  31.22MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  40.63MB/54.64MB[7B[4A[1K[K52a7ea2bb533: Mounted from library/ubuntu [4B[8A[1K[K9754890eb365: Pushing  32.84MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  42.86MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing  32.87MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  35.63MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  45.09MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing   34.5MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  37.85MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  47.32MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing  36.68MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  40.08MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  49.55MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing  38.84MB/116.4MB[6B[9A[1K[Kb6131ed7e0be: Pushed [9B[8A[1K[K9754890eb365: Pushing  42.28MB/176.6MB[8B[7A[1K[K448ab7f3251d: Pushing  51.77MB/54.64MB[7B[6A[1K[K3a934e76f03c: Pushing  40.47MB/116.4MB[6B[3A[1K[K52f389ea437e: Mounted from library/ubuntu [3B[7A[1K[K448ab7f3251d: Pushing     54MB/54.64MB[7B[8A[1K[K9754890eb365: Pushing  43.95MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  42.67MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushing  54.64MB[7B[8A[1K[K9754890eb365: Pushing  45.62MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  44.88MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  47.29MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing   47.1MB/116.4MB[6B[6A[1K[K3a934e76f03c: Pushing  49.31MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  48.96MB/176.6MB[8B[2A[1K[K88888b9b1b5b: Mounted from library/ubuntu [2B[8A[1K[K9754890eb365: Pushing  50.64MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  51.49MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  52.86MB/176.6MB[8B[1A[1K[Ka94e0d5a7c40: Mounted from library/ubuntu [1B[8A[1K[K9754890eb365: Pushing  55.09MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  53.11MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  57.32MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing   54.7MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  59.55MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  59.11MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  61.22MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  60.71MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  63.44MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  65.12MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  66.79MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  68.46MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  62.31MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  70.13MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  65.05MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing   71.8MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  67.18MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  73.47MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing   68.8MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing   75.7MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing   70.4MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  77.93MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  72.62MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  80.16MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  74.25MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  82.38MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  76.37MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  84.02MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  78.51MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  85.69MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  80.18MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  87.37MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  81.82MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  89.04MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  83.49MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  91.26MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  85.65MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  93.49MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  87.32MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  95.16MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  96.83MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  89.55MB/116.4MB[6B[7A[1K[K448ab7f3251d: Pushed [7B[8A[1K[K9754890eb365: Pushing   98.5MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  91.22MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  100.2MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  93.45MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing    103MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  95.12MB/116.4MB[6B[6A[1K[K3a934e76f03c: Pushing  96.79MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  105.2MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  106.8MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  99.02MB/116.4MB[6B[6A[1K[K3a934e76f03c: Pushing  100.7MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  108.5MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  102.3MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  110.2MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing    104MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  112.4MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  105.7MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  114.6MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  107.4MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  116.3MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing    109MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  117.9MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  110.7MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  119.6MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  112.4MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  121.3MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing    114MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  123.5MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  115.7MB/116.4MB[6B[8A[1K[K9754890eb365: Pushing  125.7MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  117.9MB[6B[8A[1K[K9754890eb365: Pushing  127.9MB/176.6MB[8B[6A[1K[K3a934e76f03c: Pushing  119.2MB[6B[8A[1K[K9754890eb365: Pushing  129.6MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  131.3MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing    133MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  134.6MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  136.3MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing    138MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  139.6MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  141.9MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  143.5MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  145.1MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  146.8MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  148.5MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  150.2MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  151.8MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  153.5MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  155.2MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  156.8MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  158.5MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  161.8MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  168.5MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  169.6MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  170.7MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  171.8MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  172.9MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing    174MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  175.1MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  176.2MB/176.6MB[8B[8A[1K[K9754890eb365: Pushing  176.7MB[8B[6A[1K[K3a934e76f03c: Pushed [6B[8A[1K[K9754890eb365: Pushed [8B2.3.4.1__2018-03-15: digest: sha256:7b305fc89d21420b69ff15c01ddaf50c3ce7e5f94890d087604e830d67c02c09 size: 2411
+
+real	2m13.632s
+user	0m0.164s
+sys	0m0.185s
+
+Script done on 2018-03-15 14:04:43-0400
