@@ -1,0 +1,11 @@
+--- signalp-4.1/signalp.orig	2017-10-23 15:00:59.555621625 -0400
++++ signalp-4.1/signalp	2017-10-23 15:02:57.996995879 -0400
+@@ -10,7 +10,7 @@
+ 
+ # full path to the signalp-4.1 directory on your system (mandatory)
+ BEGIN {
+-    $ENV{SIGNALP} = '/usr/cbs/bio/src/signalp-4.1';
++    (defined($ENV{SIGNALP})) || die "Undefined env var SIGNALP,";
+ }
+ 
+ # determine where to store temporary files (must be writable to all users)
