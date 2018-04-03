@@ -1,0 +1,353 @@
+Script started on 2018-03-27 11:53:37-0400
++ docker build --pull -t pvstodghill/racon:1.2.0__2018-03-27 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  28.41MBSending build context to Docker daemon  30.64MB
+Step 1/17 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
+Status: Image is up to date for ubuntu:latest
+ ---> f975c5035748
+Step 2/17 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 9bd3df5729fe
+Step 3/17 : ENV BUILD_PACKAGES build-essential cmake
+ ---> Using cache
+ ---> 9001814ff620
+Step 4/17 : ENV RUN_PACKAGES ""
+ ---> Using cache
+ ---> 7be61de22914
+Step 5/17 : RUN rm -rf /var/lib/apt/lists/* &&     apt-get clean &&     apt-get update &&     apt-get install --yes ${BUILD_PACKAGES} ${RUN_PACKAGES} &&     : done
+ ---> Using cache
+ ---> 3a859510402d
+Step 6/17 : ENV PACKAGE racon
+ ---> Using cache
+ ---> 1489a5de7302
+Step 7/17 : ENV VERSION 1.2.0
+ ---> Using cache
+ ---> 40f60a5d46a6
+Step 8/17 : ADD ${PACKAGE}-v${VERSION}.tar.gz /tmp/
+ ---> Using cache
+ ---> 2f0478cdd21c
+Step 9/17 : WORKDIR /tmp/${PACKAGE}-v${VERSION}
+ ---> Using cache
+ ---> 9d4488cf87c9
+Step 10/17 : RUN mkdir build &&     cd build &&     cmake -DCMAKE_BUILD_TYPE=Release .. &&     make && make install &&     mkdir -p /usr/local/share/doc/racon  &&     cd .. && cp --archive LICENSE README.md /usr/local/share/doc/racon/
+ ---> Running in 36cde14bedbb
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of off64_t
+-- Check size of off64_t - done
+-- Looking for fseeko
+-- Looking for fseeko - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Renaming
+--     /tmp/racon-v1.2.0/vendor/bioparser/vendor/zlib/zconf.h
+-- to 'zconf.h.included' because this file is included with zlib
+-- but CMake generates it automatically in the build directory.
+[91mSetting warning flags
+[0m-- Configuring done
+-- Generating done
+-- Build files have been written to: /tmp/racon-v1.2.0/build
+Scanning dependencies of target edlib_static
+[  3%] Building CXX object vendor/edlib/CMakeFiles/edlib_static.dir/edlib/src/edlib.cpp.o
+[  6%] Linking CXX static library ../../lib/libedlib_static.a
+[  6%] Built target edlib_static
+Scanning dependencies of target zlibstatic
+[  9%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/adler32.o
+[ 12%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/compress.o
+[ 16%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/crc32.o
+[ 19%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/deflate.o
+[ 22%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/gzclose.o
+[ 25%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/gzlib.o
+[ 29%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/gzread.o
+[ 32%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/gzwrite.o
+[ 35%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/inflate.o
+[ 38%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/infback.o
+[ 41%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/inftrees.o
+[ 45%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/inffast.o
+[ 48%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/trees.o
+[ 51%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/uncompr.o
+[ 54%] Building C object vendor/bioparser/vendor/zlib/CMakeFiles/zlibstatic.dir/zutil.o
+[ 58%] Linking C static library ../../lib/libz.a
+[ 58%] Built target zlibstatic
+Scanning dependencies of target spoa
+[ 61%] Building CXX object vendor/spoa/CMakeFiles/spoa.dir/src/alignment_engine.cpp.o
+[ 64%] Building CXX object vendor/spoa/CMakeFiles/spoa.dir/src/graph.cpp.o
+[ 67%] Building CXX object vendor/spoa/CMakeFiles/spoa.dir/src/simd_alignment_engine.cpp.o
+[ 70%] Building CXX object vendor/spoa/CMakeFiles/spoa.dir/src/sisd_alignment_engine.cpp.o
+[ 74%] Linking CXX static library lib/libspoa.a
+[ 74%] Built target spoa
+Scanning dependencies of target thread_pool
+[ 77%] Building CXX object vendor/thread_pool/CMakeFiles/thread_pool.dir/src/thread_pool.cpp.o
+[ 80%] Linking CXX static library lib/libthread_pool.a
+[ 80%] Built target thread_pool
+Scanning dependencies of target racon
+[ 83%] Building CXX object CMakeFiles/racon.dir/src/main.cpp.o
+[ 87%] Building CXX object CMakeFiles/racon.dir/src/polisher.cpp.o
+[ 90%] Building CXX object CMakeFiles/racon.dir/src/overlap.cpp.o
+[ 93%] Building CXX object CMakeFiles/racon.dir/src/sequence.cpp.o
+[ 96%] Building CXX object CMakeFiles/racon.dir/src/window.cpp.o
+[100%] Linking CXX executable bin/racon
+[100%] Built target racon
+[  6%] Built target edlib_static
+[ 58%] Built target zlibstatic
+[ 74%] Built target spoa
+[ 80%] Built target thread_pool
+[100%] Built target racon
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /usr/local/bin/racon
+ ---> 717a44333f24
+Removing intermediate container 36cde14bedbb
+Step 11/17 : WORKDIR /root
+ ---> 3e2567d57e08
+Removing intermediate container 8ee98b95142c
+Step 12/17 : RUN rm -rf /tmp/${PACKAGE}-v${VERSION}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Running in f4340b095228
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages were automatically installed and are no longer required:
+  binutils bzip2 ca-certificates cmake-data cpp cpp-5 dpkg-dev fakeroot g++
+  g++-5 gcc gcc-5 ifupdown iproute2 isc-dhcp-client isc-dhcp-common
+  krb5-locales libalgorithm-diff-perl libalgorithm-diff-xs-perl
+  libalgorithm-merge-perl libarchive13 libasan2 libasn1-8-heimdal libatm1
+  libatomic1 libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libcurl3
+  libdns-export162 libdpkg-perl libexpat1 libfakeroot libffi6
+  libfile-fcntllock-perl libgcc-5-dev libgdbm3 libgmp10 libgnutls30 libgomp1
+  libgssapi-krb5-2 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libicu55 libidn11
+  libisc-export160 libisl15 libitm1 libjsoncpp1 libk5crypto3 libkeyutils1
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 liblsan0
+  liblzo2-2 libmnl0 libmpc3 libmpfr4 libmpx0 libnettle6 libp11-kit0
+  libperl5.22 libquadmath0 libroken18-heimdal librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.0.0
+  libstdc++-5-dev libtasn1-6 libtsan0 libubsan0 libwind0-heimdal libxml2
+  libxtables11 linux-libc-dev make manpages manpages-dev netbase openssl patch
+  perl perl-modules-5.22 rename sgml-base xml-core xz-utils
+Use 'apt autoremove' to remove them.
+The following packages will be REMOVED:
+  build-essential* cmake*
+0 upgraded, 0 newly installed, 2 to remove and 9 not upgraded.
+After this operation, 14.6 MB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14934 files and directories currently installed.)
+Removing build-essential (12.1ubuntu2) ...
+Removing cmake (3.5.1-1ubuntu3) ...
+Purging configuration files for cmake (3.5.1-1ubuntu3) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages will be REMOVED:
+  binutils bzip2 ca-certificates cmake-data cpp cpp-5 dpkg-dev fakeroot g++
+  g++-5 gcc gcc-5 ifupdown iproute2 isc-dhcp-client isc-dhcp-common
+  krb5-locales libalgorithm-diff-perl libalgorithm-diff-xs-perl
+  libalgorithm-merge-perl libarchive13 libasan2 libasn1-8-heimdal libatm1
+  libatomic1 libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libcurl3
+  libdns-export162 libdpkg-perl libexpat1 libfakeroot libffi6
+  libfile-fcntllock-perl libgcc-5-dev libgdbm3 libgmp10 libgnutls30 libgomp1
+  libgssapi-krb5-2 libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhogweed4 libhx509-5-heimdal libicu55 libidn11
+  libisc-export160 libisl15 libitm1 libjsoncpp1 libk5crypto3 libkeyutils1
+  libkrb5-26-heimdal libkrb5-3 libkrb5support0 libldap-2.4-2 liblsan0
+  liblzo2-2 libmnl0 libmpc3 libmpfr4 libmpx0 libnettle6 libp11-kit0
+  libperl5.22 libquadmath0 libroken18-heimdal librtmp1 libsasl2-2
+  libsasl2-modules libsasl2-modules-db libsqlite3-0 libssl1.0.0
+  libstdc++-5-dev libtasn1-6 libtsan0 libubsan0 libwind0-heimdal libxml2
+  libxtables11 linux-libc-dev make manpages manpages-dev netbase openssl patch
+  perl perl-modules-5.22 rename sgml-base xml-core xz-utils
+0 upgraded, 0 newly installed, 97 to remove and 9 not upgraded.
+After this operation, 250 MB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 14912 files and directories currently installed.)
+Removing g++ (4:5.3.1-1ubuntu1) ...
+Removing g++-5 (5.4.0-6ubuntu1~16.04.9) ...
+Removing gcc (4:5.3.1-1ubuntu1) ...
+Removing gcc-5 (5.4.0-6ubuntu1~16.04.9) ...
+Removing dpkg-dev (1.18.4ubuntu1.4) ...
+Removing binutils (2.26.1-1ubuntu1~16.04.6) ...
+Removing bzip2 (1.0.6-8) ...
+Removing ca-certificates (20170717~16.04.1) ...
+Removing dangling symlinks from /etc/ssl/certs... done.
+Removing cmake-data (3.5.1-1ubuntu3) ...
+Removing cpp (4:5.3.1-1ubuntu1) ...
+Removing cpp-5 (5.4.0-6ubuntu1~16.04.9) ...
+Removing fakeroot (1.20.2-1ubuntu1) ...
+update-alternatives: using /usr/bin/fakeroot-tcp to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Removing ifupdown (0.8.10ubuntu1.2) ...
+Removing isc-dhcp-client (4.3.3-5ubuntu12.10) ...
+Removing iproute2 (4.3.0-1ubuntu3.16.04.3) ...
+Removing isc-dhcp-common (4.3.3-5ubuntu12.10) ...
+Removing krb5-locales (1.13.2+dfsg-5ubuntu2) ...
+Removing libalgorithm-diff-xs-perl (0.04-4build1) ...
+Removing libalgorithm-merge-perl (0.08-3) ...
+Removing libalgorithm-diff-perl (1.19.03-1) ...
+Removing libarchive13:amd64 (3.1.2-11ubuntu0.16.04.3) ...
+Removing libstdc++-5-dev:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libgcc-5-dev:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libasan2:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libcurl3:amd64 (7.47.0-1ubuntu2.7) ...
+Removing libldap-2.4-2:amd64 (2.4.42+dfsg-2ubuntu3.2) ...
+Removing libgssapi3-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libheimntlm0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libkrb5-26-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libhx509-5-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libatm1:amd64 (1:2.5.1-1.5) ...
+Removing libatomic1:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libc6-dev:amd64 (2.23-0ubuntu10) ...
+Removing libc-dev-bin (2.23-0ubuntu10) ...
+Removing libcc1-0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libcilkrts5:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libdns-export162 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Removing libdpkg-perl (1.18.4ubuntu1.4) ...
+Removing libexpat1:amd64 (2.1.0-7ubuntu0.16.04.3) ...
+Removing libfakeroot:amd64 (1.20.2-1ubuntu1) ...
+Removing librtmp1:amd64 (2.4+20151223.gitfa8646d-1ubuntu0.1) ...
+Removing libgnutls30:amd64 (3.4.10-4ubuntu1.4) ...
+Removing libp11-kit0:amd64 (0.23.2-5~ubuntu16.04.1) ...
+Removing libffi6:amd64 (3.2.1-4) ...
+Removing libfile-fcntllock-perl (0.22-3) ...
+Removing rename (0.20-4) ...
+update-alternatives: using /usr/bin/prename to provide /usr/bin/rename (rename) in auto mode
+Removing perl (5.22.1-9ubuntu0.2) ...
+Removing libperl5.22:amd64 (5.22.1-9ubuntu0.2) ...
+Removing libgdbm3:amd64 (1.8.3-13.1) ...
+Removing libhogweed4:amd64 (3.2-1ubuntu0.16.04.1) ...
+Removing libmpc3:amd64 (1.0.3-1) ...
+Removing libmpfr4:amd64 (3.1.4-1) ...
+Removing libgomp1:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libgssapi-krb5-2:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Removing libhcrypto4-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libheimbase1-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libxml2:amd64 (2.9.3+dfsg1-1ubuntu0.5) ...
+Removing libicu55:amd64 (55.1-7ubuntu0.3) ...
+Removing libidn11:amd64 (1.32-3ubuntu1.2) ...
+Removing libisc-export160 (1:9.10.3.dfsg.P4-8ubuntu1.10) ...
+Removing libisl15:amd64 (0.16.1-1) ...
+Removing libitm1:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libjsoncpp1:amd64 (1.7.2-1) ...
+Removing libkrb5-3:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Removing libk5crypto3:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Removing libkeyutils1:amd64 (1.5.9-8ubuntu1) ...
+Removing libkrb5support0:amd64 (1.13.2+dfsg-5ubuntu2) ...
+Removing liblsan0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing liblzo2-2:amd64 (2.08-1.2) ...
+Removing libmnl0:amd64 (1.0.3-5) ...
+Removing libmpx0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libnettle6:amd64 (3.2-1ubuntu0.16.04.1) ...
+Removing libquadmath0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libwind0-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libsasl2-2:amd64 (2.1.26.dfsg1-14build1) ...
+Removing libsasl2-modules:amd64 (2.1.26.dfsg1-14build1) ...
+Removing libsasl2-modules-db:amd64 (2.1.26.dfsg1-14build1) ...
+Removing libsqlite3-0:amd64 (3.11.0-1ubuntu1) ...
+Removing openssl (1.0.2g-1ubuntu4.10) ...
+Removing libssl1.0.0:amd64 (1.0.2g-1ubuntu4.10) ...
+Removing libtasn1-6:amd64 (4.7-3ubuntu0.16.04.3) ...
+Removing libtsan0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libubsan0:amd64 (5.4.0-6ubuntu1~16.04.9) ...
+Removing libxtables11:amd64 (1.6.0-2ubuntu3) ...
+Removing linux-libc-dev:amd64 (4.4.0-116.140) ...
+Removing make (4.1-6) ...
+Removing manpages-dev (4.04-2) ...
+Removing manpages (4.04-2) ...
+Removing netbase (5.3) ...
+Removing patch (2.7.5-1) ...
+Removing perl-modules-5.22 (5.22.1-9ubuntu0.2) ...
+Removing xml-core (0.13+nmu2) ...
+Removing sgml-base (1.26+nmu4ubuntu1) ...
+Removing xz-utils (5.1.1alpha+20120614-2ubuntu2) ...
+Removing libasn1-8-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Removing libgmp10:amd64 (2:6.1.0+dfsg-2) ...
+Removing libroken18-heimdal:amd64 (1.7~git20150920+dfsg-4ubuntu1.16.04.1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+ ---> f5c03f830770
+Removing intermediate container f4340b095228
+Step 13/17 : RUN useradd -d /mnt -M guest
+ ---> Running in 728dd36747a2
+ ---> d3ac4df0b7ab
+Removing intermediate container 728dd36747a2
+Step 14/17 : USER guest
+ ---> Running in a643b4de618c
+ ---> 30428d22bad1
+Removing intermediate container a643b4de618c
+Step 15/17 : ENV HOME /mnt
+ ---> Running in 8749b509232b
+ ---> 42608473f9b1
+Removing intermediate container 8749b509232b
+Step 16/17 : WORKDIR /mnt
+ ---> fb95a5f073e2
+Removing intermediate container 1a6ed1d53599
+Step 17/17 : CMD find /usr/local -type f | sort
+ ---> Running in 55e225c91304
+ ---> f1493b20b916
+Removing intermediate container 55e225c91304
+Successfully built f1493b20b916
+Successfully tagged pvstodghill/racon:1.2.0__2018-03-27
++ docker run --rm pvstodghill/racon:1.2.0__2018-03-27 racon
+[racon::] error: missing input file(s)!
+usage: racon [options ...] <sequences> <overlaps> <target sequences>
+
+    <sequences>
+        input file in FASTA/FASTQ format (can be compressed with gzip)
+        containing sequences used for correction
+    <overlaps>
+        input file in MHAP/PAF/SAM format (can be compressed with gzip)
+        containing overlaps between sequences and target sequences
+    <target sequences>
+        input file in FASTA/FASTQ format (can be compressed with gzip)
+        containing sequences which will be corrected
+
+    options:
+        -u, --include-unpolished
+            output unpolished target sequences
+        -f, --fragment-correction
+            perform fragment correction instead of contig polishing
+            (overlaps file should not contain dual/self overlaps!)
+        -w, --window-length <int>
+            default: 500
+            size of window on which POA is performed
+        -q, --quality-threshold <float>
+            default: 10.0
+            threshold for average base quality of windows used in poa
+        -e, --error-threshold <float>
+            default: 0.3
+            maximum allowed error rate used for filtering overlaps
+        -m, --match <int>
+            default: 5
+            score for matching bases
+        -x, --mismatch <int>
+            default: -4
+            score for mismatching bases
+        -g, --gap <int>
+            default: -8
+            gap penalty (must be negative)
+        -t, --threads <int>
+            default: 1
+            number of threads
+        --version
+            prints the version number
+        -h, --help
+            prints the usage
+
+real	0m57.101s
+user	0m0.112s
+sys	0m0.090s
+
+Script done on 2018-03-27 11:54:34-0400
