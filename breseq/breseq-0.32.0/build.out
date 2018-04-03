@@ -1,0 +1,800 @@
+Script started on 2018-03-15 14:17:49-0400
++ rm -rf bowtie2-2.3.4.1-linux-x86_64
++ unzip bowtie2-2.3.4.1-linux-x86_64.zip
+Archive:  bowtie2-2.3.4.1-linux-x86_64.zip
+   creating: bowtie2-2.3.4.1-linux-x86_64/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reference/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reference/lambda_virus.fa  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reads/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/simulate.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/longreads.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_1.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_2.fq  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/index/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.3.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.4.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/doc/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/style.css  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/README  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/manual.html  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/LICENSE  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/NEWS  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL.markdown  
+ extracting: bowtie2-2.3.4.1-linux-x86_64/VERSION  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s  
+   creating: bowtie2-2.3.4.1-linux-x86_64/scripts/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_c_elegans.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_canFam2.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_e_coli.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_2b_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_m_musculus_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_s_cerevisiae.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi36.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_b_taurus_UMD3.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg18.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_rn4.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_d_melanogaster.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg19.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/infer_fraglen.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm9.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_solqual_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_a_thaliana_tair.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/convert_quals.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm10.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/TUTORIAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/AUTHORS  
++ docker build --pull -t pvstodghill/breseq:0.32.0__2018-03-15 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  29.52MBSending build context to Docker daemon  61.83MBSending build context to Docker daemon  93.03MBSending build context to Docker daemon  123.7MBSending build context to Docker daemon  154.3MBSending build context to Docker daemon  185.5MBSending build context to Docker daemon  218.4MBSending build context to Docker daemon  244.3MB
+Step 1/28 : FROM debian:latest
+latest: Pulling from library/debian
+Digest: sha256:f7ca2200b10b859910a861d54229753b5aed94bb5c8f4321e10ec880b0909a3b
+Status: Image is up to date for debian:latest
+ ---> 2b98c9851a37
+Step 2/28 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 39ac0946e293
+Step 3/28 : ENV PACKAGE breseq
+ ---> Using cache
+ ---> 282e21da6bd7
+Step 4/28 : ENV VERSION 0.32.0
+ ---> Using cache
+ ---> df356a9df86d
+Step 5/28 : ENV BVERSION 2.3.4.1
+ ---> Using cache
+ ---> 5981332bdcf3
+Step 6/28 : ENV RUN_PACKAGES r-base-core python libsys-hostname-long-perl libunwind8
+ ---> Running in dc87c6ac4be7
+ ---> 2a1c45f9fbb7
+Removing intermediate container dc87c6ac4be7
+Step 7/28 : RUN apt-get update &&     apt-get install --yes --no-install-recommends     ${RUN_PACKAGES}
+ ---> Running in e4e8ac8be535
+Ign:1 http://deb.debian.org/debian stretch InRelease
+Get:2 http://security.debian.org stretch/updates InRelease [63.0 kB]
+Get:3 http://deb.debian.org/debian stretch-updates InRelease [91.0 kB]
+Get:4 http://deb.debian.org/debian stretch Release [118 kB]
+Get:5 http://deb.debian.org/debian stretch Release.gpg [2434 B]
+Get:6 http://deb.debian.org/debian stretch-updates/main amd64 Packages [8431 B]
+Get:7 http://security.debian.org stretch/updates/main amd64 Packages [429 kB]
+Get:8 http://deb.debian.org/debian stretch/main amd64 Packages [9530 kB]
+Fetched 10.2 MB in 4s (2398 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  ca-certificates fontconfig fontconfig-config fonts-dejavu-core
+  libblas-common libblas3 libbsd0 libcairo2 libcurl3 libdatrie1 libexpat1
+  libffi6 libfontconfig1 libfreetype6 libgdbm3 libgfortran3 libglib2.0-0
+  libgmp10 libgnutls30 libgomp1 libgraphite2-3 libgssapi-krb5-2 libharfbuzz0b
+  libhogweed4 libice6 libicu57 libidn11 libidn2-0 libjbig0 libjpeg62-turbo
+  libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblapack3 libldap-2.4-2
+  libldap-common libnettle6 libnghttp2-14 libp11-kit0 libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpaper-utils libpaper1 libperl5.24
+  libpixman-1-0 libpng16-16 libpsl5 libpython-stdlib libpython2.7-minimal
+  libpython2.7-stdlib libquadmath0 libreadline7 librtmp1 libsasl2-2
+  libsasl2-modules-db libsm6 libsqlite3-0 libssh2-1 libssl1.0.2 libssl1.1
+  libtasn1-6 libtcl8.6 libthai-data libthai0 libtiff5 libtk8.6 libunistring0
+  libx11-6 libx11-data libxau6 libxcb-render0 libxcb-shm0 libxcb1 libxdmcp6
+  libxext6 libxft2 libxrender1 libxss1 libxt6 mime-support openssl perl
+  perl-modules-5.24 python-minimal python2.7 python2.7-minimal readline-common
+  ucf unzip x11-common xdg-utils zip
+Suggested packages:
+  gnutls-bin krb5-doc krb5-user tcl8.6 tk8.6 perl-doc
+  libterm-readline-gnu-perl | libterm-readline-perl-perl make python-doc
+  python-tk python2.7-doc binutils binfmt-support ess r-doc-info | r-doc-pdf
+  r-mathlib r-base-html readline-doc gvfs-bin
+Recommended packages:
+  libglib2.0-data shared-mime-info xdg-user-dirs krb5-locales publicsuffix
+  libsasl2-modules bzip2 file xz-utils rename r-recommended r-base-dev
+  r-doc-html libfile-mimeinfo-perl libnet-dbus-perl libx11-protocol-perl
+  x11-utils x11-xserver-utils
+The following NEW packages will be installed:
+  ca-certificates fontconfig fontconfig-config fonts-dejavu-core
+  libblas-common libblas3 libbsd0 libcairo2 libcurl3 libdatrie1 libexpat1
+  libffi6 libfontconfig1 libfreetype6 libgdbm3 libgfortran3 libglib2.0-0
+  libgmp10 libgnutls30 libgomp1 libgraphite2-3 libgssapi-krb5-2 libharfbuzz0b
+  libhogweed4 libice6 libicu57 libidn11 libidn2-0 libjbig0 libjpeg62-turbo
+  libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 liblapack3 libldap-2.4-2
+  libldap-common libnettle6 libnghttp2-14 libp11-kit0 libpango-1.0-0
+  libpangocairo-1.0-0 libpangoft2-1.0-0 libpaper-utils libpaper1 libperl5.24
+  libpixman-1-0 libpng16-16 libpsl5 libpython-stdlib libpython2.7-minimal
+  libpython2.7-stdlib libquadmath0 libreadline7 librtmp1 libsasl2-2
+  libsasl2-modules-db libsm6 libsqlite3-0 libssh2-1 libssl1.0.2 libssl1.1
+  libsys-hostname-long-perl libtasn1-6 libtcl8.6 libthai-data libthai0
+  libtiff5 libtk8.6 libunistring0 libunwind8 libx11-6 libx11-data libxau6
+  libxcb-render0 libxcb-shm0 libxcb1 libxdmcp6 libxext6 libxft2 libxrender1
+  libxss1 libxt6 mime-support openssl perl perl-modules-5.24 python
+  python-minimal python2.7 python2.7-minimal r-base-core readline-common ucf
+  unzip x11-common xdg-utils zip
+0 upgraded, 98 newly installed, 0 to remove and 0 not upgraded.
+Need to get 64.2 MB of archives.
+After this operation, 185 MB of additional disk space will be used.
+Get:1 http://security.debian.org stretch/updates/main amd64 libcurl3 amd64 7.52.1-5+deb9u5 [291 kB]
+Get:2 http://deb.debian.org/debian stretch/main amd64 perl-modules-5.24 all 5.24.1-3+deb9u2 [2724 kB]
+Get:3 http://deb.debian.org/debian stretch/main amd64 libgdbm3 amd64 1.8.3-14 [30.0 kB]
+Get:4 http://deb.debian.org/debian stretch/main amd64 libperl5.24 amd64 5.24.1-3+deb9u2 [3538 kB]
+Get:5 http://deb.debian.org/debian stretch/main amd64 perl amd64 5.24.1-3+deb9u2 [218 kB]
+Get:6 http://deb.debian.org/debian stretch/main amd64 libpython2.7-minimal amd64 2.7.13-2+deb9u2 [389 kB]
+Get:7 http://deb.debian.org/debian stretch/main amd64 python2.7-minimal amd64 2.7.13-2+deb9u2 [1382 kB]
+Get:8 http://deb.debian.org/debian stretch/main amd64 python-minimal amd64 2.7.13-2 [40.5 kB]
+Get:9 http://deb.debian.org/debian stretch/main amd64 mime-support all 3.60 [36.7 kB]
+Get:10 http://deb.debian.org/debian stretch/main amd64 libexpat1 amd64 2.2.0-2+deb9u1 [83.4 kB]
+Get:11 http://deb.debian.org/debian stretch/main amd64 libffi6 amd64 3.2.1-6 [20.4 kB]
+Get:12 http://deb.debian.org/debian stretch/main amd64 readline-common all 7.0-3 [70.4 kB]
+Get:13 http://deb.debian.org/debian stretch/main amd64 libreadline7 amd64 7.0-3 [151 kB]
+Get:14 http://deb.debian.org/debian stretch/main amd64 libsqlite3-0 amd64 3.16.2-5+deb9u1 [572 kB]
+Get:15 http://deb.debian.org/debian stretch/main amd64 libssl1.1 amd64 1.1.0f-3+deb9u1 [1342 kB]
+Get:16 http://deb.debian.org/debian stretch/main amd64 libpython2.7-stdlib amd64 2.7.13-2+deb9u2 [1896 kB]
+Get:17 http://deb.debian.org/debian stretch/main amd64 python2.7 amd64 2.7.13-2+deb9u2 [285 kB]
+Get:18 http://deb.debian.org/debian stretch/main amd64 libpython-stdlib amd64 2.7.13-2 [20.0 kB]
+Get:19 http://deb.debian.org/debian stretch/main amd64 python amd64 2.7.13-2 [154 kB]
+Get:20 http://deb.debian.org/debian stretch/main amd64 libpng16-16 amd64 1.6.28-1 [280 kB]
+Get:21 http://deb.debian.org/debian stretch/main amd64 libfreetype6 amd64 2.6.3-3.2 [438 kB]
+Get:22 http://deb.debian.org/debian stretch/main amd64 ucf all 3.0036 [70.2 kB]
+Get:23 http://deb.debian.org/debian stretch/main amd64 fonts-dejavu-core all 2.37-1 [1068 kB]
+Get:24 http://deb.debian.org/debian stretch/main amd64 fontconfig-config all 2.11.0-6.7 [271 kB]
+Get:25 http://deb.debian.org/debian stretch/main amd64 libfontconfig1 amd64 2.11.0-6.7+b1 [331 kB]
+Get:26 http://deb.debian.org/debian stretch/main amd64 fontconfig amd64 2.11.0-6.7+b1 [404 kB]
+Get:27 http://deb.debian.org/debian stretch/main amd64 libxau6 amd64 1:1.0.8-1 [20.7 kB]
+Get:28 http://deb.debian.org/debian stretch/main amd64 libbsd0 amd64 0.8.3-1 [83.0 kB]
+Get:29 http://deb.debian.org/debian stretch/main amd64 libxdmcp6 amd64 1:1.1.2-3 [26.3 kB]
+Get:30 http://deb.debian.org/debian stretch/main amd64 libxcb1 amd64 1.12-1 [133 kB]
+Get:31 http://deb.debian.org/debian stretch/main amd64 libx11-data all 2:1.6.4-3 [290 kB]
+Get:32 http://deb.debian.org/debian stretch/main amd64 libx11-6 amd64 2:1.6.4-3 [747 kB]
+Get:33 http://deb.debian.org/debian stretch/main amd64 libxext6 amd64 2:1.3.3-1+b2 [52.5 kB]
+Get:34 http://deb.debian.org/debian stretch/main amd64 x11-common all 1:7.7+19 [251 kB]
+Get:35 http://deb.debian.org/debian stretch/main amd64 libxss1 amd64 1:1.2.2-1 [17.5 kB]
+Get:36 http://deb.debian.org/debian stretch/main amd64 libssl1.0.2 amd64 1.0.2l-2+deb9u2 [1294 kB]
+Get:37 http://deb.debian.org/debian stretch/main amd64 libgmp10 amd64 2:6.1.2+dfsg-1 [253 kB]
+Get:38 http://deb.debian.org/debian stretch/main amd64 libnettle6 amd64 3.3-1+b2 [192 kB]
+Get:39 http://deb.debian.org/debian stretch/main amd64 libhogweed4 amd64 3.3-1+b2 [136 kB]
+Get:40 http://deb.debian.org/debian stretch/main amd64 libidn11 amd64 1.33-1 [115 kB]
+Get:41 http://deb.debian.org/debian stretch/main amd64 libp11-kit0 amd64 0.23.3-2 [111 kB]
+Get:42 http://deb.debian.org/debian stretch/main amd64 libtasn1-6 amd64 4.10-1.1+deb9u1 [50.6 kB]
+Get:43 http://deb.debian.org/debian stretch/main amd64 libgnutls30 amd64 3.5.8-5+deb9u3 [895 kB]
+Get:44 http://deb.debian.org/debian stretch/main amd64 libkeyutils1 amd64 1.5.9-9 [12.4 kB]
+Get:45 http://deb.debian.org/debian stretch/main amd64 libkrb5support0 amd64 1.15-1+deb9u1 [61.9 kB]
+Get:46 http://deb.debian.org/debian stretch/main amd64 libk5crypto3 amd64 1.15-1+deb9u1 [119 kB]
+Get:47 http://deb.debian.org/debian stretch/main amd64 libkrb5-3 amd64 1.15-1+deb9u1 [311 kB]
+Get:48 http://deb.debian.org/debian stretch/main amd64 libgssapi-krb5-2 amd64 1.15-1+deb9u1 [155 kB]
+Get:49 http://deb.debian.org/debian stretch/main amd64 libsasl2-modules-db amd64 2.1.27~101-g0780600+dfsg-3 [68.2 kB]
+Get:50 http://deb.debian.org/debian stretch/main amd64 libsasl2-2 amd64 2.1.27~101-g0780600+dfsg-3 [105 kB]
+Get:51 http://deb.debian.org/debian stretch/main amd64 libldap-common all 2.4.44+dfsg-5+deb9u1 [85.4 kB]
+Get:52 http://deb.debian.org/debian stretch/main amd64 libldap-2.4-2 amd64 2.4.44+dfsg-5+deb9u1 [219 kB]
+Get:53 http://deb.debian.org/debian stretch/main amd64 openssl amd64 1.1.0f-3+deb9u1 [725 kB]
+Get:54 http://deb.debian.org/debian stretch/main amd64 ca-certificates all 20161130+nmu1 [196 kB]
+Get:55 http://deb.debian.org/debian stretch/main amd64 libblas-common amd64 3.7.0-2 [14.2 kB]
+Get:56 http://deb.debian.org/debian stretch/main amd64 libquadmath0 amd64 6.3.0-18+deb9u1 [131 kB]
+Get:57 http://deb.debian.org/debian stretch/main amd64 libgfortran3 amd64 6.3.0-18+deb9u1 [265 kB]
+Get:58 http://deb.debian.org/debian stretch/main amd64 libblas3 amd64 3.7.0-2 [155 kB]
+Get:59 http://deb.debian.org/debian stretch/main amd64 libpixman-1-0 amd64 0.34.0-1 [530 kB]
+Get:60 http://deb.debian.org/debian stretch/main amd64 libxcb-render0 amd64 1.12-1 [105 kB]
+Get:61 http://deb.debian.org/debian stretch/main amd64 libxcb-shm0 amd64 1.12-1 [95.9 kB]
+Get:62 http://deb.debian.org/debian stretch/main amd64 libxrender1 amd64 1:0.9.10-1 [33.0 kB]
+Get:63 http://deb.debian.org/debian stretch/main amd64 libcairo2 amd64 1.14.8-1 [771 kB]
+Get:64 http://deb.debian.org/debian stretch/main amd64 libunistring0 amd64 0.9.6+really0.9.3-0.1 [279 kB]
+Get:65 http://deb.debian.org/debian stretch/main amd64 libidn2-0 amd64 0.16-1+deb9u1 [60.7 kB]
+Get:66 http://deb.debian.org/debian stretch/main amd64 libnghttp2-14 amd64 1.18.1-1 [79.1 kB]
+Get:67 http://deb.debian.org/debian stretch/main amd64 libpsl5 amd64 0.17.0-3 [41.8 kB]
+Get:68 http://deb.debian.org/debian stretch/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-1+b1 [60.4 kB]
+Get:69 http://deb.debian.org/debian stretch/main amd64 libssh2-1 amd64 1.7.0-1 [138 kB]
+Get:70 http://deb.debian.org/debian stretch/main amd64 libdatrie1 amd64 0.2.10-4+b1 [36.4 kB]
+Get:71 http://deb.debian.org/debian stretch/main amd64 libglib2.0-0 amd64 2.50.3-2 [2691 kB]
+Get:72 http://deb.debian.org/debian stretch/main amd64 libgomp1 amd64 6.3.0-18+deb9u1 [73.3 kB]
+Get:73 http://deb.debian.org/debian stretch/main amd64 libgraphite2-3 amd64 1.3.10-1 [84.2 kB]
+Get:74 http://deb.debian.org/debian stretch/main amd64 libharfbuzz0b amd64 1.4.2-1 [671 kB]
+Get:75 http://deb.debian.org/debian stretch/main amd64 libice6 amd64 2:1.0.9-2 [58.7 kB]
+Get:76 http://deb.debian.org/debian stretch/main amd64 libicu57 amd64 57.1-6+deb9u1 [7697 kB]
+Get:77 http://deb.debian.org/debian stretch/main amd64 libjpeg62-turbo amd64 1:1.5.1-2 [134 kB]
+Get:78 http://deb.debian.org/debian stretch/main amd64 liblapack3 amd64 3.7.0-2 [2141 kB]
+Get:79 http://deb.debian.org/debian stretch/main amd64 libthai-data all 0.1.26-1 [166 kB]
+Get:80 http://deb.debian.org/debian stretch/main amd64 libthai0 amd64 0.1.26-1 [52.1 kB]
+Get:81 http://deb.debian.org/debian stretch/main amd64 libpango-1.0-0 amd64 1.40.5-1 [320 kB]
+Get:82 http://deb.debian.org/debian stretch/main amd64 libpangoft2-1.0-0 amd64 1.40.5-1 [205 kB]
+Get:83 http://deb.debian.org/debian stretch/main amd64 libpangocairo-1.0-0 amd64 1.40.5-1 [193 kB]
+Get:84 http://deb.debian.org/debian stretch/main amd64 libpaper1 amd64 1.1.24+nmu5 [21.6 kB]
+Get:85 http://deb.debian.org/debian stretch/main amd64 libpaper-utils amd64 1.1.24+nmu5 [17.6 kB]
+Get:86 http://deb.debian.org/debian stretch/main amd64 libsm6 amd64 2:1.2.2-1+b3 [33.3 kB]
+Get:87 http://deb.debian.org/debian stretch/main amd64 libsys-hostname-long-perl all 1.5-1 [12.0 kB]
+Get:88 http://deb.debian.org/debian stretch/main amd64 libtcl8.6 amd64 8.6.6+dfsg-1+b1 [985 kB]
+Get:89 http://deb.debian.org/debian stretch/main amd64 libjbig0 amd64 2.1-3.1+b2 [31.0 kB]
+Get:90 http://deb.debian.org/debian stretch/main amd64 libtiff5 amd64 4.0.8-2+deb9u2 [238 kB]
+Get:91 http://deb.debian.org/debian stretch/main amd64 libxft2 amd64 2.3.2-1+b2 [56.5 kB]
+Get:92 http://deb.debian.org/debian stretch/main amd64 libtk8.6 amd64 8.6.6-1+b1 [754 kB]
+Get:93 http://deb.debian.org/debian stretch/main amd64 libunwind8 amd64 1.1-4.1 [48.7 kB]
+Get:94 http://deb.debian.org/debian stretch/main amd64 libxt6 amd64 1:1.1.5-1 [188 kB]
+Get:95 http://deb.debian.org/debian stretch/main amd64 zip amd64 3.0-11+b1 [234 kB]
+Get:96 http://deb.debian.org/debian stretch/main amd64 unzip amd64 6.0-21 [170 kB]
+Get:97 http://deb.debian.org/debian stretch/main amd64 xdg-utils all 1.1.1-1 [71.1 kB]
+Get:98 http://deb.debian.org/debian stretch/main amd64 r-base-core amd64 3.3.3-1 [21.2 MB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 64.2 MB in 29s (2186 kB/s)
+Selecting previously unselected package perl-modules-5.24.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6487 files and directories currently installed.)
+Preparing to unpack .../00-perl-modules-5.24_5.24.1-3+deb9u2_all.deb ...
+Unpacking perl-modules-5.24 (5.24.1-3+deb9u2) ...
+Selecting previously unselected package libgdbm3:amd64.
+Preparing to unpack .../01-libgdbm3_1.8.3-14_amd64.deb ...
+Unpacking libgdbm3:amd64 (1.8.3-14) ...
+Selecting previously unselected package libperl5.24:amd64.
+Preparing to unpack .../02-libperl5.24_5.24.1-3+deb9u2_amd64.deb ...
+Unpacking libperl5.24:amd64 (5.24.1-3+deb9u2) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../03-perl_5.24.1-3+deb9u2_amd64.deb ...
+Unpacking perl (5.24.1-3+deb9u2) ...
+Selecting previously unselected package libpython2.7-minimal:amd64.
+Preparing to unpack .../04-libpython2.7-minimal_2.7.13-2+deb9u2_amd64.deb ...
+Unpacking libpython2.7-minimal:amd64 (2.7.13-2+deb9u2) ...
+Selecting previously unselected package python2.7-minimal.
+Preparing to unpack .../05-python2.7-minimal_2.7.13-2+deb9u2_amd64.deb ...
+Unpacking python2.7-minimal (2.7.13-2+deb9u2) ...
+Selecting previously unselected package python-minimal.
+Preparing to unpack .../06-python-minimal_2.7.13-2_amd64.deb ...
+Unpacking python-minimal (2.7.13-2) ...
+Selecting previously unselected package mime-support.
+Preparing to unpack .../07-mime-support_3.60_all.deb ...
+Unpacking mime-support (3.60) ...
+Selecting previously unselected package libexpat1:amd64.
+Preparing to unpack .../08-libexpat1_2.2.0-2+deb9u1_amd64.deb ...
+Unpacking libexpat1:amd64 (2.2.0-2+deb9u1) ...
+Selecting previously unselected package libffi6:amd64.
+Preparing to unpack .../09-libffi6_3.2.1-6_amd64.deb ...
+Unpacking libffi6:amd64 (3.2.1-6) ...
+Selecting previously unselected package readline-common.
+Preparing to unpack .../10-readline-common_7.0-3_all.deb ...
+Unpacking readline-common (7.0-3) ...
+Selecting previously unselected package libreadline7:amd64.
+Preparing to unpack .../11-libreadline7_7.0-3_amd64.deb ...
+Unpacking libreadline7:amd64 (7.0-3) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../12-libsqlite3-0_3.16.2-5+deb9u1_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.16.2-5+deb9u1) ...
+Selecting previously unselected package libssl1.1:amd64.
+Preparing to unpack .../13-libssl1.1_1.1.0f-3+deb9u1_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.0f-3+deb9u1) ...
+Selecting previously unselected package libpython2.7-stdlib:amd64.
+Preparing to unpack .../14-libpython2.7-stdlib_2.7.13-2+deb9u2_amd64.deb ...
+Unpacking libpython2.7-stdlib:amd64 (2.7.13-2+deb9u2) ...
+Selecting previously unselected package python2.7.
+Preparing to unpack .../15-python2.7_2.7.13-2+deb9u2_amd64.deb ...
+Unpacking python2.7 (2.7.13-2+deb9u2) ...
+Selecting previously unselected package libpython-stdlib:amd64.
+Preparing to unpack .../16-libpython-stdlib_2.7.13-2_amd64.deb ...
+Unpacking libpython-stdlib:amd64 (2.7.13-2) ...
+Setting up libpython2.7-minimal:amd64 (2.7.13-2+deb9u2) ...
+Setting up python2.7-minimal (2.7.13-2+deb9u2) ...
+Linking and byte-compiling packages for runtime python2.7...
+Setting up python-minimal (2.7.13-2) ...
+Selecting previously unselected package python.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9137 files and directories currently installed.)
+Preparing to unpack .../00-python_2.7.13-2_amd64.deb ...
+Unpacking python (2.7.13-2) ...
+Selecting previously unselected package libpng16-16:amd64.
+Preparing to unpack .../01-libpng16-16_1.6.28-1_amd64.deb ...
+Unpacking libpng16-16:amd64 (1.6.28-1) ...
+Selecting previously unselected package libfreetype6:amd64.
+Preparing to unpack .../02-libfreetype6_2.6.3-3.2_amd64.deb ...
+Unpacking libfreetype6:amd64 (2.6.3-3.2) ...
+Selecting previously unselected package ucf.
+Preparing to unpack .../03-ucf_3.0036_all.deb ...
+Moving old data out of the way
+Unpacking ucf (3.0036) ...
+Selecting previously unselected package fonts-dejavu-core.
+Preparing to unpack .../04-fonts-dejavu-core_2.37-1_all.deb ...
+Unpacking fonts-dejavu-core (2.37-1) ...
+Selecting previously unselected package fontconfig-config.
+Preparing to unpack .../05-fontconfig-config_2.11.0-6.7_all.deb ...
+Unpacking fontconfig-config (2.11.0-6.7) ...
+Selecting previously unselected package libfontconfig1:amd64.
+Preparing to unpack .../06-libfontconfig1_2.11.0-6.7+b1_amd64.deb ...
+Unpacking libfontconfig1:amd64 (2.11.0-6.7+b1) ...
+Selecting previously unselected package fontconfig.
+Preparing to unpack .../07-fontconfig_2.11.0-6.7+b1_amd64.deb ...
+Unpacking fontconfig (2.11.0-6.7+b1) ...
+Selecting previously unselected package libxau6:amd64.
+Preparing to unpack .../08-libxau6_1%3a1.0.8-1_amd64.deb ...
+Unpacking libxau6:amd64 (1:1.0.8-1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../09-libbsd0_0.8.3-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.8.3-1) ...
+Selecting previously unselected package libxdmcp6:amd64.
+Preparing to unpack .../10-libxdmcp6_1%3a1.1.2-3_amd64.deb ...
+Unpacking libxdmcp6:amd64 (1:1.1.2-3) ...
+Selecting previously unselected package libxcb1:amd64.
+Preparing to unpack .../11-libxcb1_1.12-1_amd64.deb ...
+Unpacking libxcb1:amd64 (1.12-1) ...
+Selecting previously unselected package libx11-data.
+Preparing to unpack .../12-libx11-data_2%3a1.6.4-3_all.deb ...
+Unpacking libx11-data (2:1.6.4-3) ...
+Selecting previously unselected package libx11-6:amd64.
+Preparing to unpack .../13-libx11-6_2%3a1.6.4-3_amd64.deb ...
+Unpacking libx11-6:amd64 (2:1.6.4-3) ...
+Selecting previously unselected package libxext6:amd64.
+Preparing to unpack .../14-libxext6_2%3a1.3.3-1+b2_amd64.deb ...
+Unpacking libxext6:amd64 (2:1.3.3-1+b2) ...
+Selecting previously unselected package x11-common.
+Preparing to unpack .../15-x11-common_1%3a7.7+19_all.deb ...
+Unpacking x11-common (1:7.7+19) ...
+Selecting previously unselected package libxss1:amd64.
+Preparing to unpack .../16-libxss1_1%3a1.2.2-1_amd64.deb ...
+Unpacking libxss1:amd64 (1:1.2.2-1) ...
+Selecting previously unselected package libssl1.0.2:amd64.
+Preparing to unpack .../17-libssl1.0.2_1.0.2l-2+deb9u2_amd64.deb ...
+Unpacking libssl1.0.2:amd64 (1.0.2l-2+deb9u2) ...
+Selecting previously unselected package libgmp10:amd64.
+Preparing to unpack .../18-libgmp10_2%3a6.1.2+dfsg-1_amd64.deb ...
+Unpacking libgmp10:amd64 (2:6.1.2+dfsg-1) ...
+Selecting previously unselected package libnettle6:amd64.
+Preparing to unpack .../19-libnettle6_3.3-1+b2_amd64.deb ...
+Unpacking libnettle6:amd64 (3.3-1+b2) ...
+Selecting previously unselected package libhogweed4:amd64.
+Preparing to unpack .../20-libhogweed4_3.3-1+b2_amd64.deb ...
+Unpacking libhogweed4:amd64 (3.3-1+b2) ...
+Selecting previously unselected package libidn11:amd64.
+Preparing to unpack .../21-libidn11_1.33-1_amd64.deb ...
+Unpacking libidn11:amd64 (1.33-1) ...
+Selecting previously unselected package libp11-kit0:amd64.
+Preparing to unpack .../22-libp11-kit0_0.23.3-2_amd64.deb ...
+Unpacking libp11-kit0:amd64 (0.23.3-2) ...
+Selecting previously unselected package libtasn1-6:amd64.
+Preparing to unpack .../23-libtasn1-6_4.10-1.1+deb9u1_amd64.deb ...
+Unpacking libtasn1-6:amd64 (4.10-1.1+deb9u1) ...
+Selecting previously unselected package libgnutls30:amd64.
+Preparing to unpack .../24-libgnutls30_3.5.8-5+deb9u3_amd64.deb ...
+Unpacking libgnutls30:amd64 (3.5.8-5+deb9u3) ...
+Selecting previously unselected package libkeyutils1:amd64.
+Preparing to unpack .../25-libkeyutils1_1.5.9-9_amd64.deb ...
+Unpacking libkeyutils1:amd64 (1.5.9-9) ...
+Selecting previously unselected package libkrb5support0:amd64.
+Preparing to unpack .../26-libkrb5support0_1.15-1+deb9u1_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libk5crypto3:amd64.
+Preparing to unpack .../27-libk5crypto3_1.15-1+deb9u1_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libkrb5-3:amd64.
+Preparing to unpack .../28-libkrb5-3_1.15-1+deb9u1_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libgssapi-krb5-2:amd64.
+Preparing to unpack .../29-libgssapi-krb5-2_1.15-1+deb9u1_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.15-1+deb9u1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../30-libsasl2-modules-db_2.1.27~101-g0780600+dfsg-3_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../31-libsasl2-2_2.1.27~101-g0780600+dfsg-3_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../32-libldap-common_2.4.44+dfsg-5+deb9u1_all.deb ...
+Unpacking libldap-common (2.4.44+dfsg-5+deb9u1) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../33-libldap-2.4-2_2.4.44+dfsg-5+deb9u1_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.44+dfsg-5+deb9u1) ...
+Selecting previously unselected package openssl.
+Preparing to unpack .../34-openssl_1.1.0f-3+deb9u1_amd64.deb ...
+Unpacking openssl (1.1.0f-3+deb9u1) ...
+Selecting previously unselected package ca-certificates.
+Preparing to unpack .../35-ca-certificates_20161130+nmu1_all.deb ...
+Unpacking ca-certificates (20161130+nmu1) ...
+Selecting previously unselected package libblas-common.
+Preparing to unpack .../36-libblas-common_3.7.0-2_amd64.deb ...
+Unpacking libblas-common (3.7.0-2) ...
+Selecting previously unselected package libquadmath0:amd64.
+Preparing to unpack .../37-libquadmath0_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libquadmath0:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package libgfortran3:amd64.
+Preparing to unpack .../38-libgfortran3_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libgfortran3:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package libblas3.
+Preparing to unpack .../39-libblas3_3.7.0-2_amd64.deb ...
+Unpacking libblas3 (3.7.0-2) ...
+Selecting previously unselected package libpixman-1-0:amd64.
+Preparing to unpack .../40-libpixman-1-0_0.34.0-1_amd64.deb ...
+Unpacking libpixman-1-0:amd64 (0.34.0-1) ...
+Selecting previously unselected package libxcb-render0:amd64.
+Preparing to unpack .../41-libxcb-render0_1.12-1_amd64.deb ...
+Unpacking libxcb-render0:amd64 (1.12-1) ...
+Selecting previously unselected package libxcb-shm0:amd64.
+Preparing to unpack .../42-libxcb-shm0_1.12-1_amd64.deb ...
+Unpacking libxcb-shm0:amd64 (1.12-1) ...
+Selecting previously unselected package libxrender1:amd64.
+Preparing to unpack .../43-libxrender1_1%3a0.9.10-1_amd64.deb ...
+Unpacking libxrender1:amd64 (1:0.9.10-1) ...
+Selecting previously unselected package libcairo2:amd64.
+Preparing to unpack .../44-libcairo2_1.14.8-1_amd64.deb ...
+Unpacking libcairo2:amd64 (1.14.8-1) ...
+Selecting previously unselected package libunistring0:amd64.
+Preparing to unpack .../45-libunistring0_0.9.6+really0.9.3-0.1_amd64.deb ...
+Unpacking libunistring0:amd64 (0.9.6+really0.9.3-0.1) ...
+Selecting previously unselected package libidn2-0:amd64.
+Preparing to unpack .../46-libidn2-0_0.16-1+deb9u1_amd64.deb ...
+Unpacking libidn2-0:amd64 (0.16-1+deb9u1) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../47-libnghttp2-14_1.18.1-1_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.18.1-1) ...
+Selecting previously unselected package libpsl5:amd64.
+Preparing to unpack .../48-libpsl5_0.17.0-3_amd64.deb ...
+Unpacking libpsl5:amd64 (0.17.0-3) ...
+Selecting previously unselected package librtmp1:amd64.
+Preparing to unpack .../49-librtmp1_2.4+20151223.gitfa8646d.1-1+b1_amd64.deb ...
+Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1+b1) ...
+Selecting previously unselected package libssh2-1:amd64.
+Preparing to unpack .../50-libssh2-1_1.7.0-1_amd64.deb ...
+Unpacking libssh2-1:amd64 (1.7.0-1) ...
+Selecting previously unselected package libcurl3:amd64.
+Preparing to unpack .../51-libcurl3_7.52.1-5+deb9u5_amd64.deb ...
+Unpacking libcurl3:amd64 (7.52.1-5+deb9u5) ...
+Selecting previously unselected package libdatrie1:amd64.
+Preparing to unpack .../52-libdatrie1_0.2.10-4+b1_amd64.deb ...
+Unpacking libdatrie1:amd64 (0.2.10-4+b1) ...
+Selecting previously unselected package libglib2.0-0:amd64.
+Preparing to unpack .../53-libglib2.0-0_2.50.3-2_amd64.deb ...
+Unpacking libglib2.0-0:amd64 (2.50.3-2) ...
+Selecting previously unselected package libgomp1:amd64.
+Preparing to unpack .../54-libgomp1_6.3.0-18+deb9u1_amd64.deb ...
+Unpacking libgomp1:amd64 (6.3.0-18+deb9u1) ...
+Selecting previously unselected package libgraphite2-3:amd64.
+Preparing to unpack .../55-libgraphite2-3_1.3.10-1_amd64.deb ...
+Unpacking libgraphite2-3:amd64 (1.3.10-1) ...
+Selecting previously unselected package libharfbuzz0b:amd64.
+Preparing to unpack .../56-libharfbuzz0b_1.4.2-1_amd64.deb ...
+Unpacking libharfbuzz0b:amd64 (1.4.2-1) ...
+Selecting previously unselected package libice6:amd64.
+Preparing to unpack .../57-libice6_2%3a1.0.9-2_amd64.deb ...
+Unpacking libice6:amd64 (2:1.0.9-2) ...
+Selecting previously unselected package libicu57:amd64.
+Preparing to unpack .../58-libicu57_57.1-6+deb9u1_amd64.deb ...
+Unpacking libicu57:amd64 (57.1-6+deb9u1) ...
+Selecting previously unselected package libjpeg62-turbo:amd64.
+Preparing to unpack .../59-libjpeg62-turbo_1%3a1.5.1-2_amd64.deb ...
+Unpacking libjpeg62-turbo:amd64 (1:1.5.1-2) ...
+Selecting previously unselected package liblapack3.
+Preparing to unpack .../60-liblapack3_3.7.0-2_amd64.deb ...
+Unpacking liblapack3 (3.7.0-2) ...
+Selecting previously unselected package libthai-data.
+Preparing to unpack .../61-libthai-data_0.1.26-1_all.deb ...
+Unpacking libthai-data (0.1.26-1) ...
+Selecting previously unselected package libthai0:amd64.
+Preparing to unpack .../62-libthai0_0.1.26-1_amd64.deb ...
+Unpacking libthai0:amd64 (0.1.26-1) ...
+Selecting previously unselected package libpango-1.0-0:amd64.
+Preparing to unpack .../63-libpango-1.0-0_1.40.5-1_amd64.deb ...
+Unpacking libpango-1.0-0:amd64 (1.40.5-1) ...
+Selecting previously unselected package libpangoft2-1.0-0:amd64.
+Preparing to unpack .../64-libpangoft2-1.0-0_1.40.5-1_amd64.deb ...
+Unpacking libpangoft2-1.0-0:amd64 (1.40.5-1) ...
+Selecting previously unselected package libpangocairo-1.0-0:amd64.
+Preparing to unpack .../65-libpangocairo-1.0-0_1.40.5-1_amd64.deb ...
+Unpacking libpangocairo-1.0-0:amd64 (1.40.5-1) ...
+Selecting previously unselected package libpaper1:amd64.
+Preparing to unpack .../66-libpaper1_1.1.24+nmu5_amd64.deb ...
+Unpacking libpaper1:amd64 (1.1.24+nmu5) ...
+Selecting previously unselected package libpaper-utils.
+Preparing to unpack .../67-libpaper-utils_1.1.24+nmu5_amd64.deb ...
+Unpacking libpaper-utils (1.1.24+nmu5) ...
+Selecting previously unselected package libsm6:amd64.
+Preparing to unpack .../68-libsm6_2%3a1.2.2-1+b3_amd64.deb ...
+Unpacking libsm6:amd64 (2:1.2.2-1+b3) ...
+Selecting previously unselected package libsys-hostname-long-perl.
+Preparing to unpack .../69-libsys-hostname-long-perl_1.5-1_all.deb ...
+Unpacking libsys-hostname-long-perl (1.5-1) ...
+Selecting previously unselected package libtcl8.6:amd64.
+Preparing to unpack .../70-libtcl8.6_8.6.6+dfsg-1+b1_amd64.deb ...
+Unpacking libtcl8.6:amd64 (8.6.6+dfsg-1+b1) ...
+Selecting previously unselected package libjbig0:amd64.
+Preparing to unpack .../71-libjbig0_2.1-3.1+b2_amd64.deb ...
+Unpacking libjbig0:amd64 (2.1-3.1+b2) ...
+Selecting previously unselected package libtiff5:amd64.
+Preparing to unpack .../72-libtiff5_4.0.8-2+deb9u2_amd64.deb ...
+Unpacking libtiff5:amd64 (4.0.8-2+deb9u2) ...
+Selecting previously unselected package libxft2:amd64.
+Preparing to unpack .../73-libxft2_2.3.2-1+b2_amd64.deb ...
+Unpacking libxft2:amd64 (2.3.2-1+b2) ...
+Selecting previously unselected package libtk8.6:amd64.
+Preparing to unpack .../74-libtk8.6_8.6.6-1+b1_amd64.deb ...
+Unpacking libtk8.6:amd64 (8.6.6-1+b1) ...
+Selecting previously unselected package libunwind8.
+Preparing to unpack .../75-libunwind8_1.1-4.1_amd64.deb ...
+Unpacking libunwind8 (1.1-4.1) ...
+Selecting previously unselected package libxt6:amd64.
+Preparing to unpack .../76-libxt6_1%3a1.1.5-1_amd64.deb ...
+Unpacking libxt6:amd64 (1:1.1.5-1) ...
+Selecting previously unselected package zip.
+Preparing to unpack .../77-zip_3.0-11+b1_amd64.deb ...
+Unpacking zip (3.0-11+b1) ...
+Selecting previously unselected package unzip.
+Preparing to unpack .../78-unzip_6.0-21_amd64.deb ...
+Unpacking unzip (6.0-21) ...
+Selecting previously unselected package xdg-utils.
+Preparing to unpack .../79-xdg-utils_1.1.1-1_all.deb ...
+Unpacking xdg-utils (1.1.1-1) ...
+Selecting previously unselected package r-base-core.
+Preparing to unpack .../80-r-base-core_3.3.3-1_amd64.deb ...
+Unpacking r-base-core (3.3.3-1) ...
+Setting up libquadmath0:amd64 (6.3.0-18+deb9u1) ...
+Setting up libgomp1:amd64 (6.3.0-18+deb9u1) ...
+Setting up readline-common (7.0-3) ...
+Setting up perl-modules-5.24 (5.24.1-3+deb9u2) ...
+Setting up libgdbm3:amd64 (1.8.3-14) ...
+Setting up libperl5.24:amd64 (5.24.1-3+deb9u2) ...
+Setting up libnettle6:amd64 (3.3-1+b2) ...
+Setting up libexpat1:amd64 (2.2.0-2+deb9u1) ...
+Setting up libjpeg62-turbo:amd64 (1:1.5.1-2) ...
+Setting up libnghttp2-14:amd64 (1.18.1-1) ...
+Setting up mime-support (3.60) ...
+Setting up libpng16-16:amd64 (1.6.28-1) ...
+Setting up libjbig0:amd64 (2.1-3.1+b2) ...
+Setting up libldap-common (2.4.44+dfsg-5+deb9u1) ...
+Setting up fonts-dejavu-core (2.37-1) ...
+Setting up libreadline7:amd64 (7.0-3) ...
+Setting up libblas-common (3.7.0-2) ...
+Setting up libgfortran3:amd64 (6.3.0-18+deb9u1) ...
+Setting up libsasl2-modules-db:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Setting up unzip (6.0-21) ...
+Setting up libsasl2-2:amd64 (2.1.27~101-g0780600+dfsg-3) ...
+Setting up libdatrie1:amd64 (0.2.10-4+b1) ...
+Setting up libtiff5:amd64 (4.0.8-2+deb9u2) ...
+Setting up libicu57:amd64 (57.1-6+deb9u1) ...
+Setting up libbsd0:amd64 (0.8.3-1) ...
+Setting up ucf (3.0036) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up zip (3.0-11+b1) ...
+Setting up libfreetype6:amd64 (2.6.3-3.2) ...
+Setting up libtasn1-6:amd64 (4.10-1.1+deb9u1) ...
+Setting up libgraphite2-3:amd64 (1.3.10-1) ...
+Setting up perl (5.24.1-3+deb9u2) ...
+update-alternatives: using /usr/bin/prename to provide /usr/bin/rename (rename) in auto mode
+Setting up libsys-hostname-long-perl (1.5-1) ...
+Setting up libssl1.0.2:amd64 (1.0.2l-2+deb9u2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libgmp10:amd64 (2:6.1.2+dfsg-1) ...
+Setting up libpixman-1-0:amd64 (0.34.0-1) ...
+Setting up libblas3 (3.7.0-2) ...
+update-alternatives: using /usr/lib/libblas/libblas.so.3 to provide /usr/lib/libblas.so.3 (libblas.so.3) in auto mode
+Setting up libssh2-1:amd64 (1.7.0-1) ...
+Setting up libunwind8 (1.1-4.1) ...
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Setting up libunistring0:amd64 (0.9.6+really0.9.3-0.1) ...
+Setting up libssl1.1:amd64 (1.1.0f-3+deb9u1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up openssl (1.1.0f-3+deb9u1) ...
+Setting up libsqlite3-0:amd64 (3.16.2-5+deb9u1) ...
+Setting up libffi6:amd64 (3.2.1-6) ...
+Setting up libtcl8.6:amd64 (8.6.6+dfsg-1+b1) ...
+Setting up libthai-data (0.1.26-1) ...
+Setting up libxdmcp6:amd64 (1:1.1.2-3) ...
+Setting up libkeyutils1:amd64 (1.5.9-9) ...
+Setting up x11-common (1:7.7+19) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+invoke-rc.d: could not determine current runlevel
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up xdg-utils (1.1.1-1) ...
+Setting up ca-certificates (20161130+nmu1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Updating certificates in /etc/ssl/certs...
+166 added, 0 removed; done.
+Setting up libx11-data (2:1.6.4-3) ...
+Setting up libpython2.7-stdlib:amd64 (2.7.13-2+deb9u2) ...
+Setting up libxau6:amd64 (1:1.0.8-1) ...
+Setting up libidn11:amd64 (1.33-1) ...
+Setting up libpaper1:amd64 (1.1.24+nmu5) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/papersize with new version
+Setting up libpaper-utils (1.1.24+nmu5) ...
+Setting up fontconfig-config (2.11.0-6.7) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+Setting up libidn2-0:amd64 (0.16-1+deb9u1) ...
+Setting up libpsl5:amd64 (0.17.0-3) ...
+Setting up liblapack3 (3.7.0-2) ...
+update-alternatives: using /usr/lib/lapack/liblapack.so.3 to provide /usr/lib/liblapack.so.3 (liblapack.so.3) in auto mode
+Setting up libglib2.0-0:amd64 (2.50.3-2) ...
+No schema files found: doing nothing.
+Setting up python2.7 (2.7.13-2+deb9u2) ...
+Setting up libharfbuzz0b:amd64 (1.4.2-1) ...
+Setting up libthai0:amd64 (0.1.26-1) ...
+Setting up libkrb5support0:amd64 (1.15-1+deb9u1) ...
+Setting up libhogweed4:amd64 (3.3-1+b2) ...
+Setting up libpython-stdlib:amd64 (2.7.13-2) ...
+Setting up libp11-kit0:amd64 (0.23.3-2) ...
+Setting up libice6:amd64 (2:1.0.9-2) ...
+Setting up libxcb1:amd64 (1.12-1) ...
+Setting up python (2.7.13-2) ...
+Setting up libfontconfig1:amd64 (2.11.0-6.7+b1) ...
+Setting up libsm6:amd64 (2:1.2.2-1+b3) ...
+Setting up libk5crypto3:amd64 (1.15-1+deb9u1) ...
+Setting up libxcb-render0:amd64 (1.12-1) ...
+Setting up libgnutls30:amd64 (3.5.8-5+deb9u3) ...
+Setting up libx11-6:amd64 (2:1.6.4-3) ...
+Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-1+b1) ...
+Setting up libldap-2.4-2:amd64 (2.4.44+dfsg-5+deb9u1) ...
+Setting up libxcb-shm0:amd64 (1.12-1) ...
+Setting up libxt6:amd64 (1:1.1.5-1) ...
+Setting up libxrender1:amd64 (1:0.9.10-1) ...
+Setting up libkrb5-3:amd64 (1.15-1+deb9u1) ...
+Setting up libxft2:amd64 (2.3.2-1+b2) ...
+Setting up fontconfig (2.11.0-6.7+b1) ...
+Regenerating fonts cache... done.
+Setting up libxext6:amd64 (2:1.3.3-1+b2) ...
+Setting up libxss1:amd64 (1:1.2.2-1) ...
+Setting up libgssapi-krb5-2:amd64 (1.15-1+deb9u1) ...
+Setting up libpango-1.0-0:amd64 (1.40.5-1) ...
+Setting up libcairo2:amd64 (1.14.8-1) ...
+Setting up libcurl3:amd64 (7.52.1-5+deb9u5) ...
+Setting up libtk8.6:amd64 (8.6.6-1+b1) ...
+Setting up libpangoft2-1.0-0:amd64 (1.40.5-1) ...
+Setting up libpangocairo-1.0-0:amd64 (1.40.5-1) ...
+Setting up r-base-core (3.3.3-1) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+
+Creating config file /etc/R/Renviron with new version
+Processing triggers for libc-bin (2.24-11+deb9u3) ...
+Processing triggers for ca-certificates (20161130+nmu1) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+ ---> a142dea615e9
+Removing intermediate container e4e8ac8be535
+Step 8/28 : ENV DEST_DIR /usr/local
+ ---> Running in 8007b969ea83
+ ---> d8a4bceca489
+Removing intermediate container 8007b969ea83
+Step 9/28 : ENV BIN_DIR ${DEST_DIR}/bin
+ ---> Running in fadbc4f05cb7
+ ---> 82e5fe86f613
+Removing intermediate container fadbc4f05cb7
+Step 10/28 : ENV LIB_DIR ${DEST_DIR}/lib/${PACKAGE}
+ ---> Running in 39bce4da32b3
+ ---> c9f1cf3f056f
+Removing intermediate container 39bce4da32b3
+Step 11/28 : ENV SHARE_DIR ${DEST_DIR}/share
+ ---> Running in 02779a84f1ff
+ ---> 4fcb77082f7d
+Removing intermediate container 02779a84f1ff
+Step 12/28 : ENV DOC_DIR ${SHARE_DIR}/doc/${PACKAGE}
+ ---> Running in a4d7015d86ea
+ ---> a394834481b0
+Removing intermediate container a4d7015d86ea
+Step 13/28 : ADD ${PACKAGE}-${VERSION}-Linux-x86_64.tar.gz /tmp/
+ ---> 361d77f19efc
+Removing intermediate container 14473d91389c
+Step 14/28 : WORKDIR /tmp/${PACKAGE}-${VERSION}-Linux-x86_64
+ ---> eefdc8462f5b
+Removing intermediate container 0951a7f1c0db
+Step 15/28 : RUN mkdir -p ${DOC_DIR} ${LIB_DIR} ;     cp --archive bin/* ${BIN_DIR} ;     cp --archive documentation ${DOC_DIR} ;     cp --archive LICENSE ${DOC_DIR} ;     cp --archive README ${DOC_DIR} ;     cp --archive tests ${DOC_DIR} ;     chmod +x ${DOC_DIR}/tests/test.sh ;     cp --archive run_tests.sh ${DOC_DIR} ;     cp --archive share/* ${SHARE_DIR} ;     chmod -R go=u-w,-s /usr/local ;     : done
+ ---> Running in ace506dae9f5
+ ---> b90dbc50d08d
+Removing intermediate container ace506dae9f5
+Step 16/28 : WORKDIR /root
+ ---> 0137f1cc4a9d
+Removing intermediate container 3a1176366558
+Step 17/28 : RUN rm -rf /tmp/${PACKAGE}-${VERSION}
+ ---> Running in 15fd9972819f
+ ---> 84b4a0ad5cce
+Removing intermediate container 15fd9972819f
+Step 18/28 : ADD bowtie2-${BVERSION}-linux-x86_64 /tmp/bowtie2-${BVERSION}
+ ---> c16d5e413d61
+Removing intermediate container 93ba2031e36f
+Step 19/28 : WORKDIR /tmp/bowtie2-${BVERSION}
+ ---> 9e3f4c8abce0
+Removing intermediate container 0522c33e4d6e
+Step 20/28 : RUN mkdir -p ${DOC_DIR} ;     cp --archive AUTHORS ${DOC_DIR} ;     cp --archive LICENSE  ${DOC_DIR} ;     cp --archive MANUAL  ${DOC_DIR} ;     cp --archive MANUAL.markdown  ${DOC_DIR} ;     cp --archive NEWS  ${DOC_DIR} ;     cp --archive TUTORIAL  ${DOC_DIR} ;     cp --archive VERSION  ${DOC_DIR} ;     cp --archive bowtie2 ${BIN_DIR} ;     cp --archive bowtie2-align-l ${BIN_DIR} ;     cp --archive bowtie2-align-l-debug ${BIN_DIR} ;     cp --archive bowtie2-align-s ${BIN_DIR} ;     cp --archive bowtie2-align-s-debug ${BIN_DIR} ;     cp --archive bowtie2-build ${BIN_DIR} ;     cp --archive bowtie2-build-l ${BIN_DIR} ;     cp --archive bowtie2-build-l-debug ${BIN_DIR} ;     cp --archive bowtie2-build-s ${BIN_DIR} ;     cp --archive bowtie2-build-s-debug ${BIN_DIR} ;     cp --archive bowtie2-inspect ${BIN_DIR} ;     cp --archive bowtie2-inspect-l ${BIN_DIR} ;     cp --archive bowtie2-inspect-l-debug ${BIN_DIR} ;     cp --archive bowtie2-inspect-s ${BIN_DIR} ;     cp --archive bowtie2-inspect-s-debug ${BIN_DIR} ;     cp --archive doc  ${DOC_DIR} ;     cp --archive example  ${DOC_DIR} ;     cp --archive scripts  ${DOC_DIR} ;     : done
+ ---> Running in 99c43e9b7e95
+ ---> 955b675f41a1
+Removing intermediate container 99c43e9b7e95
+Step 21/28 : WORKDIR /root
+ ---> d74a5fd74a00
+Removing intermediate container 7e58fbb60833
+Step 22/28 : RUN rm -rf /tmp/bowtie2-${BVERSION}
+ ---> Running in a3cf9a4e5302
+ ---> 2d5632f690f0
+Removing intermediate container a3cf9a4e5302
+Step 23/28 : RUN apt-get autoremove -y && apt-get clean
+ ---> Running in 5de5f595b3a2
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+ ---> d8e44a5b5546
+Removing intermediate container 5de5f595b3a2
+Step 24/28 : RUN useradd -d /mnt -M guest
+ ---> Running in 4c9c9051eba2
+ ---> 7d77ea945d85
+Removing intermediate container 4c9c9051eba2
+Step 25/28 : USER guest
+ ---> Running in 4e144d67e8b5
+ ---> dfde7c1dc539
+Removing intermediate container 4e144d67e8b5
+Step 26/28 : ENV HOME /mnt
+ ---> Running in a81c4204a709
+ ---> f14c586fdf07
+Removing intermediate container a81c4204a709
+Step 27/28 : WORKDIR /mnt
+ ---> 7356891458c0
+Removing intermediate container 285228e75c9f
+Step 28/28 : CMD find /usr/local -type f | sort
+ ---> Running in cbe7d6afde09
+ ---> c3e4c287ab30
+Removing intermediate container cbe7d6afde09
+Successfully built c3e4c287ab30
+Successfully tagged pvstodghill/breseq:0.32.0__2018-03-15
++ rm -rf bowtie2-2.3.4.1
++ docker run pvstodghill/breseq:0.32.0__2018-03-15 breseq --version
+breseq 0.32.0
++ docker push pvstodghill/breseq:0.32.0__2018-03-15
+The push refers to a repository [docker.io/pvstodghill/breseq]
+
+[1A[1K[K6f0664ca4427: Preparing [1B
+[1A[1K[K2080aeade1d5: Preparing [1B
+[1A[1K[K849f16c1d596: Preparing [1B
+[1A[1K[K3294e5d3a901: Preparing [1B
+[1A[1K[Kc1d851e48ca5: Preparing [1B
+[1A[1K[K35bf10ed1f54: Preparing [1B
+[1A[1K[K4c0326335d0d: Preparing [1B
+[1A[1K[K6aefbfa9457e: Preparing [1B
+[1A[1K[Ke1df5dc88d2c: Preparing [1B[4A[1K[K35bf10ed1f54: Waiting [4B[3A[1K[K4c0326335d0d: Waiting [3B[1A[1K[Ke1df5dc88d2c: Waiting [1B[2A[1K[K6aefbfa9457e: Waiting [2B[9A[1K[K6f0664ca4427: Pushing [>                                                  ]  3.584kB/328.9kB[9B[8A[1K[K2080aeade1d5: Pushing  8.192kB[8B[9A[1K[K6f0664ca4427: Pushing [==================================================>]  341.5kB[9B[7A[1K[K849f16c1d596: Pushing  2.048kB[7B[6A[1K[K3294e5d3a901: Pushing [>                                                  ]  546.3kB/176.6MB[6B[6A[1K[K3294e5d3a901: Pushing [>                                                  ]  2.217MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [>                                                  ]  550.4kB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=>                                                 ]  3.889MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [>                                                  ]  2.222MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=>                                                 ]   5.56MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=>                                                 ]  3.893MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==>                                                ]  7.231MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=>                                                 ]  5.564MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==>                                                ]  8.902MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==>                                                ]  7.235MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===>                                               ]  11.13MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==>                                                ]  8.906MB/176.6MB[5B[9A[1K[K6f0664ca4427: Pushed [9B[8A[1K[K2080aeade1d5: Pushed [8B[6A[1K[K3294e5d3a901: Pushing [===>                                               ]  13.36MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==>                                                ]  10.58MB/176.6MB[5B[5A[1K[Kc1d851e48ca5: Pushing [===>                                               ]  12.81MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [====>                                              ]  15.59MB/176.6MB[6B[7A[1K[K849f16c1d596: Pushed [7B[4A[1K[K35bf10ed1f54: Pushing [>                                                  ]  329.7kB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [>                                                  ]  356.4kB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [====>                                              ]  15.03MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=====>                                             ]  17.82MB/176.6MB[6B[4A[1K[K35bf10ed1f54: Pushing [==>                                                ]   1.64MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [==>                                                ]  1.667MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [====>                                              ]  17.26MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=====>                                             ]  19.47MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [>                                                  ]  556.5kB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [=====>                                             ]  3.279MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [====>                                              ]  2.978MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [=====>                                             ]  19.47MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [>                                                  ]  2.206MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [======>                                            ]   21.7MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [=======>                                           ]  4.632MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [=======>                                           ]  4.933MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [>                                                  ]  3.817MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [======>                                            ]   21.7MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [======>                                            ]  23.37MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [=========>                                         ]  5.942MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [=========>                                         ]  6.243MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [=>                                                 ]  5.486MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [======>                                            ]  23.37MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=======>                                           ]  25.59MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [============>                                      ]  7.911MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [============>                                      ]  8.214MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [=>                                                 ]  7.157MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=======>                                           ]  25.04MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=======>                                           ]  27.27MB/176.6MB[6B[4A[1K[K35bf10ed1f54: Pushing [===============>                                   ]   10.2MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [===============>                                   ]   10.3MB/32.63MB[3B[2A[1K[K6aefbfa9457e: Pushing [==>                                                ]  9.336MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [========>                                          ]  28.94MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=======>                                           ]  27.27MB/176.6MB[5B[4A[1K[K35bf10ed1f54: Pushing [=================>                                 ]  11.54MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [=================>                                 ]  11.64MB/32.63MB[3B[2A[1K[K6aefbfa9457e: Pushing [==>                                                ]  10.99MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [========>                                          ]  30.61MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [========>                                          ]  28.94MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [===================>                               ]  12.62MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [===================>                               ]  12.85MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [===>                                               ]  12.66MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=========>                                         ]  32.84MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [========>                                          ]  30.61MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [====================>                              ]   13.6MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [=====================>                             ]  13.83MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [===>                                               ]  14.86MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==========>                                        ]  35.62MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=========>                                         ]  32.84MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [======================>                            ]  14.59MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [======================>                            ]  14.81MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [====>                                              ]  17.01MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==========>                                        ]  38.41MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [=======================>                           ]  15.58MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [==========>                                        ]  35.63MB/176.6MB[5B[4A[1K[K35bf10ed1f54: Pushing [========================>                          ]  16.13MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [====>                                              ]  19.13MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [===========>                                       ]  40.64MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==========>                                        ]  38.41MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [=========================>                         ]  16.89MB/32.63MB[3B[2A[1K[K6aefbfa9457e: Pushing [=====>                                             ]  21.27MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [==========================>                        ]  17.44MB/32.63MB[4B[6A[1K[K3294e5d3a901: Pushing [============>                                      ]  42.83MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [===========>                                       ]  40.64MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [===========================>                       ]   18.2MB/32.63MB[3B[2A[1K[K6aefbfa9457e: Pushing [=====>                                             ]  23.43MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [============================>                      ]  18.76MB/32.63MB[4B[6A[1K[K3294e5d3a901: Pushing [============>                                      ]   44.5MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [======>                                            ]  25.59MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [============>                                      ]  42.84MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [=============================>                     ]  19.51MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [==============================>                    ]  19.76MB/32.63MB[4B[6A[1K[K3294e5d3a901: Pushing [=============>                                     ]  46.18MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [===============================>                   ]  20.51MB/32.63MB[3B[2A[1K[K6aefbfa9457e: Pushing [======>                                            ]   27.8MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [===============================>                   ]  20.74MB/32.63MB[4B[5A[1K[Kc1d851e48ca5: Pushing [============>                                      ]  45.07MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=============>                                     ]  47.85MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=======>                                           ]  29.98MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [=================================>                 ]  21.72MB/32.63MB[4B[5A[1K[Kc1d851e48ca5: Pushing [=============>                                     ]  46.74MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [=================================>                 ]  21.82MB/32.63MB[3B[6A[1K[K3294e5d3a901: Pushing [==============>                                    ]  49.52MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=============>                                     ]  48.41MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [=======>                                           ]  32.14MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [===================================>               ]  23.03MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [===================================>               ]  23.13MB/32.63MB[3B[6A[1K[K3294e5d3a901: Pushing [==============>                                    ]  51.75MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==============>                                    ]  50.08MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [========>                                          ]  34.31MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [====================================>              ]  24.03MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [====================================>              ]  24.13MB/32.63MB[3B[6A[1K[K3294e5d3a901: Pushing [===============>                                   ]  54.53MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==============>                                    ]  52.31MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [======================================>            ]  25.11MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [======================================>            ]  25.02MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [========>                                          ]  36.46MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [================>                                  ]  56.76MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [===============>                                   ]  55.09MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [=======================================>           ]   26.1MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [=======================================>           ]     26MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [=========>                                         ]  38.63MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [================>                                  ]  58.99MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [================>                                  ]  57.32MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [=========================================>         ]  27.08MB/32.63MB[3B[4A[1K[K35bf10ed1f54: Pushing [=========================================>         ]  26.98MB/32.63MB[4B[2A[1K[K6aefbfa9457e: Pushing [=========>                                         ]   40.3MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=================>                                 ]  60.65MB/176.6MB[6B[4A[1K[K35bf10ed1f54: Pushing [==========================================>        ]  27.96MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [==========================================>        ]  28.06MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [================>                                  ]  59.55MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=================>                                 ]  62.33MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==========>                                        ]  41.98MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [============================================>      ]  28.96MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [============================================>      ]  29.06MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [=================>                                 ]  61.22MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==================>                                ]     64MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==========>                                        ]  43.65MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [=============================================>     ]  29.94MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [==============================================>    ]  30.04MB/32.63MB[3B[5A[1K[Kc1d851e48ca5: Pushing [=================>                                 ]  63.44MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==================>                                ]  65.67MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==========>                                        ]  45.32MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [===============================================>   ]  30.93MB/32.63MB[4B[3A[1K[K4c0326335d0d: Pushing [================================================>  ]  31.35MB/32.63MB[3B[6A[1K[K3294e5d3a901: Pushing [===================>                               ]  67.34MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==================>                                ]  65.67MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [===========>                                       ]  47.45MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [=================================================> ]  32.24MB/32.63MB[4B[6A[1K[K3294e5d3a901: Pushing [===================>                               ]  69.01MB/176.6MB[6B[3A[1K[K4c0326335d0d: Pushing [==================================================>]  32.66MB[3B[5A[1K[Kc1d851e48ca5: Pushing [===================>                               ]   67.9MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushing [==================================================>]  32.75MB[3B[2A[1K[K6aefbfa9457e: Pushing [============>                                      ]  49.63MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushing [==================================================>]  32.75MB[4B[6A[1K[K3294e5d3a901: Pushing [====================>                              ]  70.68MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [===================>                               ]  69.57MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [============>                                      ]  51.76MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [====================>                              ]  72.35MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [====================>                              ]  71.24MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [=============>                                     ]  53.89MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=====================>                             ]  74.58MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [====================>                              ]  73.47MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=====================>                             ]  77.37MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=============>                                     ]  56.04MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=====================>                             ]  76.26MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [======================>                            ]  79.59MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==============>                                    ]  58.21MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [======================>                            ]  79.04MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=======================>                           ]  81.82MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==============>                                    ]  60.35MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=======================>                           ]  81.27MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=======================>                           ]  84.02MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===============>                                   ]  62.48MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=======================>                           ]  83.47MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [========================>                          ]  85.69MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===============>                                   ]   64.6MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [========================>                          ]  85.14MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [========================>                          ]  87.36MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [================>                                  ]  66.24MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [========================>                          ]  86.81MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=========================>                         ]  89.59MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [================>                                  ]  67.85MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=========================>                         ]  88.48MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [================>                                  ]   69.5MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==========================>                        ]  92.37MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=========================>                         ]  91.26MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==========================>                        ]  94.04MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=================>                                 ]  71.14MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==========================>                        ]  93.49MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===========================>                       ]  95.71MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=================>                                 ]  72.81MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [===========================>                       ]  95.71MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===========================>                       ]  97.38MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==================>                                ]  74.97MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [===========================>                       ]  97.38MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [============================>                      ]  99.05MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==================>                                ]  77.13MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [============================>                      ]  99.06MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [============================>                      ]  101.3MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===================>                               ]  78.77MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [============================>                      ]  101.3MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=============================>                     ]  104.1MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===================>                               ]  80.43MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=============================>                     ]  103.5MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==============================>                    ]  106.3MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===================>                               ]  82.58MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=============================>                     ]  105.7MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==============================>                    ]  107.9MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [====================>                              ]   84.8MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==============================>                    ]  107.9MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===============================>                   ]  109.6MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=====================>                             ]  87.59MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [===============================>                   ]  109.6MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===============================>                   ]  111.8MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=====================>                             ]  89.82MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [===============================>                   ]  111.8MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [================================>                  ]  114.1MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [======================>                            ]  92.05MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [================================>                  ]  114.1MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [================================>                  ]  116.3MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [======================>                            ]  94.27MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [================================>                  ]  116.3MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=================================>                 ]  117.9MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=======================>                           ]   96.5MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=================================>                 ]  117.9MB/176.6MB[5B[3A[1K[K4c0326335d0d: Pushed [3B[6A[1K[K3294e5d3a901: Pushing [=================================>                 ]  119.6MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=======================>                           ]  98.73MB/206.7MB[2B[4A[1K[K35bf10ed1f54: Pushed [4B[5A[1K[Kc1d851e48ca5: Pushing [=================================>                 ]  119.6MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==================================>                ]  121.3MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [========================>                          ]  100.4MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==================================>                ]  121.3MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [==================================>                ]  123.5MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [========================>                          ]  102.6MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==================================>                ]  123.5MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [===================================>               ]  125.7MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [===================================>               ]  125.7MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [=========================>                         ]  104.9MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [====================================>              ]  127.9MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=========================>                         ]  107.1MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [====================================>              ]  127.9MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [====================================>              ]  129.6MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [====================================>              ]  129.6MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [==========================>                        ]  109.3MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=====================================>             ]  131.3MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=====================================>             ]  131.3MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=====================================>             ]  133.5MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=====================================>             ]  133.5MB/176.6MB[5B[5A[1K[Kc1d851e48ca5: Pushing [======================================>            ]  135.7MB/176.6MB[5B[5A[1K[Kc1d851e48ca5: Pushing [======================================>            ]  137.4MB/176.6MB[5B[5A[1K[Kc1d851e48ca5: Pushing [=======================================>           ]  139.1MB/176.6MB[5B[5A[1K[Kc1d851e48ca5: Pushing [=======================================>           ]  141.3MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [==========================>                        ]    111MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [======================================>            ]  135.7MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [========================================>          ]  143.5MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [===========================>                       ]  112.6MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=======================================>           ]    138MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=========================================>         ]  145.7MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [===========================>                       ]  114.8MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=======================================>           ]  139.6MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=========================================>         ]  147.4MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [============================>                      ]  116.4MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [========================================>          ]  141.9MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==========================================>        ]  149.6MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [========================================>          ]  144.1MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [============================>                      ]  118.1MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==========================================>        ]  151.8MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=========================================>         ]  145.7MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [============================>                      ]  119.7MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [===========================================>       ]  153.5MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [=============================>                     ]  121.4MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=========================================>         ]    148MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [============================================>      ]  155.7MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [=============================>                     ]    123MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==========================================>        ]  150.2MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [============================================>      ]  158.5MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [==============================>                    ]  124.7MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [===========================================>       ]  152.4MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [==============================================>    ]  164.6MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [==============================>                    ]  126.3MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [===========================================>       ]  154.1MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [===============================================>   ]  168.5MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [===============================>                   ]  128.5MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [============================================>      ]  156.3MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===============================>                   ]  131.2MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [============================================>      ]  158.5MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [================================================>  ]  169.6MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [================================>                  ]  132.8MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==============================================>    ]    164MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [================================================>  ]  170.7MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [================================>                  ]  134.9MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [===============================================>   ]  168.5MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=================================>                 ]  137.2MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [================================================>  ]  171.8MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [================================================>  ]  169.6MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=================================>                 ]  139.4MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [================================================>  ]  172.9MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [================================================>  ]  170.7MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [==================================>                ]  141.6MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=================================================> ]    174MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [==================================>                ]  143.8MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [================================================>  ]  171.8MB/176.6MB[6B[5A[1K[Kc1d851e48ca5: Pushing [=================================================> ]  175.1MB/176.6MB[5B[2A[1K[K6aefbfa9457e: Pushing [===================================>               ]  145.4MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [================================================>  ]  172.9MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [===================================>               ]  147.5MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [=================================================> ]  176.2MB/176.6MB[5B[6A[1K[K3294e5d3a901: Pushing [=================================================> ]    174MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [====================================>              ]  149.2MB/206.7MB[2B[5A[1K[Kc1d851e48ca5: Pushing [==================================================>]  176.7MB[5B[2A[1K[K6aefbfa9457e: Pushing [====================================>              ]  150.8MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=================================================> ]  175.1MB/176.6MB[6B[2A[1K[K6aefbfa9457e: Pushing [=====================================>             ]    153MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [=================================================> ]  176.3MB/176.6MB[6B[1A[1K[Ke1df5dc88d2c: Mounted from library/debian [1B[2A[1K[K6aefbfa9457e: Pushing [=====================================>             ]  155.1MB/206.7MB[2B[6A[1K[K3294e5d3a901: Pushing [==================================================>]  176.7MB[6B[2A[1K[K6aefbfa9457e: Pushing [======================================>            ]  157.3MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [======================================>            ]  159.5MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=======================================>           ]  161.6MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=======================================>           ]  163.7MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [========================================>          ]  165.9MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [========================================>          ]  167.5MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=========================================>         ]  169.7MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=========================================>         ]  171.3MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=========================================>         ]  172.9MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [==========================================>        ]  175.1MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [==========================================>        ]  177.3MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [===========================================>       ]  178.9MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [===========================================>       ]  180.5MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [============================================>      ]  182.1MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [============================================>      ]  183.8MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [============================================>      ]  185.4MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=============================================>     ]  187.5MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=============================================>     ]  189.6MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [==============================================>    ]  191.2MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [==============================================>    ]  193.4MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [===============================================>   ]    195MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [===============================================>   ]  196.7MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [===============================================>   ]  198.4MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [================================================>  ]  200.1MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [================================================>  ]  201.7MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=================================================> ]  203.4MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [=================================================> ]  205.1MB/206.7MB[2B[2A[1K[K6aefbfa9457e: Pushing [==================================================>]  206.7MB[2B[6A[1K[K3294e5d3a901: Pushed [6B[2A[1K[K6aefbfa9457e: Pushing [==================================================>]  208.4MB[2B[2A[1K[K6aefbfa9457e: Pushing [==================================================>]    210MB[2B[2A[1K[K6aefbfa9457e: Pushing [==================================================>]    212MB[2B[2A[1K[K6aefbfa9457e: Pushed [2B[5A[1K[Kc1d851e48ca5: Pushed [5B0.32.0__2018-03-15: digest: sha256:cbacfe2a27911299f33abcdd020458c3c36182d7d8abf083c3eeaa8c247896fb size: 2211
+
+real	2m21.797s
+user	0m1.509s
+sys	0m0.567s
+
+Script done on 2018-03-15 14:20:11-0400
