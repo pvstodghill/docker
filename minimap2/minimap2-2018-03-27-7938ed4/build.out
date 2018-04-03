@@ -1,0 +1,129 @@
+Script started on 2018-03-27 11:23:11-0400
++ docker build --pull -t pvstodghill/minimap2:7938ed4__2018-03-27 .
+Sending build context to Docker daemon  247.3kB
+Step 1/17 : FROM ubuntu:latest
+latest: Pulling from library/ubuntu
+Digest: sha256:e348fbbea0e0a0e73ab0370de151e7800684445c509d46195aef73e090a49bd6
+Status: Image is up to date for ubuntu:latest
+ ---> f975c5035748
+Step 2/17 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 9bd3df5729fe
+Step 3/17 : ENV PACKAGE minimap2
+ ---> Using cache
+ ---> d0821324532b
+Step 4/17 : ENV VERSION 7938ed4
+ ---> Using cache
+ ---> e9314dc912b2
+Step 5/17 : ENV LONGVERSION 7938ed489333da0d67867b8cc9b82b2630e6fddf
+ ---> Using cache
+ ---> e1cf450f83de
+Step 6/17 : ENV BUILD_PACKAGES build-essential zlib1g-dev unzip
+ ---> Using cache
+ ---> 2007a84b0517
+Step 7/17 : ENV RUN_PACKAGES zlib1g
+ ---> Using cache
+ ---> 09790553a0b1
+Step 8/17 : RUN apt-get update &&     apt-get install --yes     ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 9e05c00273a0
+Step 9/17 : ADD ${PACKAGE}-${LONGVERSION}.zip /tmp/
+ ---> Using cache
+ ---> 97243dce4f21
+Step 10/17 : RUN cd /tmp &&     unzip ${PACKAGE}-${LONGVERSION}.zip &&     cd ${PACKAGE}-${LONGVERSION} &&     make &&     cp --archive minimap2 /usr/local/bin/  &&     mkdir -p /usr/local/share/man/man1 &&     cp minimap2.1 /usr/local/share/man/man1/ &&     mkdir -p /usr/local/share/doc/minimap2  &&     cp --archive LICENSE.txt README.md /usr/local/share/doc/minimap2/
+ ---> Using cache
+ ---> 58027c233e78
+Step 11/17 : WORKDIR /root
+ ---> Using cache
+ ---> 868e9b8f62d3
+Step 12/17 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> 7f6a9aba9f7f
+Step 13/17 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> c5ca90379402
+Step 14/17 : USER guest
+ ---> Using cache
+ ---> 9c96a9c2573f
+Step 15/17 : ENV HOME /mnt
+ ---> Using cache
+ ---> f21061ffc043
+Step 16/17 : WORKDIR /mnt
+ ---> Using cache
+ ---> d6ddac1613eb
+Step 17/17 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> c6acbec1771f
+Successfully built c6acbec1771f
+Successfully tagged pvstodghill/minimap2:7938ed4__2018-03-27
++ docker run --rm pvstodghill/minimap2:7938ed4__2018-03-27 minimap2 -h
+Usage: minimap2 [options] <target.fa>|<target.idx> [query.fa] [...]
+Options:
+  Indexing:
+    -H           use homopolymer-compressed k-mer
+    -k INT       k-mer size (no larger than 28) [15]
+    -w INT       minizer window size [10]
+    -I NUM       split index for every ~NUM input bases [4G]
+    -d FILE      dump index to FILE []
+  Mapping:
+    -f FLOAT     filter out top FLOAT fraction of repetitive minimizers [0.0002]
+    -g NUM       stop chain enlongation if there are no minimizers in INT-bp [5000]
+    -G NUM       max intron length (effective with -xsplice; changing -r) [200k]
+    -F NUM       max fragment length (effective with -xsr or in the fragment mode) [800]
+    -r NUM       bandwidth used in chaining and DP-based alignment [500]
+    -n INT       minimal number of minimizers on a chain [3]
+    -m INT       minimal chaining score (matching bases minus log gap penalty) [40]
+    -X           skip self and dual mappings (for the all-vs-all mode)
+    -p FLOAT     min secondary-to-primary score ratio [0.8]
+    -N INT       retain at most INT secondary alignments [5]
+  Alignment:
+    -A INT       matching score [2]
+    -B INT       mismatch penalty [4]
+    -O INT[,INT] gap open penalty [4,24]
+    -E INT[,INT] gap extension penalty; a k-long gap costs min{O1+k*E1,O2+k*E2} [2,1]
+    -z INT[,INT] Z-drop score and inversion Z-drop score [400,200]
+    -s INT       minimal peak DP alignment score [80]
+    -u CHAR      how to find GT-AG. f:transcript strand, b:both strands, n:don't match GT-AG [n]
+  Input/Output:
+    -a           output in the SAM format (PAF by default)
+    -Q           don't output base quality in SAM
+    -L           write CIGAR with >65535 ops at the CG tag
+    -R STR       SAM read group line in a format like '@RG\tID:foo\tSM:bar' []
+    -c           output CIGAR in PAF
+    --cs[=STR]   output the cs tag; STR is 'short' (if absent) or 'long' [none]
+    --MD         output the MD tag
+    -Y           use soft clipping for supplementary alignments
+    -t INT       number of threads [3]
+    -K NUM       minibatch size for mapping [500M]
+    --version    show version number
+  Preset:
+    -x STR       preset (always applied before other options) []
+                 map-pb: -Hk19 (PacBio vs reference mapping)
+                 map-ont: -k15 (Oxford Nanopore vs reference mapping)
+                 asm5: -k19 -w19 -A1 -B19 -O39,81 -E3,1 -s200 -z200 (asm to ref mapping; break at 5% div.)
+                 asm10: -k19 -w19 -A1 -B9 -O16,41 -E2,1 -s200 -z200 (asm to ref mapping; break at 10% div.)
+                 ava-pb: -Hk19 -Xw5 -m100 -g10000 --max-chain-skip 25 (PacBio read overlap)
+                 ava-ont: -k15 -Xw5 -m100 -g10000 -r2000 --max-chain-skip 25 (ONT read overlap)
+                 splice: long-read spliced alignment (see minimap2.1 for details)
+                 sr: short single-end reads without splicing (see minimap2.1 for details)
+
+See `man ./minimap2.1' for detailed description of command-line options.
++ docker push pvstodghill/minimap2:7938ed4__2018-03-27
+The push refers to a repository [docker.io/pvstodghill/minimap2]
+
+[1A[1K[K029e7fa7d7bd: Preparing [1B
+[1A[1K[Kd8190ebf6f7a: Preparing [1B
+[1A[1K[K58d01bb2f2b0: Preparing [1B
+[1A[1K[Kd6943d86a49e: Preparing [1B
+[1A[1K[K04e7c74bd8a7: Preparing [1B
+[1A[1K[Kdb584c622b50: Preparing [1B
+[1A[1K[K52a7ea2bb533: Preparing [1B
+[1A[1K[K52f389ea437e: Preparing [1B
+[1A[1K[K88888b9b1b5b: Preparing [1B
+[1A[1K[Ka94e0d5a7c40: Preparing [1B[3A[1K[K52f389ea437e: Waiting [3B[5A[1K[Kdb584c622b50: Waiting [5B[4A[1K[K52a7ea2bb533: Waiting [4B[2A[1K[K88888b9b1b5b: Waiting [2B[1A[1K[Ka94e0d5a7c40: Waiting [1B[9A[1K[Kd8190ebf6f7a: Pushing  9.216kB/914.4kB[9B[7A[1K[Kd6943d86a49e: Pushing  33.79kB/240.9kB[7B[10A[1K[K029e7fa7d7bd: Pushing   3.65kB/330.4kB[10B[8A[1K[K58d01bb2f2b0: Pushing  72.45kB/6.074MB[8B[9A[1K[Kd8190ebf6f7a: Pushing  1.035MB[9B[10A[1K[K029e7fa7d7bd: Pushing  344.1kB[10B[7A[1K[Kd6943d86a49e: Pushing  243.2kB[7B[8A[1K[K58d01bb2f2b0: Pushing  738.4kB/6.074MB[8B[9A[1K[Kd8190ebf6f7a: Pushing  2.273MB[9B[6A[1K[K04e7c74bd8a7: Pushing  542.2kB/223.9MB[6B[8A[1K[K58d01bb2f2b0: Pushing  2.333MB/6.074MB[8B[9A[1K[Kd8190ebf6f7a: Pushing  2.597MB[9B[8A[1K[K58d01bb2f2b0: Pushing  4.059MB/6.074MB[8B[6A[1K[K04e7c74bd8a7: Pushing  2.204MB/223.9MB[6B[8A[1K[K58d01bb2f2b0: Pushing  5.478MB/6.074MB[8B[6A[1K[K04e7c74bd8a7: Pushing   3.82MB/223.9MB[6B[8A[1K[K58d01bb2f2b0: Pushing   6.17MB[8B[6A[1K[K04e7c74bd8a7: Pushing  5.412MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  7.029MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  8.654MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  10.25MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  11.92MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  13.58MB/223.9MB[6B[10A[1K[K029e7fa7d7bd: Pushed [10B[6A[1K[K04e7c74bd8a7: Pushing  15.78MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  17.42MB/223.9MB[6B[9A[1K[Kd8190ebf6f7a: Pushed [9B[6A[1K[K04e7c74bd8a7: Pushing  19.06MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  21.19MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  23.33MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  25.46MB/223.9MB[6B[8A[1K[K58d01bb2f2b0: Pushed [8B[5A[1K[Kdb584c622b50: Mounted from pvstodghill/bowtie2 [5B[6A[1K[K04e7c74bd8a7: Pushing  27.63MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  29.24MB/223.9MB[6B[7A[1K[Kd6943d86a49e: Pushed [7B[6A[1K[K04e7c74bd8a7: Pushing  30.83MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  32.43MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  34.05MB/223.9MB[6B[2A[1K[K88888b9b1b5b: Mounted from pvstodghill/bowtie2 [2B[4A[1K[K52a7ea2bb533: Mounted from pvstodghill/bowtie2 [4B[6A[1K[K04e7c74bd8a7: Pushing  35.66MB/223.9MB[6B[3A[1K[K52f389ea437e: Mounted from pvstodghill/bowtie2 [3B[6A[1K[K04e7c74bd8a7: Pushing  37.33MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  38.45MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  40.12MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  41.23MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  42.35MB/223.9MB[6B[1A[1K[Ka94e0d5a7c40: Mounted from pvstodghill/bowtie2 [1B[6A[1K[K04e7c74bd8a7: Pushing  43.46MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  45.13MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing   46.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  47.92MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  49.03MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing   50.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  52.93MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing   54.6MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  56.26MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  57.38MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  58.49MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  59.61MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  61.28MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  62.95MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  64.06MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  65.73MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  66.85MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  68.52MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  70.19MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  71.86MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  74.09MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  76.32MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  77.99MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  80.18MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  82.36MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing     84MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  85.67MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  87.31MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  88.92MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  91.15MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  93.38MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  95.54MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  97.19MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  98.83MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  99.94MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  101.6MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  103.3MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    105MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  106.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  107.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  109.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  111.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  112.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    115MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  116.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  118.3MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  120.5MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  122.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  124.3MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  126.6MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  128.2MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  129.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  131.5MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  133.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  135.3MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  136.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  138.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  139.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  141.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    143MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  145.2MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  146.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  148.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  150.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  151.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  153.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  155.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  156.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  158.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  159.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  161.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  162.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  164.3MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  165.9MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  167.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    169MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  170.6MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  172.2MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  174.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    176MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  177.6MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  179.2MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  181.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing    183MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  184.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  186.2MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  187.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  189.5MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  191.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  192.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  194.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  196.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  197.7MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  199.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  201.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  202.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  204.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  206.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  207.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  209.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  211.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  212.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  214.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  216.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  217.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  219.4MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  221.1MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  222.8MB/223.9MB[6B[6A[1K[K04e7c74bd8a7: Pushing  224.5MB[6B[6A[1K[K04e7c74bd8a7: Pushing  226.1MB[6B[6A[1K[K04e7c74bd8a7: Pushing  227.8MB[6B[6A[1K[K04e7c74bd8a7: Pushing  229.6MB[6B[6A[1K[K04e7c74bd8a7: Pushed [6B7938ed4__2018-03-27: digest: sha256:f2f77e190c9bf109babfd0750181ef879a9c8487fd5147e8a807d5f0d5c0a124 size: 2408
+
+real	0m25.193s
+user	0m0.080s
+sys	0m0.100s
+
+Script done on 2018-03-27 11:23:36-0400
