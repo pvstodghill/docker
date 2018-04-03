@@ -1,17 +1,15 @@
 # -*- default-generic -*-
 
-FIXME
-
 FROM ubuntu:latest
 
 # File Author / Maintainer
 MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
 
 # Set up the build environment
-ENV PACKAGE FIXME
-ENV VERSION FIXME
+ENV PACKAGE mummer
+ENV VERSION 3.23
 ENV BUILD_PACKAGES build-essential 
-ENV RUN_PACKAGES ""
+ENV RUN_PACKAGES gnuplot xfig transfig tcsh libsys-hostname-long-perl
 
 # Install required packages
 RUN apt-get update && \
@@ -20,12 +18,37 @@ RUN apt-get update && \
 
 
 # Unpack and build
-ADD ${PACKAGE}-${VERSION}.tar.gz /tmp/
-WORKDIR /tmp/${PACKAGE}-${VERSION}
+ADD MUMmer${VERSION}.tar.gz /tmp/
+WORKDIR /tmp/MUMmer${VERSION}
 
-RUN exit 1 # Remove before running final version
-
-RUN ./configure --prefix=/usr/local && make && make install
+RUN make check \
+    && make \
+    && cp --archive \
+    		dnadiff \
+    		nucmer2xfig \
+    		run-mummer3 \
+    		run-mummer1 \
+    		promer \
+    		nucmer \
+    		mummerplot \
+    		mapview \
+    		exact-tandems \
+    		show-diff \
+    		show-snps \
+    		show-tiling \
+    		show-coords \
+    		show-aligns \
+    		repeat-match \
+    		aux_bin/* \
+    		mgaps \
+    		gaps \
+    		delta-filter \
+    		combineMUMs \
+    		annotate \
+    		mummer \
+    	/usr/local/bin/ \
+    && mkdir -p /usr/local/share/doc/ \
+    && cp --archive docs /usr/local/share/doc/mummer/
 
 # Remove the build environment
 WORKDIR /root

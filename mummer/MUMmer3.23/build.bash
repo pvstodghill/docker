@@ -11,6 +11,6 @@ set -e
 set -x
 
 docker build --pull -t ${fulltag} .
-docker run --rm ${fulltag} FIXME - test the package
+docker run --rm ${fulltag} nucmer -V
 docker push ${fulltag}
 
