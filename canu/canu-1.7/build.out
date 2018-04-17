@@ -1,0 +1,383 @@
+Script started on 2018-04-11 21:04:37-0400
++ docker build --pull -t pvstodghill/canu:1.7__2018-04-11 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  19.77MB
+Step 1/14 : FROM pvstodghill/ubuntu:xenial
+xenial: Pulling from pvstodghill/ubuntu
+Digest: sha256:0c281312ebaad233973620636b086b6b7db54679b52eee091360310ea588d488
+Status: Image is up to date for pvstodghill/ubuntu:xenial
+ ---> 71f4220f8efa
+Step 2/14 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> b48121f4c668
+Step 3/14 : ENV PACKAGE canu
+ ---> Running in 301e856c786c
+ ---> 601c6c046f20
+Removing intermediate container 301e856c786c
+Step 4/14 : ENV VERSION 1.7
+ ---> Running in cbcfa8871fd8
+ ---> 38c10e49f097
+Removing intermediate container cbcfa8871fd8
+Step 5/14 : RUN apt-get update &&     apt-get install --yes         perl libfile-path-perl default-jre-headless gnuplot-nox
+ ---> Running in 3f14efb56c94
+Hit:1 http://us.archive.ubuntu.com/ubuntu xenial InRelease
+Get:2 http://us.archive.ubuntu.com/ubuntu xenial-updates InRelease [102 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu xenial-backports InRelease [102 kB]
+Get:4 http://security.ubuntu.com/ubuntu xenial-security InRelease [102 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu xenial-updates/universe Sources [251 kB]
+Get:6 https://cran.rstudio.com/bin/linux/ubuntu xenial/ InRelease [3590 B]
+Get:7 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages [975 kB]
+Get:8 http://security.ubuntu.com/ubuntu xenial-security/universe Sources [77.7 kB]
+Get:9 http://us.archive.ubuntu.com/ubuntu xenial-updates/restricted amd64 Packages [13.1 kB]
+Get:10 https://cran.rstudio.com/bin/linux/ubuntu xenial/ Packages [118 kB]
+Get:11 http://us.archive.ubuntu.com/ubuntu xenial-updates/universe amd64 Packages [798 kB]
+Get:12 http://us.archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 Packages [18.5 kB]
+Get:13 http://us.archive.ubuntu.com/ubuntu xenial-backports/main amd64 Packages [5153 B]
+Get:14 http://us.archive.ubuntu.com/ubuntu xenial-backports/universe amd64 Packages [7734 B]
+Get:15 http://security.ubuntu.com/ubuntu xenial-security/main amd64 Packages [602 kB]
+Get:16 http://security.ubuntu.com/ubuntu xenial-security/restricted amd64 Packages [12.7 kB]
+Get:17 http://security.ubuntu.com/ubuntu xenial-security/universe amd64 Packages [430 kB]
+Get:18 http://security.ubuntu.com/ubuntu xenial-security/multiverse amd64 Packages [3489 B]
+Fetched 3623 kB in 3s (1082 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+default-jre-headless is already the newest version (2:1.8-56ubuntu2).
+default-jre-headless set to manually installed.
+The following additional packages will be installed:
+  aglfn fonts-liberation ghostscript gnuplot-data gnuplot-tex groff gsfonts
+  imagemagick imagemagick-6.q16 imagemagick-common libcups2 libcupsfilters1
+  libcupsimage2 libdjvulibre-text libdjvulibre21 libfftw3-double3 libgd3
+  libgs9 libgs9-common libijs-0.35 libilmbase12 libjbig2dec0 liblqr-1-0
+  libltdl7 liblua5.1-0 libmagickcore-6.q16-2 libmagickcore-6.q16-2-extra
+  libmagickwand-6.q16-2 libnetpbm10 libopenexr22 libperl5.22 librsvg2-2
+  librsvg2-common libvpx3 libwmf0.2-7 netpbm perl-modules-5.22 poppler-data
+  psutils
+Suggested packages:
+  ghostscript-x hpijs gnuplot-doc imagemagick-doc autotrace cups-bsd | lpr
+  | lprng enscript ffmpeg gimp gnuplot grads graphviz hp2xx html2ps libwmf-bin
+  mplayer povray radiance sane-utils texlive-base-bin transfig ufraw-batch
+  cups-common libfftw3-bin libfftw3-dev libgd-tools fonts-droid
+  texlive-lang-cjk inkscape librsvg2-bin libwmf0.2-7-gtk perl-doc
+  libterm-readline-gnu-perl | libterm-readline-perl-perl poppler-utils
+  fonts-japanese-mincho | fonts-ipafont-mincho fonts-japanese-gothic
+  | fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-nanum
+The following NEW packages will be installed:
+  aglfn fonts-liberation ghostscript gnuplot-data gnuplot-nox gnuplot-tex
+  groff gsfonts imagemagick imagemagick-6.q16 imagemagick-common
+  libcupsfilters1 libcupsimage2 libdjvulibre-text libdjvulibre21
+  libfftw3-double3 libgd3 libgs9 libgs9-common libijs-0.35 libilmbase12
+  libjbig2dec0 liblqr-1-0 libltdl7 liblua5.1-0 libmagickcore-6.q16-2
+  libmagickcore-6.q16-2-extra libmagickwand-6.q16-2 libnetpbm10 libopenexr22
+  librsvg2-2 librsvg2-common libvpx3 libwmf0.2-7 netpbm poppler-data psutils
+The following packages will be upgraded:
+  libcups2 libperl5.22 perl perl-base perl-modules-5.22
+5 upgraded, 37 newly installed, 0 to remove and 146 not upgraded.
+Need to get 29.6 MB of archives.
+After this operation, 81.6 MB of additional disk space will be used.
+Get:1 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libperl5.22 amd64 5.22.1-9ubuntu0.2 [3391 kB]
+Get:2 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 perl amd64 5.22.1-9ubuntu0.2 [237 kB]
+Get:3 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 perl-base amd64 5.22.1-9ubuntu0.2 [1282 kB]
+Get:4 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 perl-modules-5.22 all 5.22.1-9ubuntu0.2 [2661 kB]
+Get:5 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 imagemagick-common all 8:6.8.9.9-7ubuntu5.9 [41.3 kB]
+Get:6 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libfftw3-double3 amd64 3.3.4-2ubuntu1 [718 kB]
+Get:7 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 liblqr-1-0 amd64 0.4.2-2 [23.6 kB]
+Get:8 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libltdl7 amd64 2.4.6-0.1 [38.3 kB]
+Get:9 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libmagickcore-6.q16-2 amd64 8:6.8.9.9-7ubuntu5.9 [1581 kB]
+Get:10 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libmagickwand-6.q16-2 amd64 8:6.8.9.9-7ubuntu5.9 [288 kB]
+Get:11 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 poppler-data all 0.4.7-7 [1495 kB]
+Get:12 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 fonts-liberation all 1.07.4-1 [829 kB]
+Get:13 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libcups2 amd64 2.1.3-4ubuntu0.4 [197 kB]
+Get:14 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libcupsfilters1 amd64 1.8.3-2ubuntu3.1 [80.4 kB]
+Get:15 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libcupsimage2 amd64 2.1.3-4ubuntu0.4 [16.1 kB]
+Get:16 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libijs-0.35 amd64 0.35-12 [15.5 kB]
+Get:17 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libjbig2dec0 amd64 0.12+20150918-1ubuntu0.1 [55.3 kB]
+Get:18 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgs9-common all 9.18~dfsg~0-0ubuntu2.7 [2982 kB]
+Get:19 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgs9 amd64 9.18~dfsg~0-0ubuntu2.7 [2057 kB]
+Get:20 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 gsfonts all 1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1 [3374 kB]
+Get:21 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 ghostscript amd64 9.18~dfsg~0-0ubuntu2.7 [40.8 kB]
+Get:22 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 aglfn all 1.7-3 [29.4 kB]
+Get:23 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 gnuplot-tex all 4.6.6-3 [10.1 kB]
+Get:24 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 gnuplot-data all 4.6.6-3 [53.2 kB]
+Get:25 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libvpx3 amd64 1.5.0-2ubuntu1 [732 kB]
+Get:26 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libgd3 amd64 2.1.1-4ubuntu0.16.04.8 [126 kB]
+Get:27 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 liblua5.1-0 amd64 5.1.5-8ubuntu1 [102 kB]
+Get:28 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 gnuplot-nox amd64 4.6.6-3 [747 kB]
+Get:29 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 groff amd64 1.22.3-7 [3289 kB]
+Get:30 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 imagemagick-6.q16 amd64 8:6.8.9.9-7ubuntu5.9 [387 kB]
+Get:31 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 imagemagick amd64 8:6.8.9.9-7ubuntu5.9 [44.8 kB]
+Get:32 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libdjvulibre-text all 3.5.27.1-5 [49.3 kB]
+Get:33 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libdjvulibre21 amd64 3.5.27.1-5 [583 kB]
+Get:34 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libilmbase12 amd64 2.2.0-11ubuntu2 [71.4 kB]
+Get:35 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libopenexr22 amd64 2.2.0-10ubuntu2 [582 kB]
+Get:36 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 librsvg2-2 amd64 2.40.13-3 [93.9 kB]
+Get:37 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libwmf0.2-7 amd64 0.2.8.4-10.5ubuntu1 [147 kB]
+Get:38 http://us.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libmagickcore-6.q16-2-extra amd64 8:6.8.9.9-7ubuntu5.9 [59.6 kB]
+Get:39 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 libnetpbm10 amd64 2:10.0-15.3 [58.1 kB]
+Get:40 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 librsvg2-common amd64 2.40.13-3 [5034 B]
+Get:41 http://us.archive.ubuntu.com/ubuntu xenial/main amd64 netpbm amd64 2:10.0-15.3 [997 kB]
+Get:42 http://us.archive.ubuntu.com/ubuntu xenial/universe amd64 psutils amd64 1.17.dfsg-2 [56.3 kB]
+[91mdebconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+[0m[91mdebconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+[0m[91mdpkg-preconfigure: unable to re-open stdin: 
+[0mFetched 29.6 MB in 15s (1909 kB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 32591 files and directories currently installed.)
+Preparing to unpack .../libperl5.22_5.22.1-9ubuntu0.2_amd64.deb ...
+Unpacking libperl5.22:amd64 (5.22.1-9ubuntu0.2) over (5.22.1-9) ...
+Preparing to unpack .../perl_5.22.1-9ubuntu0.2_amd64.deb ...
+Unpacking perl (5.22.1-9ubuntu0.2) over (5.22.1-9) ...
+Preparing to unpack .../perl-base_5.22.1-9ubuntu0.2_amd64.deb ...
+Unpacking perl-base (5.22.1-9ubuntu0.2) over (5.22.1-9) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up perl-base (5.22.1-9ubuntu0.2) ...
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 32591 files and directories currently installed.)
+Preparing to unpack .../perl-modules-5.22_5.22.1-9ubuntu0.2_all.deb ...
+Unpacking perl-modules-5.22 (5.22.1-9ubuntu0.2) over (5.22.1-9) ...
+Selecting previously unselected package imagemagick-common.
+Preparing to unpack .../imagemagick-common_8%3a6.8.9.9-7ubuntu5.9_all.deb ...
+Unpacking imagemagick-common (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package libfftw3-double3:amd64.
+Preparing to unpack .../libfftw3-double3_3.3.4-2ubuntu1_amd64.deb ...
+Unpacking libfftw3-double3:amd64 (3.3.4-2ubuntu1) ...
+Selecting previously unselected package liblqr-1-0:amd64.
+Preparing to unpack .../liblqr-1-0_0.4.2-2_amd64.deb ...
+Unpacking liblqr-1-0:amd64 (0.4.2-2) ...
+Selecting previously unselected package libltdl7:amd64.
+Preparing to unpack .../libltdl7_2.4.6-0.1_amd64.deb ...
+Unpacking libltdl7:amd64 (2.4.6-0.1) ...
+Selecting previously unselected package libmagickcore-6.q16-2:amd64.
+Preparing to unpack .../libmagickcore-6.q16-2_8%3a6.8.9.9-7ubuntu5.9_amd64.deb ...
+Unpacking libmagickcore-6.q16-2:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package libmagickwand-6.q16-2:amd64.
+Preparing to unpack .../libmagickwand-6.q16-2_8%3a6.8.9.9-7ubuntu5.9_amd64.deb ...
+Unpacking libmagickwand-6.q16-2:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package poppler-data.
+Preparing to unpack .../poppler-data_0.4.7-7_all.deb ...
+Unpacking poppler-data (0.4.7-7) ...
+Selecting previously unselected package fonts-liberation.
+Preparing to unpack .../fonts-liberation_1.07.4-1_all.deb ...
+Unpacking fonts-liberation (1.07.4-1) ...
+Preparing to unpack .../libcups2_2.1.3-4ubuntu0.4_amd64.deb ...
+Unpacking libcups2:amd64 (2.1.3-4ubuntu0.4) over (2.1.3-4) ...
+Selecting previously unselected package libcupsfilters1:amd64.
+Preparing to unpack .../libcupsfilters1_1.8.3-2ubuntu3.1_amd64.deb ...
+Unpacking libcupsfilters1:amd64 (1.8.3-2ubuntu3.1) ...
+Selecting previously unselected package libcupsimage2:amd64.
+Preparing to unpack .../libcupsimage2_2.1.3-4ubuntu0.4_amd64.deb ...
+Unpacking libcupsimage2:amd64 (2.1.3-4ubuntu0.4) ...
+Selecting previously unselected package libijs-0.35:amd64.
+Preparing to unpack .../libijs-0.35_0.35-12_amd64.deb ...
+Unpacking libijs-0.35:amd64 (0.35-12) ...
+Selecting previously unselected package libjbig2dec0.
+Preparing to unpack .../libjbig2dec0_0.12+20150918-1ubuntu0.1_amd64.deb ...
+Unpacking libjbig2dec0 (0.12+20150918-1ubuntu0.1) ...
+Selecting previously unselected package libgs9-common.
+Preparing to unpack .../libgs9-common_9.18~dfsg~0-0ubuntu2.7_all.deb ...
+Unpacking libgs9-common (9.18~dfsg~0-0ubuntu2.7) ...
+Selecting previously unselected package libgs9:amd64.
+Preparing to unpack .../libgs9_9.18~dfsg~0-0ubuntu2.7_amd64.deb ...
+Unpacking libgs9:amd64 (9.18~dfsg~0-0ubuntu2.7) ...
+Selecting previously unselected package gsfonts.
+Preparing to unpack .../gsfonts_1%3a8.11+urwcyr1.0.7~pre44-4.2ubuntu1_all.deb ...
+Unpacking gsfonts (1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1) ...
+Selecting previously unselected package ghostscript.
+Preparing to unpack .../ghostscript_9.18~dfsg~0-0ubuntu2.7_amd64.deb ...
+Unpacking ghostscript (9.18~dfsg~0-0ubuntu2.7) ...
+Selecting previously unselected package aglfn.
+Preparing to unpack .../archives/aglfn_1.7-3_all.deb ...
+Unpacking aglfn (1.7-3) ...
+Selecting previously unselected package gnuplot-tex.
+Preparing to unpack .../gnuplot-tex_4.6.6-3_all.deb ...
+Unpacking gnuplot-tex (4.6.6-3) ...
+Selecting previously unselected package gnuplot-data.
+Preparing to unpack .../gnuplot-data_4.6.6-3_all.deb ...
+Unpacking gnuplot-data (4.6.6-3) ...
+Selecting previously unselected package libvpx3:amd64.
+Preparing to unpack .../libvpx3_1.5.0-2ubuntu1_amd64.deb ...
+Unpacking libvpx3:amd64 (1.5.0-2ubuntu1) ...
+Selecting previously unselected package libgd3:amd64.
+Preparing to unpack .../libgd3_2.1.1-4ubuntu0.16.04.8_amd64.deb ...
+Unpacking libgd3:amd64 (2.1.1-4ubuntu0.16.04.8) ...
+Selecting previously unselected package liblua5.1-0:amd64.
+Preparing to unpack .../liblua5.1-0_5.1.5-8ubuntu1_amd64.deb ...
+Unpacking liblua5.1-0:amd64 (5.1.5-8ubuntu1) ...
+Selecting previously unselected package gnuplot-nox.
+Preparing to unpack .../gnuplot-nox_4.6.6-3_amd64.deb ...
+Unpacking gnuplot-nox (4.6.6-3) ...
+Selecting previously unselected package groff.
+Preparing to unpack .../groff_1.22.3-7_amd64.deb ...
+Unpacking groff (1.22.3-7) ...
+Selecting previously unselected package imagemagick-6.q16.
+Preparing to unpack .../imagemagick-6.q16_8%3a6.8.9.9-7ubuntu5.9_amd64.deb ...
+Unpacking imagemagick-6.q16 (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package imagemagick.
+Preparing to unpack .../imagemagick_8%3a6.8.9.9-7ubuntu5.9_amd64.deb ...
+Unpacking imagemagick (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package libdjvulibre-text.
+Preparing to unpack .../libdjvulibre-text_3.5.27.1-5_all.deb ...
+Unpacking libdjvulibre-text (3.5.27.1-5) ...
+Selecting previously unselected package libdjvulibre21:amd64.
+Preparing to unpack .../libdjvulibre21_3.5.27.1-5_amd64.deb ...
+Unpacking libdjvulibre21:amd64 (3.5.27.1-5) ...
+Selecting previously unselected package libilmbase12:amd64.
+Preparing to unpack .../libilmbase12_2.2.0-11ubuntu2_amd64.deb ...
+Unpacking libilmbase12:amd64 (2.2.0-11ubuntu2) ...
+Selecting previously unselected package libopenexr22:amd64.
+Preparing to unpack .../libopenexr22_2.2.0-10ubuntu2_amd64.deb ...
+Unpacking libopenexr22:amd64 (2.2.0-10ubuntu2) ...
+Selecting previously unselected package librsvg2-2:amd64.
+Preparing to unpack .../librsvg2-2_2.40.13-3_amd64.deb ...
+Unpacking librsvg2-2:amd64 (2.40.13-3) ...
+Selecting previously unselected package libwmf0.2-7:amd64.
+Preparing to unpack .../libwmf0.2-7_0.2.8.4-10.5ubuntu1_amd64.deb ...
+Unpacking libwmf0.2-7:amd64 (0.2.8.4-10.5ubuntu1) ...
+Selecting previously unselected package libmagickcore-6.q16-2-extra:amd64.
+Preparing to unpack .../libmagickcore-6.q16-2-extra_8%3a6.8.9.9-7ubuntu5.9_amd64.deb ...
+Unpacking libmagickcore-6.q16-2-extra:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Selecting previously unselected package libnetpbm10.
+Preparing to unpack .../libnetpbm10_2%3a10.0-15.3_amd64.deb ...
+Unpacking libnetpbm10 (2:10.0-15.3) ...
+Selecting previously unselected package librsvg2-common:amd64.
+Preparing to unpack .../librsvg2-common_2.40.13-3_amd64.deb ...
+Unpacking librsvg2-common:amd64 (2.40.13-3) ...
+Selecting previously unselected package netpbm.
+Preparing to unpack .../netpbm_2%3a10.0-15.3_amd64.deb ...
+Unpacking netpbm (2:10.0-15.3) ...
+Selecting previously unselected package psutils.
+Preparing to unpack .../psutils_1.17.dfsg-2_amd64.deb ...
+Unpacking psutils (1.17.dfsg-2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for fontconfig (2.11.94-0ubuntu1.1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for hicolor-icon-theme (0.15-0ubuntu1) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.2) ...
+Setting up perl-modules-5.22 (5.22.1-9ubuntu0.2) ...
+Setting up libperl5.22:amd64 (5.22.1-9ubuntu0.2) ...
+Setting up perl (5.22.1-9ubuntu0.2) ...
+Setting up imagemagick-common (8:6.8.9.9-7ubuntu5.9) ...
+Setting up libfftw3-double3:amd64 (3.3.4-2ubuntu1) ...
+Setting up liblqr-1-0:amd64 (0.4.2-2) ...
+Setting up libltdl7:amd64 (2.4.6-0.1) ...
+Setting up libmagickcore-6.q16-2:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Setting up libmagickwand-6.q16-2:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Setting up poppler-data (0.4.7-7) ...
+Setting up fonts-liberation (1.07.4-1) ...
+Setting up libcups2:amd64 (2.1.3-4ubuntu0.4) ...
+Setting up libcupsfilters1:amd64 (1.8.3-2ubuntu3.1) ...
+Setting up libcupsimage2:amd64 (2.1.3-4ubuntu0.4) ...
+Setting up libijs-0.35:amd64 (0.35-12) ...
+Setting up libjbig2dec0 (0.12+20150918-1ubuntu0.1) ...
+Setting up libgs9-common (9.18~dfsg~0-0ubuntu2.7) ...
+update-alternatives: using /usr/share/ghostscript/9.18 to provide /usr/share/ghostscript/current (ghostscript-current) in auto mode
+Setting up libgs9:amd64 (9.18~dfsg~0-0ubuntu2.7) ...
+Setting up gsfonts (1:8.11+urwcyr1.0.7~pre44-4.2ubuntu1) ...
+Setting up ghostscript (9.18~dfsg~0-0ubuntu2.7) ...
+Setting up aglfn (1.7-3) ...
+Setting up gnuplot-tex (4.6.6-3) ...
+Setting up gnuplot-data (4.6.6-3) ...
+Setting up libvpx3:amd64 (1.5.0-2ubuntu1) ...
+Setting up libgd3:amd64 (2.1.1-4ubuntu0.16.04.8) ...
+Setting up liblua5.1-0:amd64 (5.1.5-8ubuntu1) ...
+Setting up gnuplot-nox (4.6.6-3) ...
+update-alternatives: using /usr/bin/gnuplot4-nox to provide /usr/bin/gnuplot (gnuplot) in auto mode
+update-alternatives: using /usr/bin/gnuplot4-nox to provide /usr/bin/gnuplot4 (gnuplot4) in auto mode
+Setting up groff (1.22.3-7) ...
+Setting up imagemagick-6.q16 (8:6.8.9.9-7ubuntu5.9) ...
+Setting up imagemagick (8:6.8.9.9-7ubuntu5.9) ...
+update-alternatives: using /usr/bin/compare-im6 to provide /usr/bin/compare (compare) in auto mode
+update-alternatives: using /usr/bin/animate-im6 to provide /usr/bin/animate (animate) in auto mode
+update-alternatives: using /usr/bin/convert-im6 to provide /usr/bin/convert (convert) in auto mode
+update-alternatives: using /usr/bin/composite-im6 to provide /usr/bin/composite (composite) in auto mode
+update-alternatives: using /usr/bin/conjure-im6 to provide /usr/bin/conjure (conjure) in auto mode
+update-alternatives: using /usr/bin/import-im6 to provide /usr/bin/import (import) in auto mode
+update-alternatives: using /usr/bin/identify-im6 to provide /usr/bin/identify (identify) in auto mode
+update-alternatives: using /usr/bin/stream-im6 to provide /usr/bin/stream (stream) in auto mode
+update-alternatives: using /usr/bin/display-im6 to provide /usr/bin/display (display) in auto mode
+update-alternatives: using /usr/bin/montage-im6 to provide /usr/bin/montage (montage) in auto mode
+update-alternatives: using /usr/bin/mogrify-im6 to provide /usr/bin/mogrify (mogrify) in auto mode
+Setting up libdjvulibre-text (3.5.27.1-5) ...
+Setting up libdjvulibre21:amd64 (3.5.27.1-5) ...
+Setting up libilmbase12:amd64 (2.2.0-11ubuntu2) ...
+Setting up libopenexr22:amd64 (2.2.0-10ubuntu2) ...
+Setting up librsvg2-2:amd64 (2.40.13-3) ...
+Setting up libwmf0.2-7:amd64 (0.2.8.4-10.5ubuntu1) ...
+Setting up libmagickcore-6.q16-2-extra:amd64 (8:6.8.9.9-7ubuntu5.9) ...
+Setting up libnetpbm10 (2:10.0-15.3) ...
+Setting up librsvg2-common:amd64 (2.40.13-3) ...
+Setting up netpbm (2:10.0-15.3) ...
+Setting up psutils (1.17.dfsg-2) ...
+Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Processing triggers for libgdk-pixbuf2.0-0:amd64 (2.32.2-1ubuntu1.2) ...
+ ---> 9aff56a32b47
+Removing intermediate container 3f14efb56c94
+Step 6/14 : ADD ${PACKAGE}-${VERSION}.Linux-amd64.tar.xz /opt/
+ ---> f5dfd632fab6
+Removing intermediate container 92016af4de41
+Step 7/14 : WORKDIR /opt
+ ---> d285b48483dd
+Removing intermediate container 3c2818aaf48d
+Step 8/14 : RUN mv ${PACKAGE}-${VERSION} ${PACKAGE}
+ ---> Running in a5445c87037e
+ ---> 8da2758abc4d
+Removing intermediate container a5445c87037e
+Step 9/14 : RUN useradd -d /mnt -M guest
+ ---> Running in f3bb835d170d
+ ---> 257b37c4ca90
+Removing intermediate container f3bb835d170d
+Step 10/14 : USER guest
+ ---> Running in 4061fd48d388
+ ---> 1f522f60a7d9
+Removing intermediate container 4061fd48d388
+Step 11/14 : ENV HOME /mnt
+ ---> Running in 240a1fbb6c55
+ ---> f9662ee8f83a
+Removing intermediate container 240a1fbb6c55
+Step 12/14 : ENV PATH /opt/${PACKAGE}/Linux-amd64/bin:${PATH}
+ ---> Running in 566d30a41e33
+ ---> 41bd6be4b764
+Removing intermediate container 566d30a41e33
+Step 13/14 : WORKDIR /mnt
+ ---> 6b4ddb3bddb4
+Removing intermediate container dda34d8c7b91
+Step 14/14 : CMD find /opt/* -type f | sort
+ ---> Running in ea43a4c35307
+ ---> b669c6914ab1
+Removing intermediate container ea43a4c35307
+Successfully built b669c6914ab1
+Successfully tagged pvstodghill/canu:1.7__2018-04-11
++ docker run --rm pvstodghill/canu:1.7__2018-04-11 canu -version
+Canu 1.7
++ docker push pvstodghill/canu:1.7__2018-04-11
+The push refers to a repository [docker.io/pvstodghill/canu]
+
+[1A[1K[Kedf2a5db779b: Preparing [1B
+[1A[1K[Kfed5d7dda204: Preparing [1B
+[1A[1K[Ka2e0c9e02942: Preparing [1B
+[1A[1K[Kd4c7ab998e3e: Preparing [1B
+[1A[1K[Kcb37624ec8ab: Preparing [1B
+[1A[1K[Kbfafdebe2622: Preparing [1B
+[1A[1K[K606ee04fa13b: Preparing [1B
+[1A[1K[K49e3dc95edb9: Preparing [1B
+[1A[1K[K4b39ac33769d: Preparing [1B
+[1A[1K[K73d44754967c: Preparing [1B
+[1A[1K[Ka4f997f59154: Preparing [1B
+[1A[1K[Kfdfd2421ff5b: Preparing [1B[5A[1K[K49e3dc95edb9: Waiting [5B[6A[1K[K606ee04fa13b: Waiting [6B[2A[1K[Ka4f997f59154: Waiting [2B
+[1A[1K[K1f47fd03556d: Preparing [1B
+[1A[1K[K15b6de687e2d: Preparing [1B[2A[1K[K1f47fd03556d: Waiting [2B
+[1A[1K[Kcfa5805e574d: Preparing [1B
+[1A[1K[Ka09947e71dc0: Preparing [1B[3A[1K[K15b6de687e2d: Waiting [3B[2A[1K[Kcfa5805e574d: Waiting [2B
+[1A[1K[K9c42c2077cde: Preparing [1B
+[1A[1K[K625c7a2a783b: Preparing [1B[3A[1K[Ka09947e71dc0: Waiting [3B
+[1A[1K[K25e0901a71b8: Preparing [1B
+[1A[1K[K8aa4fcad5eeb: Preparing [1B[3A[1K[K625c7a2a783b: Waiting [3B[1A[1K[K8aa4fcad5eeb: Waiting [1B[20A[1K[Kedf2a5db779b: Pushing  3.694kB/330.7kB[20B[18A[1K[Ka2e0c9e02942: Pushing  527.4kB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  527.4kB/178.1MB[19B[20A[1K[Kedf2a5db779b: Pushing  345.1kB[20B[17A[1K[Kd4c7ab998e3e: Pushing  544.9kB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  2.186MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  2.743MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing    2.2MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  3.857MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  4.414MB/178.1MB[18B[16A[1K[Kcb37624ec8ab: Layer already exists [16B[17A[1K[Kd4c7ab998e3e: Pushing  4.338MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  5.528MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  6.085MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  6.003MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  7.199MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  7.756MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  8.118MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  9.985MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  10.54MB/178.1MB[18B[15A[1K[Kbfafdebe2622: Layer already exists [15B[17A[1K[Kd4c7ab998e3e: Pushing  10.78MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  12.21MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  12.77MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  13.45MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  14.42MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  14.97MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  15.61MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  16.64MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing   17.2MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  18.31MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  18.93MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing   19.4MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  19.96MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  21.14MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing   21.6MB/178.1MB[18B[20A[1K[Kedf2a5db779b: Pushed [20B[19A[1K[Kfed5d7dda204: Pushing  22.15MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  22.77MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  23.82MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  24.44MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  24.38MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  26.03MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  25.55MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  26.59MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  28.23MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing   27.2MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  28.76MB/178.1MB[19B[13A[1K[K49e3dc95edb9: Layer already exists [13B[18A[1K[Ka2e0c9e02942: Pushing  30.41MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  28.87MB/131.3MB[17B[14A[1K[K606ee04fa13b: Layer already exists [14B[19A[1K[Kfed5d7dda204: Pushing  30.96MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  32.06MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  30.54MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing   33.7MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  33.14MB/178.1MB[19B[12A[1K[K4b39ac33769d: Layer already exists [12B[17A[1K[Kd4c7ab998e3e: Pushing  32.21MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  35.91MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  35.35MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  40.01MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  38.12MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  37.57MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  43.89MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  39.75MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  40.31MB/178.1MB[18B[11A[1K[K73d44754967c: Layer already exists [11B[17A[1K[Kd4c7ab998e3e: Pushing  45.54MB/131.3MB[17B[17A[1K[Kd4c7ab998e3e: Pushing  47.21MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  41.97MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  42.53MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  49.33MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing   44.2MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  44.75MB/178.1MB[18B[10A[1K[Ka4f997f59154: Layer already exists [10B[17A[1K[Kd4c7ab998e3e: Pushing   51.5MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  46.43MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  46.43MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  48.09MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  53.63MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  48.09MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  55.81MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  50.28MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  50.28MB/178.1MB[19B[8A[1K[K1f47fd03556d: Layer already exists [8B[17A[1K[Kd4c7ab998e3e: Pushing  58.01MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  52.47MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  52.47MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  60.24MB/131.3MB[17B[9A[1K[Kfdfd2421ff5b: Layer already exists [9B[18A[1K[Ka2e0c9e02942: Pushing  54.11MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  54.11MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  62.44MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  55.76MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  56.32MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  64.63MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  57.99MB/178.1MB[18B[7A[1K[K15b6de687e2d: Layer already exists [7B[19A[1K[Kfed5d7dda204: Pushing  58.53MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  66.28MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing   60.2MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing   67.9MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  60.75MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  62.36MB/178.1MB[18B[6A[1K[Kcfa5805e574d: Layer already exists [6B[5A[1K[Ka09947e71dc0: Layer already exists [5B[19A[1K[Kfed5d7dda204: Pushing  62.36MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  70.02MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  64.59MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  64.03MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  72.18MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  66.24MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  66.24MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  74.32MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  68.45MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  76.47MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  68.45MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  70.66MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  78.09MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  70.66MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  72.33MB/178.1MB[18B[3A[1K[K625c7a2a783b: Layer already exists [3B[17A[1K[Kd4c7ab998e3e: Pushing  80.22MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  72.33MB/178.1MB[19B[4A[1K[K9c42c2077cde: Layer already exists [4B[18A[1K[Ka2e0c9e02942: Pushing  74.55MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  82.35MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  74.55MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  76.75MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  84.52MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  76.75MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  78.95MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  86.17MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  78.95MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  87.77MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  81.16MB/178.1MB[18B[2A[1K[K25e0901a71b8: Layer already exists [2B[19A[1K[Kfed5d7dda204: Pushing  81.16MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  89.38MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  83.38MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  83.38MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  92.05MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  85.03MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  85.58MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  94.16MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  87.25MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  95.75MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  87.81MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  89.45MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  97.36MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  90.01MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  91.68MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  99.54MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  91.68MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  93.88MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  102.3MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  93.88MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  95.55MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  104.4MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  95.55MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  97.22MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing    106MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  97.78MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  99.43MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  108.2MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  99.99MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  110.3MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  101.7MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  102.2MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  112.5MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  103.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  103.9MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  105.5MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  113.6MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  106.1MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  107.7MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  114.6MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  108.3MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  109.9MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  115.7MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  110.5MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  112.2MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  116.8MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  112.7MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  114.4MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  114.4MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  117.9MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  116.6MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  116.6MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  118.2MB/178.1MB[18B[1A[1K[K8aa4fcad5eeb: Layer already exists [1B[17A[1K[Kd4c7ab998e3e: Pushing    119MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  118.2MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  120.4MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  120.1MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  120.4MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  122.1MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  121.1MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  122.6MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  123.7MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  122.2MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  125.4MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  124.8MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  123.3MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  127.6MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  127.1MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  129.3MB/178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushing  125.4MB/131.3MB[17B[19A[1K[Kfed5d7dda204: Pushing  128.7MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  130.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  130.4MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  127.7MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  133.7MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  133.2MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  129.9MB/131.3MB[17B[18A[1K[Ka2e0c9e02942: Pushing  135.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  135.4MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing    132MB[17B[18A[1K[Ka2e0c9e02942: Pushing  137.6MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  137.6MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  134.7MB[17B[18A[1K[Ka2e0c9e02942: Pushing  139.3MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  139.3MB/178.1MB[19B[17A[1K[Kd4c7ab998e3e: Pushing  135.5MB[17B[18A[1K[Ka2e0c9e02942: Pushing    141MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing    141MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  142.6MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  143.2MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  144.3MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  144.9MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing    146MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  147.1MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  148.8MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  149.3MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing    151MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  151.5MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  153.2MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  153.8MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  155.4MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  156.6MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  157.7MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  158.2MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  159.3MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  159.9MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing    161MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  162.1MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  163.2MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  164.4MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  164.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  167.1MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  167.7MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  169.4MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  169.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing    171MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  171.6MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  172.7MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  173.3MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  174.4MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  174.9MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing    176MB/178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  177.1MB/178.1MB[18B[19A[1K[Kfed5d7dda204: Pushing  178.1MB[19B[18A[1K[Ka2e0c9e02942: Pushing  178.1MB[18B[17A[1K[Kd4c7ab998e3e: Pushed [17B[18A[1K[Ka2e0c9e02942: Pushed [18B[19A[1K[Kfed5d7dda204: Pushed [19B1.7__2018-04-11: digest: sha256:51d7f906ddd0c7be75399c8571ba4fb1fd2cd343b03a2e9ef457d84512b74e7c size: 4530
+
+real	2m32.144s
+user	0m0.136s
+sys	0m0.169s
+
+Script done on 2018-04-11 21:07:09-0400
