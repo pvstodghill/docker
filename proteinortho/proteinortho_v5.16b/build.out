@@ -1,0 +1,147 @@
+Script started on 2018-04-04 11:03:04-0400
++ docker build --pull -t pvstodghill/proteinortho:5.16b__2018-04-04 .
+Sending build context to Docker daemon  177.7kB
+Step 1/18 : FROM ubuntu:artful
+artful: Pulling from library/ubuntu
+Digest: sha256:91680dba9ee085d9d4d33e907842dbecb8891e3cc9f81175ba991d2d27bd862f
+Status: Image is up to date for ubuntu:artful
+ ---> 1af812152d85
+Step 2/18 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 8e97a98a0049
+Step 3/18 : ENV BUILD_PACKAGES ""
+ ---> Using cache
+ ---> ce62f71c7dbb
+Step 4/18 : ENV RUN_PACKAGES libthreads-perl ncbi-blast+
+ ---> Using cache
+ ---> f2509b1541cc
+Step 5/18 : RUN sed -i'' 's/archive\.ubuntu\.com/mirrors.rit.edu/' /etc/apt/sources.list &&     sed -i'' 's/security\.ubuntu\.com/mirrors.rit.edu/' /etc/apt/sources.list &&     rm -rf /var/lib/apt/lists/* &&     apt-get clean && apt-get update &&     apt-get install --yes ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 8a2f38e9c5b0
+Step 6/18 : ENV PACKAGE proteinortho
+ ---> Using cache
+ ---> 536d9e484d47
+Step 7/18 : ENV VERSION 5.16b
+ ---> Using cache
+ ---> d6a2c89b1957
+Step 8/18 : ADD ${PACKAGE}_v${VERSION}.tar.gz /opt/
+ ---> Using cache
+ ---> 780a6cb5bed5
+Step 9/18 : WORKDIR /opt
+ ---> Using cache
+ ---> 3e4cae759e87
+Step 10/18 : RUN mv ${PACKAGE}_v${VERSION} ${PACKAGE}
+ ---> Using cache
+ ---> 32a5632f475f
+Step 11/18 : WORKDIR /root
+ ---> Using cache
+ ---> 24b4fdbc34a6
+Step 12/18 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> f1c3e605ce08
+Step 13/18 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 95389b97d50a
+Step 14/18 : USER guest
+ ---> Using cache
+ ---> f32194479e1b
+Step 15/18 : ENV HOME /mnt
+ ---> Using cache
+ ---> a2476a724f40
+Step 16/18 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Using cache
+ ---> 2e81ba615ac5
+Step 17/18 : WORKDIR /mnt
+ ---> Using cache
+ ---> 6655e9e19b7c
+Step 18/18 : CMD find /opt/* -type f | sort
+ ---> Using cache
+ ---> 9eb4d21867cc
+Successfully built 9eb4d21867cc
+Successfully tagged pvstodghill/proteinortho:5.16b__2018-04-04
++ docker run --rm pvstodghill/proteinortho:5.16b__2018-04-04 proteinortho5.pl
+*****************************************************************
+Proteinortho with PoFF version 5.16b - An orthology detection tool
+*****************************************************************
+Detected 12 available CPU threads, Detected NCBI BLAST version 2.6.0+
+
+Usage: proteinortho5.pl [OPTIONS] FASTA1 FASTA2 [FASTA...]
+Options:
+         [General options]
+         -project=    prefix for all result file names [default: myproject]
+         -cpus=       number of processors to use [default: auto]
+         -verbose     keeps you informed about the progress
+         -temp=       path for temporary files [default: working directory]
+         -keep        stores temporary blast results for reuse
+         -force       forces recalculation of blast results in any case
+         -clean       remove all unnecessary files after processing
+         -step=       1 -> generate indices
+                      2 -> run blast (and ff-adj, if -synteny is set)
+                      3 -> clustering
+                      0 -> all (default)
+
+         [Search options]
+         -p=          blast program [default: blastp+]
+         -e=          E-value for blast [default: 1e-05]
+                      {blastn|blastp|tblastx|blastn+|blastp+|tblastx+}
+         -selfblast   apply selfblast, detects paralogs without orthologs
+         -sim=        min. similarity for additional hits (0..1) [default: 0.95]
+         -identity=   min. percent identity of best blast hits [default: 25]
+         -cov=        min. coverage of best blast alignments in % [default: 50]
+         -subpara=    additional parameters for the search tool
+                      example -subpara='-seg no'
+
+         [Synteny options]
+         -synteny     activate PoFF extension to separate similar sequences
+                      by contextual adjacencies (requires .gff for each .fasta)
+         -dups=       PoFF: number of reiterations for adjacencies heuristic,
+                      to determine duplicated regions (default: 0)
+         -cs=         PoFF: Size of a maximum common substring (MCS) for
+                      adjacency matches (default: 3)
+         -alpha=      PoFF: weight of adjacencies vs. sequence similarity
+                      (default: 0.5)
+
+         [Clustering options]
+         -singles     report singleton genes without any hit
+         -purity=     avoid spurious graph assignments [0.01-1, default 0.75]
+         -conn=       min. algebraic connectivity [default: 0.1]
+         -nograph     do not generate .graph file (pairwise orthology relations)
+
+         [Misc options]
+         -desc        write description files (for NCBI FASTA input only)
+         -blastpath=  path to your local blast (if not installed globally)
+         -debug       gives detailed information for bug tracking
+
+         [Large compute jobs]
+          In case jobs should be distributed onto several machines, use
+         -jobs=M/N    N defines the number of defined job groups (e.g. PCs)
+                      M defines the set of jobs to run in this process
+
+         Example:     run with 
+                        -step=1
+                      to prepare data then to split a run on two machines use
+                        -jobs=1/2 -step=2 on PC one and
+                        -jobs=2/2 -step=2 on PC two
+                      finally run with
+                        -step=3 to finalize
+
+[ERROR] I need at least two files to compare something!
++ docker push pvstodghill/proteinortho:5.16b__2018-04-04
+The push refers to a repository [docker.io/pvstodghill/proteinortho]
+
+[1A[1K[K9c07eb7a6645: Preparing [1B
+[1A[1K[K706ba2814aa7: Preparing [1B
+[1A[1K[Ke85d76598652: Preparing [1B
+[1A[1K[Ka3cbaebcdf06: Preparing [1B
+[1A[1K[Kba46242af04b: Preparing [1B
+[1A[1K[K9a7b8dbe7784: Preparing [1B
+[1A[1K[K35f4debb6479: Preparing [1B[2A[1K[K9a7b8dbe7784: Waiting [2B
+[1A[1K[Ke1cc03d72f83: Preparing [1B
+[1A[1K[Kef79db7deb09: Preparing [1B[3A[1K[K35f4debb6479: Waiting [3B[2A[1K[Ke1cc03d72f83: Waiting [2B
+[1A[1K[Kcfb6934fd56d: Preparing [1B[2A[1K[Kef79db7deb09: Waiting [2B[1A[1K[Kcfb6934fd56d: Waiting [1B[10A[1K[K9c07eb7a6645: Pushing  3.584kB/328.9kB[10B[8A[1K[Ke85d76598652: Pushing   5.12kB/444.3kB[8B[6A[1K[Kba46242af04b: Pushing  535.6kB/180.2MB[6B[7A[1K[Ka3cbaebcdf06: Pushing   5.12kB/444.3kB[7B[10A[1K[K9c07eb7a6645: Pushing  341.5kB[10B[9A[1K[K706ba2814aa7: Pushing  8.192kB[9B[8A[1K[Ke85d76598652: Pushing  470.5kB[8B[6A[1K[Kba46242af04b: Pushing  2.207MB/180.2MB[6B[7A[1K[Ka3cbaebcdf06: Pushing    470kB[7B[6A[1K[Kba46242af04b: Pushing  3.801MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  5.436MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  7.101MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  8.772MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  10.39MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing   13.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  16.47MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  18.08MB/180.2MB[6B[7A[1K[Ka3cbaebcdf06: Pushed [7B[6A[1K[Kba46242af04b: Pushing  19.71MB/180.2MB[6B[9A[1K[K706ba2814aa7: Pushed [9B[6A[1K[Kba46242af04b: Pushing  21.36MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  23.01MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  25.21MB/180.2MB[6B[8A[1K[Ke85d76598652: Pushed [8B[10A[1K[K9c07eb7a6645: Pushed [10B[6A[1K[Kba46242af04b: Pushing  26.88MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  28.55MB/180.2MB[6B[4A[1K[K35f4debb6479: Mounted from pvstodghill/prokka [4B[6A[1K[Kba46242af04b: Pushing  30.21MB/180.2MB[6B[5A[1K[K9a7b8dbe7784: Mounted from pvstodghill/prokka [5B[6A[1K[Kba46242af04b: Pushing  32.38MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing     34MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  35.65MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing   37.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing   38.4MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  40.05MB/180.2MB[6B[3A[1K[Ke1cc03d72f83: Mounted from pvstodghill/prokka [3B[2A[1K[Kef79db7deb09: Mounted from pvstodghill/prokka [2B[6A[1K[Kba46242af04b: Pushing   41.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  42.81MB/180.2MB[6B[1A[1K[Kcfb6934fd56d: Mounted from pvstodghill/prokka [1B[6A[1K[Kba46242af04b: Pushing  44.42MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  46.08MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  47.72MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  49.38MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  51.04MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  52.66MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  54.26MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing   55.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  57.49MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  59.62MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  61.24MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  62.85MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  64.46MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  66.09MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  67.71MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  69.31MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  70.89MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  72.54MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  74.18MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  75.81MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  77.43MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  79.55MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  81.17MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  83.38MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing   85.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  87.83MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  90.03MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  91.65MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  93.31MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  94.92MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  97.08MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  99.86MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  102.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  105.8MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  106.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  108.1MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  109.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  110.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  111.4MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  112.5MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  113.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  114.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  115.8MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing    117MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  118.1MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  119.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  120.8MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  123.5MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  125.1MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  126.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  129.5MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  131.1MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  132.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  134.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  136.4MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing    138MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  139.7MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  141.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  142.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  144.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  146.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  147.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  149.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  151.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  152.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  154.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  156.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  157.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  159.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  161.2MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  162.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  164.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  166.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  167.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  169.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  171.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  172.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  174.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  176.3MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  177.9MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  179.6MB/180.2MB[6B[6A[1K[Kba46242af04b: Pushing  181.3MB[6B[6A[1K[Kba46242af04b: Pushing  182.4MB[6B[6A[1K[Kba46242af04b: Pushing  183.2MB[6B[6A[1K[Kba46242af04b: Pushed [6B5.16b__2018-04-04: digest: sha256:a4a1a8d7c8ec864da578c646210fb0a240a09d6cd50864018f26413c09c193a1 size: 2404
+
+real	0m22.136s
+user	0m0.076s
+sys	0m0.080s
+
+Script done on 2018-04-04 11:03:26-0400
