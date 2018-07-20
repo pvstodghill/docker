@@ -1,0 +1,177 @@
+Script started on 2018-07-19 14:02:14-0400
++ rm -rf bowtie2-2.3.4.1-linux-x86_64
++ unzip bowtie2-2.3.4.1-linux-x86_64.zip
+Archive:  bowtie2-2.3.4.1-linux-x86_64.zip
+   creating: bowtie2-2.3.4.1-linux-x86_64/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reference/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reference/lambda_virus.fa  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/reads/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/simulate.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/longreads.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_1.fq  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/reads/reads_2.fq  
+   creating: bowtie2-2.3.4.1-linux-x86_64/example/index/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.3.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.1.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.4.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/example/index/lambda_virus.rev.2.bt2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l-debug  
+   creating: bowtie2-2.3.4.1-linux-x86_64/doc/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/style.css  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/README  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/doc/manual.html  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/LICENSE  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/NEWS  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/MANUAL.markdown  
+ extracting: bowtie2-2.3.4.1-linux-x86_64/VERSION  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-align-l-debug  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-inspect-l  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build-s  
+   creating: bowtie2-2.3.4.1-linux-x86_64/scripts/
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_c_elegans.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_canFam2.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_e_coli.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_2b_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_m_musculus_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_s_cerevisiae.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi36.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_b_taurus_UMD3.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg18.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_rn4.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_occ_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_d_melanogaster.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_hg19.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/infer_fraglen.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm9.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_h_sapiens_ncbi37.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/gen_solqual_lookup.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_a_thaliana_tair.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/convert_quals.pl  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/scripts/make_mm10.sh  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2-build  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/bowtie2  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/TUTORIAL  
+  inflating: bowtie2-2.3.4.1-linux-x86_64/AUTHORS  
++ docker build --pull -t pvstodghill/breseq:0.32.1__2018-07-19 .
+Sending build context to Docker daemon  557.1kBSending build context to Docker daemon  30.08MBSending build context to Docker daemon  62.95MBSending build context to Docker daemon  94.14MBSending build context to Docker daemon  126.5MBSending build context to Docker daemon  158.8MBSending build context to Docker daemon  191.1MBSending build context to Docker daemon  224.5MBSending build context to Docker daemon  257.4MBSending build context to Docker daemon  290.2MBSending build context to Docker daemon  298.9MB
+Step 1/28 : FROM debian:latest
+latest: Pulling from library/debian
+Digest: sha256:f1f61086ea01a72b30c7287adee8c929e569853de03b7c462a8ac75e0d0224c4
+Status: Image is up to date for debian:latest
+ ---> 3bbb526d2608
+Step 2/28 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> 4f6bdcfbb7b5
+Step 3/28 : ENV PACKAGE breseq
+ ---> Using cache
+ ---> 11c7384839b3
+Step 4/28 : ENV VERSION 0.32.1
+ ---> Using cache
+ ---> 98fc3e1673bd
+Step 5/28 : ENV BVERSION 2.3.4.1
+ ---> Using cache
+ ---> 2d2c501750f3
+Step 6/28 : ENV RUN_PACKAGES r-base-core python libsys-hostname-long-perl libunwind8
+ ---> Using cache
+ ---> 0fac4a0a6dd4
+Step 7/28 : RUN apt-get update &&     apt-get install --yes --no-install-recommends     ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 3b15f1e0d02f
+Step 8/28 : ENV DEST_DIR /usr/local
+ ---> Using cache
+ ---> ffcbc5022c44
+Step 9/28 : ENV BIN_DIR ${DEST_DIR}/bin
+ ---> Using cache
+ ---> 02a4e03cde55
+Step 10/28 : ENV LIB_DIR ${DEST_DIR}/lib/${PACKAGE}
+ ---> Using cache
+ ---> be932dfc808c
+Step 11/28 : ENV SHARE_DIR ${DEST_DIR}/share
+ ---> Using cache
+ ---> e9d13653005a
+Step 12/28 : ENV DOC_DIR ${SHARE_DIR}/doc/${PACKAGE}
+ ---> Using cache
+ ---> c28791e0d966
+Step 13/28 : ADD ${PACKAGE}-${VERSION}-Linux-x86_64.tar.gz /tmp/
+ ---> Using cache
+ ---> 770e3dc06421
+Step 14/28 : WORKDIR /tmp/${PACKAGE}-${VERSION}-Linux-x86_64
+ ---> Using cache
+ ---> 1c2c49dee6dd
+Step 15/28 : RUN     mkdir -p ${DOC_DIR} ${LIB_DIR} ;     cp --archive bin/* ${BIN_DIR} ;     cp --archive documentation ${DOC_DIR} ;     cp --archive LICENSE ${DOC_DIR} ;     cp --archive README ${DOC_DIR} ;     cp --archive tests ${DOC_DIR} ;     chmod +x ${DOC_DIR}/tests/test.sh ;     cp --archive run_tests.sh ${DOC_DIR} ;     cp --archive share/* ${SHARE_DIR} ;     chmod -R go=u-w,-s /usr/local ;     : done
+ ---> Using cache
+ ---> 8deb39b6563f
+Step 16/28 : WORKDIR /root
+ ---> Using cache
+ ---> c00303e62b9f
+Step 17/28 : RUN rm -rf /tmp/${PACKAGE}-${VERSION}
+ ---> Using cache
+ ---> bb84eab67dad
+Step 18/28 : ADD bowtie2-${BVERSION}-linux-x86_64.tar.gz /tmp/
+ ---> Using cache
+ ---> b5bd3e507c69
+Step 19/28 : WORKDIR /tmp/bowtie2-${BVERSION}-linux-x86_64
+ ---> Using cache
+ ---> e8f3461b37a6
+Step 20/28 : RUN     mkdir -p ${DOC_DIR} ;     cp --archive AUTHORS ${DOC_DIR} ;     cp --archive LICENSE  ${DOC_DIR} ;     cp --archive MANUAL  ${DOC_DIR} ;     cp --archive MANUAL.markdown  ${DOC_DIR} ;     cp --archive NEWS  ${DOC_DIR} ;     cp --archive TUTORIAL  ${DOC_DIR} ;     cp --archive VERSION  ${DOC_DIR} ;     cp --archive bowtie2 ${BIN_DIR} ;     cp --archive bowtie2-align-l ${BIN_DIR} ;     cp --archive bowtie2-align-l-debug ${BIN_DIR} ;     cp --archive bowtie2-align-s ${BIN_DIR} ;     cp --archive bowtie2-align-s-debug ${BIN_DIR} ;     cp --archive bowtie2-build ${BIN_DIR} ;     cp --archive bowtie2-build-l ${BIN_DIR} ;     cp --archive bowtie2-build-l-debug ${BIN_DIR} ;     cp --archive bowtie2-build-s ${BIN_DIR} ;     cp --archive bowtie2-build-s-debug ${BIN_DIR} ;     cp --archive bowtie2-inspect ${BIN_DIR} ;     cp --archive bowtie2-inspect-l ${BIN_DIR} ;     cp --archive bowtie2-inspect-l-debug ${BIN_DIR} ;     cp --archive bowtie2-inspect-s ${BIN_DIR} ;     cp --archive bowtie2-inspect-s-debug ${BIN_DIR} ;     cp --archive doc  ${DOC_DIR} ;     cp --archive example  ${DOC_DIR} ;     cp --archive scripts  ${DOC_DIR} ;     : done
+ ---> Using cache
+ ---> b36e717724ef
+Step 21/28 : WORKDIR /root
+ ---> Using cache
+ ---> 64b3d6eb2b1e
+Step 22/28 : RUN rm -rf /tmp/bowtie2-${BVERSION}
+ ---> Using cache
+ ---> 904229491f64
+Step 23/28 : RUN apt-get autoremove -y && apt-get clean
+ ---> Using cache
+ ---> f652a8edd722
+Step 24/28 : RUN useradd -d /mnt -M guest
+ ---> Using cache
+ ---> 5e53b6b1ca23
+Step 25/28 : USER guest
+ ---> Using cache
+ ---> 33bcd465f110
+Step 26/28 : ENV HOME /mnt
+ ---> Using cache
+ ---> 0206515cf27b
+Step 27/28 : WORKDIR /mnt
+ ---> Using cache
+ ---> 542fbc9292fa
+Step 28/28 : CMD find /usr/local -type f | sort
+ ---> Using cache
+ ---> 7f1aec8b4b8f
+Successfully built 7f1aec8b4b8f
+Successfully tagged pvstodghill/breseq:0.32.1__2018-07-19
++ rm -rf bowtie2-2.3.4.1
++ docker run pvstodghill/breseq:0.32.1__2018-07-19 breseq --version
+breseq 0.32.1
++ docker push pvstodghill/breseq:0.32.1__2018-07-19
+The push refers to repository [docker.io/pvstodghill/breseq]
+
+[1A[1K[K1efae5d65608: Preparing [1B
+[1A[1K[K5adaf780ad83: Preparing [1B
+[1A[1K[Kc2c416ea2b32: Preparing [1B
+[1A[1K[K40f84a7a2955: Preparing [1B
+[1A[1K[Kf4388c99e523: Preparing [1B
+[1A[1K[K176b7abec2f9: Preparing [1B
+[1A[1K[K6b0279c67b22: Preparing [1B
+[1A[1K[K3b10514a95be: Preparing [1B[3A[1K[K176b7abec2f9: Waiting [3B[2A[1K[K6b0279c67b22: Waiting [2B[1A[1K[K3b10514a95be: Waiting [1Bdenied: requested access to the resource is denied
+
+real	0m4.496s
+user	0m1.730s
+sys	0m0.425s
+
+Script done on 2018-07-19 14:02:18-0400
