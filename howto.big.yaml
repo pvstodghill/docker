@@ -1,0 +1,794 @@
+---
+image: pvstodghill/art
+version: mountrainier20160605__2017-07-10
+commands:
+  - art_454
+  - art_SOLiD
+  - art_illumina
+
+---
+image: pvstodghill/bowtie2
+version: 2.3.4.1__2018-03-15
+commands:
+  - bowtie2
+  - bowtie2-align-l
+  - bowtie2-align-s
+  - bowtie2-build
+  - bowtie2-build-l
+  - bowtie2-build-s
+  - bowtie2-inspect
+  - bowtie2-inspect-l
+  - bowtie2-inspect-s
+
+---
+image: pvstodghill/breseq
+version: 0.32.1__2018-07-19
+commands:
+  # - bowtie2
+  # - bowtie2-align-l
+  # - bowtie2-align-l-debug
+  # - bowtie2-align-s
+  # - bowtie2-align-s-debug
+  # - bowtie2-build
+  # - bowtie2-build-l
+  # - bowtie2-build-l-debug
+  # - bowtie2-build-s
+  # - bowtie2-build-s-debug
+  # - bowtie2-inspect
+  # - bowtie2-inspect-l
+  # - bowtie2-inspect-l-debug
+  # - bowtie2-inspect-s
+  # - bowtie2-inspect-s-debug
+  - breseq
+  - gdtools
+
+---
+image: pvstodghill/bwa
+version: 0.7.17__2017-10-31
+commands:
+  - bwa
+  - qualfa2fq.pl
+  - xa2multi.pl
+
+---
+image: pvstodghill/canu
+version: 1.7__2018-04-11
+java: true
+commands:
+  - canu
+
+---
+image: pvstodghill/clustalo
+version: 1.2.4__2017-09-08
+commands:
+  - clustalo
+
+---
+image: pvstodghill/clustalwx
+version: 2.1__2017-09-08
+commands:
+  - clustalw2
+  - clustalx: { gui: true }
+
+---
+image: pvstodghill/comet
+version: 2017012__2017-12-07
+commands:
+  - comet.exe
+  
+---
+image: pvstodghill/curesim
+version: 1.3__2017-07-11
+java: true
+commands:
+  - CuReSim
+
+---
+image: pvstodghill/deseq2
+version: 1.14.1__2017-01-02
+commands:
+  - __deseq2__
+
+---
+image: pvstodghill/ea-utils
+version: 2017-06-20-bd148d4__2018-03-05
+commands:
+  - alc
+  - determine-phred
+  - fastq-clipper
+  - fastq-join
+  - fastq-mcf
+  - fastq-multx
+  - fastq-stats
+  - fastx-graph
+  - randomFQ
+  - sam-stats
+  - varcall
+
+---
+image: pvstodghill/emboss
+version: 6.6.0__2016-12-19
+commands:
+  - aaindexextract
+  - abiview
+  - acdc
+  - acdgalaxy
+  - acdlog
+  - acdpretty
+  - acdtable
+  - acdtrace
+  - acdvalid
+  - aligncopy
+  - aligncopypair
+  - antigenic
+  - assemblyget
+  - backtranambig
+  - backtranseq
+  - banana
+  - biosed
+  - btwisted
+  - cachedas
+  - cachedbfetch
+  - cacheebeyesearch
+  - cacheensembl
+  - cai
+  - chaos
+  - charge
+  - checktrans
+  - chips
+  - cirdna
+  - codcmp
+  - codcopy
+  - coderet
+  - compseq
+  - consambig
+  - cpgplot
+  - cpgreport
+  - cusp
+  - cutgextract
+  - cutseq
+  - dan
+  - dbiblast
+  - dbifasta
+  - dbiflat
+  - dbigcg
+  - dbtell
+  - dbxcompress
+  - dbxedam
+  - dbxfasta
+  - dbxflat
+  - dbxgcg
+  - dbxobo
+  - dbxreport
+  - dbxresource
+  - dbxstat
+  - dbxtax
+  - dbxuncompress
+  - degapseq
+  - density
+  - descseq
+  - diffseq
+  - distmat
+  - dotmatcher
+  - dotpath
+  - dottup
+  - dreg
+  - drfinddata
+  - drfindformat
+  - drfindid
+  - drfindresource
+  - drget
+  - drtext
+  - edamdef
+  - edamhasinput
+  - edamhasoutput
+  - edamisformat
+  - edamisid
+  - edamname
+  - edialign
+  - einverted
+  - em_cons
+  - em_pscan
+  - embossdata
+  - embossupdate
+  - embossversion
+  - emma
+  - emowse
+  - entret
+  - epestfind
+  - eprimer3
+  - eprimer32
+  - equicktandem
+  - est2genome
+  - etandem
+  - extractalign
+  - extractfeat
+  - extractseq
+  - featcopy
+  - featmerge
+  - featreport
+  - feattext
+  - findkm
+  - freak
+  - fuzznuc
+  - fuzzpro
+  - fuzztran
+  - garnier
+  - geecee
+  - getorf
+  - godef
+  - goname
+  - helixturnhelix
+  - hmoment
+  - iep
+  - infoalign
+  - infoassembly
+  - infobase
+  - inforesidue
+  - infoseq
+  - isochore
+  - jaspextract
+  - jaspscan
+  - jembossctl
+  - lindna
+  - listor
+  - makenucseq
+  - makeprotseq
+  - marscan
+  - maskambignuc
+  - maskambigprot
+  - maskfeat
+  - maskseq
+  - matcher
+  - megamerger
+  - merger
+  - msbar
+  - mwcontam
+  - mwfilter
+  - needle
+  - needleall
+  - newcpgreport
+  - newcpgseek
+  - newseq
+  - nohtml
+  - noreturn
+  - nospace
+  - notab
+  - notseq
+  - nthseq
+  - nthseqset
+  - octanol
+  - oddcomp
+  - ontocount
+  - ontoget
+  - ontogetcommon
+  - ontogetdown
+  - ontogetobsolete
+  - ontogetroot
+  - ontogetsibs
+  - ontogetup
+  - ontoisobsolete
+  - ontotext
+  - palindrome
+  - pasteseq
+  - patmatdb
+  - patmatmotifs
+  - pepcoil
+  - pepdigest
+  - pepinfo
+  - pepnet
+  - pepstats
+  - pepwheel
+  - pepwindow
+  - pepwindowall
+  - plotcon
+  - plotorf
+  - polydot
+  - preg
+  - prettyplot
+  - prettyseq
+  - primersearch
+  - printsextract
+  - profit
+  - prophecy
+  - prophet
+  - prosextract
+  - psiphi
+  - rebaseextract
+  - recoder
+  - redata
+  - refseqget
+  - remap
+  - restover
+  - restrict
+  - revseq
+  - seealso
+  - seqcount
+  - seqmatchall
+  - seqret
+  - seqretsetall
+  - seqretsplit
+  - seqxref
+  - seqxrefget
+  - servertell
+  - showalign
+  - showdb
+  - showfeat
+  - showorf
+  - showpep
+  - showseq
+  - showserver
+  - shuffleseq
+  - sigcleave
+  - silent
+  - sirna
+  - sixpack
+  - sizeseq
+  - skipredundant
+  - skipseq
+  - splitsource
+  - splitter
+  - stretcher
+  - stssearch
+  - supermatcher
+  - syco
+  - taxget
+  - taxgetdown
+  - taxgetrank
+  - taxgetspecies
+  - taxgetup
+  - tcode
+  - textget
+  - textsearch
+  - tfextract
+  - tfm
+  - tfscan
+  - tmap
+  - tranalign
+  - transeq
+  - trimest
+  - trimseq
+  - trimspace
+  - twofeat
+  - union
+  - urlget
+  - variationget
+  - vectorstrip
+  - water
+  - whichdb
+  - wobble
+  - wordcount
+  - wordfinder
+  - wordmatch
+  - wossdata
+  - wossinput
+  - wossname
+  - wossoperation
+  - wossoutput
+  - wossparam
+  - wosstopic
+  - xmlget
+  - xmltext
+  - yank
+
+---
+image: pvstodghill/fastqc
+version: 0.11.5__2017-07-10
+java: true
+commands:
+  - fastqc
+
+---
+image: pvstodghill/filiatrault2010
+version: 098198f__2016-12-08
+commands:
+  - profile2plot
+  - profiles2plots
+  - sam-filter
+  - sam-prefilter
+  - sam2profiles
+
+---
+image: pvstodghill/goseq
+version: 1.28.0__2017-05-16
+commands:
+  - __goseq__
+
+---
+image: pvstodghill/mauve
+version: 2015-02-13__2017-02-13
+commands:
+  - mauveAligner
+  - progressiveMauve
+  - Mauve: { gui: true, java: true }
+
+---
+image: pvstodghill/miniasm
+version: 9415d29__2018-03-27
+commands:
+  - miniasm
+  
+---
+image: pvstodghill/minimap
+version: fdf32ad__2017-10-19
+commands:
+  - minimap
+
+---
+image: pvstodghill/minimap2
+version: 7938ed4__2018-03-27
+commands:
+  - minimap2
+
+---
+image: pvstodghill/mummer
+version: 3.23__2018-03-19
+commands:
+  - annotate
+  - combineMUMs
+  - delta-filter
+  - dnadiff
+  - exact-tandems
+  - gaps
+  - mapview
+  - mgaps
+  - mummer
+  - mummerplot
+  - nucmer
+  - nucmer2xfig
+  - postnuc
+  - postpro
+  - prenuc
+  - prepro
+  - promer
+  - repeat-match
+  - run-mummer1
+  - run-mummer3
+  - show-aligns
+  - show-coords
+  - show-diff
+  - show-snps
+  - show-tiling
+
+---
+image: pvstodghill/nanosim
+version: 1.1.0__2017-07-12
+commands:
+  - read_analysis.py
+  - simulator.py
+
+---
+image: pvstodghill/ncbi-blast
+version: 2.6.0plus__2017-04-05
+commands:
+  - blast_formatter
+  - blastdb_aliastool
+  - blastdbcheck
+  - blastdbcmd
+  - blastn
+  - blastp
+  - blastx
+  - convert2blastmask
+  - deltablast
+  - dustmasker
+  - legacy_blast.pl
+  - makeblastdb
+  - makembindex
+  - makeprofiledb
+  - psiblast
+  - rpsblast
+  - rpstblastn
+  - segmasker
+  - tblastn
+  - tblastx
+  - update_blastdb.pl
+  - windowmasker
+
+
+---
+image: pvstodghill/openms
+version: 2.1.0__2017-01-27
+commands:
+  - AccurateMassSearch
+  - AdditiveSeries
+  - BaselineFilter
+  - CVInspector
+  - CompNovo
+  - CompNovoCID
+  - ConsensusID
+  - ConsensusMapNormalizer
+  - ConvertTSVToTraML
+  - ConvertTraMLToTSV
+  - DTAExtractor
+  - DeMeanderize
+  - Decharger
+  - DecoyDatabase
+  - Digestor
+  - DigestorMotif
+  - EICExtractor
+  - ERPairFinder
+  - ExecutePipeline
+  - ExternalCalibration
+  - FFEval
+  - FalseDiscoveryRate
+  - FeatureFinderCentroided
+  - FeatureFinderIdentification
+  - FeatureFinderIsotopeWavelet
+  - FeatureFinderMRM
+  - FeatureFinderMetabo
+  - FeatureFinderMultiplex
+  - FeatureFinderSuperHirn
+  - FeatureLinkerLabeled
+  - FeatureLinkerUnlabeled
+  - FeatureLinkerUnlabeledQT
+  - FidoAdapter
+  - FileConverter
+  - FileFilter
+  - FileInfo
+  - FileMerger
+  - FuzzyDiff
+  - GenericWrapper
+  - HighResPrecursorMassCorrector
+  - IDConflictResolver
+  - IDDecoyProbability
+  - IDEvaluator
+  - IDEvaluatorGUI
+  - IDExtractor
+  - IDFileConverter
+  - IDFilter
+  - IDMapper
+  - IDMassAccuracy
+  - IDMerger
+  - IDPosteriorErrorProbability
+  - IDRTCalibration
+  - IDRipper
+  - IDScoreSwitcher
+  - IDSplitter
+  - INIFileEditor
+  - INIUpdater
+  - ITRAQAnalyzer
+  - ImageCreator
+  - InclusionExclusionListCreator
+  - InspectAdapter
+  - InternalCalibration
+  - IsobaricAnalyzer
+  - LabeledEval
+  - LowMemPeakPickerHiRes
+  - LowMemPeakPickerHiRes_RandomAccess
+  - LuciphorAdapter
+  - MRMMapper
+  - MRMPairFinder
+  - MRMTransitionGroupPicker
+  - MSGFPlusAdapter
+  - MSSimulator
+  - MapAlignerIdentification
+  - MapAlignerPoseClustering
+  - MapAlignerSpectrum
+  - MapAlignmentEvaluation
+  - MapNormalizer
+  - MapRTTransformer
+  - MapStatistics
+  - MascotAdapter
+  - MascotAdapterOnline
+  - MassCalculator
+  - MassTraceExtractor
+  - MetaProSIP
+  - MetaboliteSpectralMatcher
+  - MultiplexResolver
+  - MyriMatchAdapter
+  - MzMLSplitter
+  - MzTabExporter
+  - NoiseFilterGaussian
+  - NoiseFilterSGolay
+  - OMSSAAdapter
+  - OpenMSInfo
+  - OpenSwathAnalyzer
+  - OpenSwathAssayGenerator
+  - OpenSwathChromatogramExtractor
+  - OpenSwathConfidenceScoring
+  - OpenSwathDIAPreScoring
+  - OpenSwathDecoyGenerator
+  - OpenSwathFeatureXMLToTSV
+  - OpenSwathFileSplitter
+  - OpenSwathMzMLFileCacher
+  - OpenSwathRTNormalizer
+  - OpenSwathRewriteToFeatureXML
+  - OpenSwathWorkflow
+  - PTModel
+  - PTPredict
+  - PeakPickerHiRes
+  - PeakPickerIterative
+  - PeakPickerWavelet
+  - PepNovoAdapter
+  - PeptideIndexer
+  - PhosphoScoring
+  - PrecursorIonSelector
+  - PrecursorMassCorrector
+  - ProteinInference
+  - ProteinQuantifier
+  - ProteinResolver
+  - QCCalculator
+  - QCEmbedder
+  - QCExporter
+  - QCExtractor
+  - QCImporter
+  - QCMerger
+  - QCShrinker
+  - RNPxl
+  - RNPxlXICFilter
+  - RTEvaluation
+  - RTModel
+  - RTPredict
+  - Resampler
+  - SeedListGenerator
+  - SemanticValidator
+  - SequenceCoverageCalculator
+  - SimpleSearchEngine
+  - SpecLibCreator
+  - SpecLibSearcher
+  - SpectraFilterBernNorm
+  - SpectraFilterMarkerMower
+  - SpectraFilterNLargest
+  - SpectraFilterNormalizer
+  - SpectraFilterParentPeakMower
+  - SpectraFilterScaler
+  - SpectraFilterSqrtMower
+  - SpectraFilterThresholdMower
+  - SpectraFilterWindowMower
+  - SpectraMerger
+  - SvmTheoreticalSpectrumGeneratorTrainer
+  - TICCalculator
+  - TMTAnalyzer
+  - TOFCalibration
+  - TOPPAS
+  - TOPPView
+  - TextExporter
+  - TopPerc
+  - TransformationEvaluation
+  - XMLValidator
+  - XTandemAdapter
+
+---
+image: pvstodghill/pbsim
+version: 1.0.3__2017-07-11
+commands:
+  - pbsim
+
+---
+image: pvstodghill/peptideshaker
+version: 1.16.11__2017-06-23
+java: true
+commands:
+  - FollowUpCLI
+  - MzidCLI
+  # - PathSettingsCLI
+  - PeptideShaker: { gui: true }
+  - PeptideShakerCLI
+  - ReportCLI
+
+---
+image: pvstodghill/percolator
+version: v3-01__2017-07-11
+commands:
+  - elude
+  - msgf2pin
+  - percolator
+  - qvality
+  - sqt2pin
+  - tandem2pin
+
+
+---
+image: pvstodghill/pilon
+version: 1.22__2017-10-31
+java: true
+commands:
+  - pilon
+  
+---
+image: pvstodghill/prokka
+version: 1.13__2018-03-27
+commands:
+  - prokka
+  - prokka-biocyc_to_fasta_db
+  - prokka-build_kingdom_dbs
+  - prokka-cdd_to_hmm
+  - prokka-clusters_to_hmm
+  - prokka-genbank_to_fasta_db
+  - prokka-genpept_to_fasta_db
+  - prokka-hamap_to_hmm
+  - prokka-make_tarball
+  - prokka-tigrfams_to_hmm
+  - prokka-uniprot_to_fasta_db
+
+---
+image: pvstodghill/proteinortho
+version: 5.16b__2018-04-04
+commands:
+  - proteinortho5.pl
+
+---
+image: pvstodghill/pyani
+version: 0.2.4__2017-08-18
+commands:
+  - average_nucleotide_identity.py
+  - genbank_get_genomes_by_taxon.py
+
+---
+image: pvstodghill/racon
+version: 1.2.0__2018-03-27
+commands:
+  - racon
+
+---
+image: pvstodghill/samtools
+version: 1.7__2018-03-27
+commands:
+  - ace2sam
+  - blast2sam.pl
+  - bowtie2sam.pl
+  - export2sam.pl
+  - interpolate_sam.pl
+  - maq2sam-long
+  - maq2sam-short
+  - md5fa
+  - md5sum-lite
+  - novo2sam.pl
+  - plot-bamstats
+  - psl2sam.pl
+  - sam2vcf.pl
+  - samtools
+  - samtools.pl
+  - seq_cache_populate.pl
+  - soap2sam.pl
+  - varfilter.py
+  - wgsim
+  - wgsim_eval.pl
+  - zoom2sam.pl
+
+---
+image: pvstodghill/searchgui
+version: 3.2.20__2017-06-23
+java: true
+commands:
+  - FastaCLI
+  - IdentificationParametersCLI
+  # - PathSettingsCLI
+  - SearchCLI
+  - SearchGUI: { gui: true }
+
+---
+image: pvstodghill/ubuntu
+version: xenial
+commands:
+  - bash
+  
+---
+image: pvstodghill/tpp
+version: 5.1.0__2017-11-13
+commands:
+  - InterProphetParser
+  - InteractParser
+  - PeptideProphetParser
+  - ProteinProphet
+  - RefreshParser
+  - Tandem2XML
+  - comet
+  - idconvert
+  - msconvert
+  - tandem
+  - xinteract
+
+---
+image: pvstodghill/velvet
+version: 1.2.10__2017-02-02
+commands:
+  - velvetg
+  - velveth
+
+---
+image: pvstodghill/xtandem
+version: 17-02-01-4__2017-11-16
+commands:
+  - tandem.exe
+  
