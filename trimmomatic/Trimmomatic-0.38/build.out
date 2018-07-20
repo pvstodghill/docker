@@ -1,0 +1,107 @@
+Script started on 2018-07-16 11:04:30-0400
++ docker build --pull -t pvstodghill/trimmomatic:0.38__2018-07-16 .
+Sending build context to Docker daemon  139.3kB
+Step 1/19 : FROM ubuntu:xenial
+xenial: Pulling from library/ubuntu
+Digest: sha256:b050c1822d37a4463c01ceda24d0fc4c679b0dd3c43e742730e2884d3c582e3a
+Status: Image is up to date for ubuntu:xenial
+ ---> 5e8b97a2a082
+Step 2/19 : MAINTAINER Paul Stodghill <paul.stodghill@ars.usda.gov>
+ ---> Using cache
+ ---> a47978adcbfe
+Step 3/19 : ENV BUILD_PACKAGES unzip
+ ---> Using cache
+ ---> 9c501b5c8ebe
+Step 4/19 : ENV RUN_PACKAGES default-jre
+ ---> Using cache
+ ---> d40084ce240b
+Step 5/19 : RUN     sed -i'' 's/archive\.ubuntu\.com/mirrors.rit.edu/' /etc/apt/sources.list &&     sed -i'' 's/security\.ubuntu\.com/mirrors.rit.edu/' /etc/apt/sources.list &&     rm -rf /var/lib/apt/lists/* &&     apt-get clean && apt-get update &&     apt-get install --yes ${BUILD_PACKAGES} ${RUN_PACKAGES}
+ ---> Using cache
+ ---> 6a49a8409333
+Step 6/19 : ENV PACKAGE Trimmomatic
+ ---> Using cache
+ ---> a584486057ac
+Step 7/19 : ENV VERSION 0.38
+ ---> Using cache
+ ---> d963d06c6dc6
+Step 8/19 : ADD ${PACKAGE}-${VERSION}.zip /opt/
+ ---> Using cache
+ ---> 09da5be4f415
+Step 9/19 : WORKDIR /opt
+ ---> Using cache
+ ---> ba198a9c6d7d
+Step 10/19 : RUN unzip ${PACKAGE}-${VERSION}.zip &&     rm -f ${PACKAGE}-${VERSION}.zip &&     mv ${PACKAGE}-${VERSION} ${PACKAGE}
+ ---> Using cache
+ ---> 97d4eba5b41b
+Step 11/19 : RUN mv ${PACKAGE}/trimmomatic-*.jar ${PACKAGE}/trimmomatic.jar
+ ---> Running in cf6c55f5ac82
+Removing intermediate container cf6c55f5ac82
+ ---> 7be89ab251f8
+Step 12/19 : WORKDIR /root
+Removing intermediate container b69ca62b5dca
+ ---> 3a2f29122e95
+Step 13/19 : RUN rm -rf /tmp/${PACKAGE}     && apt-get remove --yes --purge ${BUILD_PACKAGES}     && apt-get autoremove -y && apt-get clean
+ ---> Running in a107acc4f627
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following packages will be REMOVED:
+  unzip*
+0 upgraded, 0 newly installed, 1 to remove and 8 not upgraded.
+After this operation, 530 kB disk space will be freed.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7581 files and directories currently installed.)
+Removing unzip (6.0-20ubuntu1) ...
+Purging configuration files for unzip (6.0-20ubuntu1) ...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.
+Removing intermediate container a107acc4f627
+ ---> a77b2ef05e94
+Step 14/19 : RUN useradd -d /mnt -M guest
+ ---> Running in e1b6ff430265
+Removing intermediate container e1b6ff430265
+ ---> 72b1825a8798
+Step 15/19 : USER guest
+ ---> Running in 73e4f70dd1e2
+Removing intermediate container 73e4f70dd1e2
+ ---> b8618a63f061
+Step 16/19 : ENV HOME /mnt
+ ---> Running in 2332727fd8a3
+Removing intermediate container 2332727fd8a3
+ ---> cec6a1737715
+Step 17/19 : ENV PATH /opt/${PACKAGE}:${PATH}
+ ---> Running in 2290c9641482
+Removing intermediate container 2290c9641482
+ ---> 4bb8a67c962b
+Step 18/19 : WORKDIR /mnt
+Removing intermediate container 9bedfe427de6
+ ---> 25e7df71be92
+Step 19/19 : CMD find /opt/* -type f | sort
+ ---> Running in 2e775c258894
+Removing intermediate container 2e775c258894
+ ---> d37768777cb4
+Successfully built d37768777cb4
+Successfully tagged pvstodghill/trimmomatic:0.38__2018-07-16
++ docker run --rm pvstodghill/trimmomatic:0.38__2018-07-16 java -jar /opt/Trimmomatic/trimmomatic.jar -version
+0.38
++ docker push pvstodghill/trimmomatic:0.38__2018-07-16
+The push refers to repository [docker.io/pvstodghill/trimmomatic]
+
+[1A[1K[K00d0084b61fb: Preparing [1B
+[1A[1K[K6b463e9f2d2d: Preparing [1B
+[1A[1K[K092e65d2ee9b: Preparing [1B
+[1A[1K[Kefec3c500802: Preparing [1B
+[1A[1K[K18ead2e5846a: Preparing [1B
+[1A[1K[Kb25612a1c827: Preparing [1B
+[1A[1K[K2de391e51d73: Preparing [1B
+[1A[1K[Kd73dd9e65295: Preparing [1B
+[1A[1K[K686245e78935: Preparing [1B
+[1A[1K[Kd7ff1dc646ba: Preparing [1B
+[1A[1K[K644879075e24: Preparing [1B[6A[1K[Kb25612a1c827: Waiting [6B[4A[1K[Kd73dd9e65295: Waiting [4B[3A[1K[K686245e78935: Waiting [3B[2A[1K[Kd7ff1dc646ba: Waiting [2B[5A[1K[K2de391e51d73: Waiting [5B[1A[1K[K644879075e24: Waiting [1Bdenied: requested access to the resource is denied
+
+real	0m10.003s
+user	0m0.267s
+sys	0m0.067s
+
+Script done on 2018-07-16 11:04:40-0400
